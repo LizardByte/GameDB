@@ -1,0 +1,55 @@
+name: Update DB
+
+on:
+  schedule:
+  - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
+          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Prepare gh-pages
+        run: |
+          # empty contents to ensure deleted igdb are removed
+          rm -f -r ./gh-pages/*
+          
+          # copy template back to pages
+          cp -f -r ./gh-pages-template/* ./gh-pages/
+
+      - name: Update db
+        working-directory: gh-pages
+        run: python ../update_db.py --client_id ${{ secrets.TWITCH_CLIENT_ID }} --client_secret ${{ secrets.TWITCH_CLIENT_SECRET }}
+
+      - name: Deploy to gh-pages
+        uses: actions-js/push@v1.3
+        with:
+          github_token: ${{ secrets.GH_BOT_TOKEN }}
+          author_email: ${{ secrets.GH_BOT_EMAIL }}
+          author_name: ${{ secrets.GH_BOT_NAME }}
+          directory: gh-pages
+          branch: gh-pages
+          force: true
+          message: 'Automatic update ${date}'
