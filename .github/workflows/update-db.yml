@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  renew:
+  update:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,7 @@ jobs:
 
       - name: Update db
         working-directory: gh-pages
-        run: python ../update_db.py --client_id ${{ secrets.TWITCH_CLIENT_ID }} --client_secret ${{ secrets.TWITCH_CLIENT_SECRET }}
+        run: python ../update_db.py --twitch_client_id ${{ secrets.TWITCH_CLIENT_ID }} --twitch_client_secret ${{ secrets.TWITCH_CLIENT_SECRET }}
 
       - name: Deploy to gh-pages
         uses: actions-js/push@v1.3

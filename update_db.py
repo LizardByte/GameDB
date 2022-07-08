@@ -30,6 +30,11 @@ def igdb_authorization(client_id: str, client_secret: str) -> dict:
     return authorization
 
 
+def get_json(url: str, headers: dict) -> dict:
+    result = requests.get(url=url, headers=headers).json()
+    return result
+
+
 def post_json(url: str, headers: dict) -> dict:
     result = requests.post(url=url, data=headers).json()
     return result
@@ -43,6 +48,15 @@ def write_json_files(file_path: str, data: dict):
 
     with open(f'{file_path}.json', 'w') as f:
         json.dump(obj=data, fp=f, indent=args.indent)
+
+
+def get_youtube(video_id: str) -> dict:
+    # https://developers.google.com/youtube/v3/getting-started
+    url = f'https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={args.youtube_api_key}&part=snippet'
+    headers = dict(Accept='application/json')
+
+    result = get_json(url=url, headers=headers)
+    return result
 
 
 def get_igdb_data():
@@ -194,6 +208,35 @@ def get_igdb_data():
                                         else:
                                             full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
 
+    # get video details for games
+    print('processing videos for games')
+    for game_id, game_data in full_dict['games'].items():
+        try:
+            videos = game_data['videos']
+        except KeyError:
+            # no videos for this game
+            pass
+        else:
+            for video in videos:
+                video_by_id = get_youtube(video_id=video['video_id'])
+                video_details = video_by_id['items'][0]
+
+                video_thumbs = video_details['snippet']['thumbnails']
+
+                # remove keys that have no value
+                # create a copy of original dictionary because we may alter it, https://stackoverflow.com/a/33815594
+                for video_key, video_value in dict(video_thumbs).items():
+                    if video_value is None:
+                        del video_thumbs[video_key]
+
+                # sort the video thumbnails by width
+                video_thumbs = sorted(video_thumbs.items(), key=lambda x: x[1]['width'], reverse=True)
+
+                # the final video thumbnail
+                video['url'] = f'https://www.youtube.com/watch?v={video_details["id"]}'
+                video['title'] = video_details['snippet']['title']
+                video['thumb'] = video_thumbs[0][1]['url']
+
     # write the individual files
     for end_point, end_point_dict in full_dict.items():
         print(f'writing individual files for {end_point}')
@@ -219,10 +262,12 @@ def get_igdb_enums():
 if __name__ == '__main__':
     # setup arguments using argparse
     parser = argparse.ArgumentParser(description="Download entire igdb database.")
-    parser.add_argument('--client_id', type=str, required=False, default=os.getenv('TWITCH_CLIENT_ID'),
+    parser.add_argument('--twitch_client_id', type=str, required=False, default=os.getenv('TWITCH_CLIENT_ID'),
                         help='Twitch developer client id')
-    parser.add_argument('--client_secret', type=str, required=False, default=os.getenv('TWITCH_CLIENT_SECRET'),
+    parser.add_argument('--twitch_client_secret', type=str, required=False, default=os.getenv('TWITCH_CLIENT_SECRET'),
                         help='Twitch developer client secret')
+    parser.add_argument('--youtube_api_key', type=str, required=False, default=os.getenv('YOUTUBE_API_KEY'),
+                        help='Youtube API key')
     parser.add_argument('-t', '--test_mode', action='store_true',
                         help='Only write one item file per end point, per request.')
     parser.add_argument('-i', '--indent_json', action='store_true', help='Indent json files.')
@@ -230,13 +275,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.indent = 4 if args.indent_json else None
 
-    if not args.client_id or not args.client_secret:
-        raise SystemExit('No secrets supplied. Required secrets are "TWITCH_CLIENT_ID" and "TWITCH_CLIENT_SECRET". '
-                         'They should be placed in org/repo secrets if using github, or ".env" file if running local.')
+    if not args.twitch_client_id or not args.twitch_client_secret or not args.youtube_api_key:
+        raise SystemExit('Secrets not supplied. Required secrets are "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET" and '
+                         '"YOUTUBE_API_KEY". They should be placed in org/repo secrets if using github, '
+                         'or ".env" file if running local.')
 
     # setup igdb authorization and wrapper
-    auth = igdb_authorization(client_id=args.client_id, client_secret=args.client_secret)
-    wrapper = IGDBWrapper(client_id=args.client_id, auth_token=auth['access_token'])
+    auth = igdb_authorization(client_id=args.twitch_client_id, client_secret=args.twitch_client_secret)
+    wrapper = IGDBWrapper(client_id=args.twitch_client_id, auth_token=auth['access_token'])
 
     # get date, process dictionaries and write data
     get_igdb_data()
