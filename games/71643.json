@@ -1,0 +1,1 @@
+{"id": 71643, "involved_companies": [{"id": 171053, "company": {"id": 632, "name": "Ambrosia Software"}, "developer": false}], "name": "Deimos Rising", "platforms": [6, 14], "release_dates": [{"id": 358864, "date": 1051142400, "platform": 6, "y": 2003}, {"id": 358865, "date": 1007596800, "platform": 14, "y": 2001}], "themes": [{"id": 1, "name": "Action"}]}

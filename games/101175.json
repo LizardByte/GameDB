@@ -1,0 +1,1 @@
+{"id": 101175, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 3, "name": "Co-operative"}], "involved_companies": [{"id": 64764, "company": {"id": 3910, "name": "Pygmy Studio"}, "developer": true}], "name": "LUNAXXX", "platforms": [130], "player_perspectives": [{"id": 4, "name": "Side view"}], "release_dates": [{"id": 152424, "platform": 130}]}
