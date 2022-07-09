@@ -41,7 +41,11 @@ jobs:
 
       - name: Update db
         working-directory: gh-pages
-        run: python ../update_db.py --twitch_client_id ${{ secrets.TWITCH_CLIENT_ID }} --twitch_client_secret ${{ secrets.TWITCH_CLIENT_SECRET }}
+        run: |
+          python ../update_db.py \
+          --twitch_client_id ${{ secrets.TWITCH_CLIENT_ID }} \
+          --twitch_client_secret ${{ secrets.TWITCH_CLIENT_SECRET }} \
+          --youtube_api_key ${{ secrets.YOUTUBE_API_KEY }}
 
       - name: Deploy to gh-pages
         uses: actions-js/push@v1.3
