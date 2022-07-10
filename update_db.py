@@ -17,6 +17,21 @@ load_dotenv()
 
 
 def igdb_authorization(client_id: str, client_secret: str) -> dict:
+    """
+    Get the igdb authorization.
+
+    Parameters
+    ----------
+    client_id : str
+        Twitch developer client id.
+    client_secret : str
+        Twitch developer client secret.
+
+    Returns
+    -------
+    dict
+        Dictionary containing access token and expiration.
+    """
     auth_headers = dict(
         Accept='application/json',
         client_id=client_id,
@@ -31,16 +46,56 @@ def igdb_authorization(client_id: str, client_secret: str) -> dict:
 
 
 def get_json(url: str, headers: dict) -> dict:
+    """
+    Send a GET request and return a json formatted dictionary.
+
+    Parameters
+    ----------
+    url : str
+        The url to request.
+    headers
+        The headers to use in the request.
+
+    Returns
+    -------
+    dict
+        Dictionary of json data.
+    """
     result = requests.get(url=url, headers=headers).json()
     return result
 
 
 def post_json(url: str, headers: dict) -> dict:
+    """
+    Send a POST request and return a json formatted dictionary.
+
+    Parameters
+    ----------
+    url : str
+        The url to request.
+    headers
+        The headers to use in the request.
+
+    Returns
+    -------
+    dict
+        Dictionary of json data.
+    """
     result = requests.post(url=url, data=headers).json()
     return result
 
 
 def write_json_files(file_path: str, data: dict):
+    """
+    Write dictionary to json file.
+
+    Parameters
+    ----------
+    file_path : str
+        The file path to save the file at, excluding the file extension which will be `.json`
+    data
+        The dictionary data to write in the json file.
+    """
     # determine the directory
     directory = os.path.dirname(file_path)
 
@@ -50,16 +105,39 @@ def write_json_files(file_path: str, data: dict):
         json.dump(obj=data, fp=f, indent=args.indent)
 
 
-def get_youtube(video_id: str) -> dict:
+def get_youtube(video_ids: list) -> dict:
+    """
+    Get metadata for YouTube videos.
+
+    Parameters
+    ----------
+    video_ids : list
+        List of YouTube videos to get metadata for.
+
+    Returns
+    -------
+    dict
+        JSON data formatted as a dictionary.
+    """
     # https://developers.google.com/youtube/v3/getting-started
-    url = f'https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={args.youtube_api_key}&part=snippet'
+    uri = 'https://www.googleapis.com/youtube/v3/videos'
+    videos = ','.join(video_ids)
+    fields = 'items(id,snippet(title,description,thumbnails,localized))'
+    url = f'{uri}?id={videos}&key={args.youtube_api_key}&part=snippet&fields={fields}'
     headers = dict(Accept='application/json')
 
     result = get_json(url=url, headers=headers)
     return result
 
 
-def get_igdb_data():
+def get_data():
+    """
+    Get data from IGDB and YouTube.
+
+    Build a combined dictionary of IGDB and YouTube data for characters, games, platforms, and videos. Character data
+    is appended to games. Games are appended to platforms. Videos metadata is also added to games. Individual files
+    will be written to disk for each item.
+    """
     request_dict = dict(
         characters=dict(
             fields=[
@@ -208,34 +286,69 @@ def get_igdb_data():
                                         else:
                                             full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
 
-    # get video details for games
-    print('processing videos for games')
+    # get list of all videos
+    print('collecting video ids')
+    all_videos = []
     for game_id, game_data in full_dict['games'].items():
         try:
-            videos = game_data['videos']
+            game_videos = game_data['videos']
         except KeyError:
             # no videos for this game
             pass
         else:
-            for video in videos:
-                video_by_id = get_youtube(video_id=video['video_id'])
-                video_details = video_by_id['items'][0]
+            for video in game_videos:
+                video_id = video['video_id']
+                if video_id not in all_videos:
+                    all_videos.append(video_id)
 
-                video_thumbs = video_details['snippet']['thumbnails']
+    # get data for videos
+    # we can only make 10,000 requests to youtube api per day, so let's get as much data as possible in each request
+    print('collecting video metadata')
 
-                # remove keys that have no value
-                # create a copy of original dictionary because we may alter it, https://stackoverflow.com/a/33815594
-                for video_key, video_value in dict(video_thumbs).items():
-                    if video_value is None:
-                        del video_thumbs[video_key]
+    end_point = 'videos'
+    full_dict[end_point] = dict()
 
-                # sort the video thumbnails by width
-                video_thumbs = sorted(video_thumbs.items(), key=lambda x: x[1]['width'], reverse=True)
+    all_videos = [all_videos[x:x + 50] for x in range(0, len(all_videos), 50)]
+    for video_group in all_videos:
+        json_result = get_youtube(video_ids=video_group)
 
-                # the final video thumbnail
-                video['url'] = f'https://www.youtube.com/watch?v={video_details["id"]}'
-                video['title'] = video_details['snippet']['title']
-                video['thumb'] = video_thumbs[0][1]['url']
+        try:
+            for item in json_result['items']:
+                full_dict[end_point][item['id']] = item
+        except KeyError as e:
+            print(f'KeyError: {e}\n\n{json.dumps(json_result, indent=2)}')
+
+    # get video details for games
+    print('adding videos to games')
+    for game_id, game_data in full_dict['games'].items():
+        try:
+            game_videos = game_data['videos']
+        except KeyError:
+            # no videos for this game
+            pass
+        else:
+            for video in game_videos:
+                try:
+                    video_details = full_dict['videos'][video['video_id']]
+                except (IndexError, KeyError):
+                    # no data for this video
+                    pass
+                else:
+                    video_thumbs = video_details['snippet']['thumbnails']
+
+                    # remove keys that have no value
+                    # create a copy of original dictionary since we may alter it, https://stackoverflow.com/a/33815594
+                    for video_key, video_value in dict(video_thumbs).items():
+                        if video_value is None:
+                            del video_thumbs[video_key]
+
+                    # sort the video thumbnails by width into a list
+                    video_thumbs = sorted(video_thumbs.items(), key=lambda x: x[1]['width'], reverse=True)
+
+                    # the final video thumbnail
+                    video['url'] = f'https://www.youtube.com/watch?v={video_details["id"]}'
+                    video['title'] = video_details['snippet']['title']
+                    video['thumb'] = video_thumbs[0][1]['url']
 
     # write the individual files
     for end_point, end_point_dict in full_dict.items():
@@ -246,6 +359,9 @@ def get_igdb_data():
 
 
 def get_igdb_enums():
+    """
+    Write igdb enums to json files.
+    """
     end_point = 'enums'
     for enum, values in enums.items():
         file_path = os.path.join(end_point, enum)
@@ -285,5 +401,5 @@ if __name__ == '__main__':
     wrapper = IGDBWrapper(client_id=args.twitch_client_id, auth_token=auth['access_token'])
 
     # get date, process dictionaries and write data
-    get_igdb_data()
+    get_data()
     get_igdb_enums()
