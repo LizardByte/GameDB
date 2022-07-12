@@ -1,0 +1,1 @@
+{"id": 208794, "age_ratings": [{"id": 78449, "category": 1, "rating": 8}], "involved_companies": [{"id": 178489, "company": {"id": 19163, "name": "Ringzero Game Studio"}, "developer": true}], "name": "Core Blaster", "platforms": [9, 38], "release_dates": [{"id": 372409, "date": 1297728000, "platform": 9, "y": 2011}, {"id": 372410, "date": 1297728000, "platform": 38, "y": 2011}]}
