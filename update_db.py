@@ -3,6 +3,7 @@ import argparse
 import pathlib
 import json
 import os
+import time
 
 # lib imports
 import requests
@@ -219,10 +220,16 @@ def get_data():
         full_dict[end_point] = dict()
 
         while result:
-            byte_array = wrapper.api_request(
-                endpoint=end_point,
-                query=f'fields {", ".join(end_point_dict["fields"])}; limit {limit}; offset {offset};'
-            )
+            try:
+                byte_array = wrapper.api_request(
+                    endpoint=end_point,
+                    query=f'fields {", ".join(end_point_dict["fields"])}; limit {limit}; offset {offset};'
+                )
+            except requests.exceptions.HTTPError:
+                # handle too many requests
+                time.sleep(1)
+                continue
+
             json_result = json.loads(byte_array)  # this is a list of dictionaries
             # items.extend(json_result)
 
