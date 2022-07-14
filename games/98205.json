@@ -1,1 +1,1 @@
-{"id": 98205, "cover": {"id": 190921, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co43bd.jpg"}, "name": "Waku Waku Volley", "platforms": [7], "release_dates": [{"id": 321879, "date": 912038400, "platform": 7, "y": 1998}]}
+{"id": 98205, "cover": {"id": 190921, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co43bd.jpg"}, "involved_companies": [{"id": 178664, "company": {"id": 1752, "name": "Athena"}, "developer": false}], "name": "Waku-waku Volley", "platforms": [7], "release_dates": [{"id": 321879, "date": 912038400, "platform": 7, "y": 1998}]}

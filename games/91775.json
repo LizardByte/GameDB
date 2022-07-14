@@ -1,1 +1,1 @@
-{"id": 91775, "name": "Doraemon Kimi to Pet no Monogatari"}
+{"id": 91775, "collection": {"id": 644, "name": "Doraemon"}, "cover": {"id": 232027, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co4z17.jpg"}, "franchises": [{"id": 1435, "name": "Doraemon"}], "game_modes": [{"id": 1, "name": "Single player"}], "involved_companies": [{"id": 178639, "company": {"id": 1274, "name": "Epoch"}, "developer": false}], "name": "Doraemon: Kimi to Pet no Monogatari", "platforms": [22], "release_dates": [{"id": 372701, "platform": 22}], "themes": [{"id": 17, "name": "Fantasy"}]}
