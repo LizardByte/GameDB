@@ -3,6 +3,7 @@ import argparse
 import pathlib
 import json
 import os
+import re
 import time
 
 # lib imports
@@ -136,8 +137,8 @@ def get_data():
     Get data from IGDB and YouTube.
 
     Build a combined dictionary of IGDB and YouTube data for characters, games, platforms, and videos. Character data
-    is appended to games. Games are appended to platforms. Videos metadata is also added to games. Individual files
-    will be written to disk for each item.
+    is appended to the games list. Games are appended to platforms. Videos metadata is also added to the games list.
+    Individual files will be written to disk for each item.
     """
     request_dict = dict(
         characters=dict(
@@ -293,10 +294,26 @@ def get_data():
                                         else:
                                             full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
 
-    # get list of all videos
-    print('collecting video ids')
+    # create buckets and get list of all videos
+    print('creating buckets / collecting video ids')
+    buckets = dict()
     all_videos = []
     for game_id, game_data in full_dict['games'].items():
+        # games
+        bucket = "".join(x.strip().lower() for x in game_data['name'][:2] if x.isalnum())
+        if not re.fullmatch(r'[\da-z]+', bucket):
+            bucket = '@'
+
+        try:
+            buckets[bucket]
+        except KeyError:
+            buckets[bucket] = dict()
+        finally:
+            buckets[bucket][game_id] = dict(
+                name=game_data['name']
+            )
+
+        # videos
         try:
             game_videos = game_data['videos']
         except KeyError:
@@ -308,8 +325,13 @@ def get_data():
                 if video_id not in all_videos:
                     all_videos.append(video_id)
 
+    # write the full game index
+    for bucket, bucket_data in buckets.items():
+        file_path = os.path.join('buckets', str(bucket))
+        write_json_files(file_path=file_path, data=bucket_data)
+
     # get data for videos
-    # we can only make 10,000 requests to youtube api per day, so let's get as much data as possible in each request
+    # we can only make 10,000 requests to YouTube api per day, so let's get as much data as possible in each request
     print('collecting video metadata')
 
     end_point = 'videos'
