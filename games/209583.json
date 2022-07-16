@@ -1,0 +1,1 @@
+{"id": 209583, "age_ratings": [{"id": 80509, "category": 1, "rating": 8}], "involved_companies": [{"id": 178975, "company": {"id": 4598, "name": "Bloober Team"}, "developer": true}], "name": "Future Fight", "platforms": [9, 38], "release_dates": [{"id": 373265, "date": 1269907200, "platform": 9, "y": 2010}, {"id": 373266, "date": 1269907200, "platform": 38, "y": 2010}]}
