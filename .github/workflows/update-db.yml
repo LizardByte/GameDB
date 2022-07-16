@@ -21,6 +21,10 @@ jobs:
           persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
           fetch-depth: 0  # otherwise, will fail to push refs to dest repo
 
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -56,4 +60,4 @@ jobs:
           directory: gh-pages
           branch: gh-pages
           force: true
-          message: 'Automatic update ${date}'
+          message: automatic-update-${{ steps.date.outputs.date }}
