@@ -1,1 +1,1 @@
-{"id": 94367, "age_ratings": [{"id": 76058, "category": 1, "rating": 8}], "name": "Twenty Wargame Classics"}
+{"id": 94367, "age_ratings": [{"id": 76058, "category": 1, "rating": 8}], "involved_companies": [{"id": 179239, "company": {"id": 528, "name": "SSI (Strategic Simulations, Inc.)"}, "developer": false}], "name": "Twenty Wargame Classics", "platforms": [13], "release_dates": [{"id": 373692, "date": 851990400, "platform": 13, "y": 1996}]}
