@@ -1,1 +1,1 @@
-{"id": 42081, "cover": {"id": 179134, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co3u7y.jpg"}, "name": "Psycho Chaser"}
+{"id": 42081, "age_ratings": [{"id": 83018, "category": 3, "rating": 13}], "cover": {"id": 179134, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co3u7y.jpg"}, "involved_companies": [{"id": 180705, "company": {"id": 2839, "name": "Naxat Soft"}, "developer": false}], "name": "Psycho Chaser", "platforms": [5, 86], "release_dates": [{"id": 376037, "date": 1205193600, "platform": 5, "y": 2008}, {"id": 376038, "platform": 86}]}
