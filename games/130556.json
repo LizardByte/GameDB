@@ -1,1 +1,1 @@
-{"id": 130556, "name": "Monarch Monarch"}
+{"id": 130556, "cover": {"id": 234672, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co512o.jpg"}, "involved_companies": [{"id": 181417, "company": {"id": 2751, "name": "Nihon Falcom"}, "developer": true}], "name": "Monarch Monarch", "platforms": [6], "release_dates": [{"id": 377256, "date": 909705600, "platform": 6, "y": 1998}], "summary": "A real-time strategy game from Nihon Falcom that serves as a spin-off to Lord Monarch, this time with an isometric perspective."}
