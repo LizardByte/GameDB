@@ -1,1 +1,1 @@
-{"id": 67526, "genres": [{"id": 30, "name": "Pinball"}], "name": "College Daze", "summary": "College Daze"}
+{"id": 67526, "age_ratings": [{"id": 87082, "category": 1, "rating": 11}], "artworks": [{"id": 83283, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1s9f.jpg"}], "cover": {"id": 236042, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co524q.jpg"}, "genres": [{"id": 30, "name": "Pinball"}], "name": "College Daze", "platforms": [49], "release_dates": [{"id": 377878, "date": 1391472000, "platform": 49, "y": 2014}], "summary": "College Daze"}

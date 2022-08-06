@@ -1,1 +1,1 @@
-{"id": 93137, "name": "Hattrick!"}
+{"id": 93137, "genres": [{"id": 13, "name": "Simulator"}, {"id": 14, "name": "Sport"}], "involved_companies": [{"id": 181768, "company": {"id": 42553, "name": "Ikarion Software"}, "developer": true}], "name": "Hattrick!", "platforms": [6, 16], "release_dates": [{"id": 377807, "date": 851990400, "platform": 16, "y": 1996}, {"id": 377808, "date": 851990400, "platform": 6, "y": 1996}]}
