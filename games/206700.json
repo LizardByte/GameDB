@@ -1,1 +1,1 @@
-{"id": 206700, "age_ratings": [{"id": 76521, "category": 1, "rating": 8}], "cover": {"id": 229481, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co4x2h.jpg"}, "name": "Caillou: Ready to Read"}
+{"id": 206700, "age_ratings": [{"id": 76521, "category": 1, "rating": 8}], "cover": {"id": 229481, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co4x2h.jpg"}, "franchises": [{"id": 3916, "name": "Caillou"}], "game_modes": [{"id": 1, "name": "Single player"}], "name": "Caillou: Ready to Read", "themes": [{"id": 34, "name": "Educational"}, {"id": 35, "name": "Kids"}]}
