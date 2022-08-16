@@ -1,0 +1,1 @@
+{"id": 213370, "involved_companies": [{"id": 182933, "company": {"id": 781, "name": "M2"}, "developer": false}, {"id": 182934, "company": {"id": 112, "name": "Sega"}, "developer": false}], "name": "Tetris", "platforms": [29], "release_dates": [{"id": 380210, "platform": 29}], "summary": "A port of the Sega arcade version made for the Sega Genesis Mini console."}
