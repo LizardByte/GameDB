@@ -1,1 +1,1 @@
-{"id": 200680, "franchises": [{"id": 56, "name": "Dragon Ball"}], "name": "Dragon Ball FighterZ: Super Edition", "platforms": [48, 130], "release_dates": [{"id": 358171, "platform": 48}, {"id": 358172, "platform": 130}]}
+{"id": 200680, "age_ratings": [{"id": 88416, "category": 1, "rating": 10}], "franchises": [{"id": 56, "name": "Dragon Ball"}], "name": "Dragon Ball FighterZ: Super Edition", "platforms": [48, 130], "release_dates": [{"id": 358171, "platform": 48}, {"id": 358172, "platform": 130}]}
