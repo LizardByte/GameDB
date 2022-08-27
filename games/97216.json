@@ -1,1 +1,1 @@
-{"id": 97216, "name": "Leaf on the Wind"}
+{"id": 97216, "involved_companies": [{"id": 184816, "company": {"id": 1143, "name": "Pangea Software, Inc."}, "developer": true}], "name": "Leaf on the Wind", "platforms": [14], "release_dates": [{"id": 383787, "date": 1413763200, "platform": 14, "y": 2014}]}
