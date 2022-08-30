@@ -1,1 +1,1 @@
-{"id": 125558, "name": "Titeuf: Ze Gag Machine"}
+{"id": 125558, "age_ratings": [{"id": 89625, "category": 2, "rating": 1}], "cover": {"id": 240086, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5592.jpg"}, "involved_companies": [{"id": 185391, "company": {"id": 720, "name": "Infogrames Europe"}, "developer": false}], "name": "Titeuf: Ze Gag Machine", "platforms": [24], "release_dates": [{"id": 384714, "date": 1038528000, "platform": 24, "y": 2002}]}

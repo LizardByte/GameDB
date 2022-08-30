@@ -1,1 +1,1 @@
-{"id": 65335, "age_ratings": [{"id": 68070, "category": 3, "rating": 13}], "name": "Winning Post 7 2012"}
+{"id": 65335, "age_ratings": [{"id": 68070, "category": 3, "rating": 13}], "involved_companies": [{"id": 185349, "company": {"id": 858, "name": "Koei Tecmo Games"}, "developer": false}], "name": "Winning Post 7 2012", "platforms": [6, 9, 38], "release_dates": [{"id": 384616, "date": 1331769600, "platform": 9, "y": 2012}, {"id": 384617, "date": 1331769600, "platform": 38, "y": 2012}, {"id": 384618, "date": 1329436800, "platform": 6, "y": 2012}]}

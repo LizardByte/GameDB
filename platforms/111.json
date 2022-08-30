@@ -1,1 +1,1 @@
-{"id": 111, "abbreviation": "imlac-pds1", "name": "Imlac PDS-1", "games": [{"id": 7430, "name": "Maze War", "release_dates": [{"id": 31766, "date": 157680000, "platform": 111, "y": 1974}]}]}
+{"id": 111, "abbreviation": "imlac-pds1", "name": "Imlac PDS-1", "games": [{"id": 7430, "cover": {"id": 8095, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ygs6p2wqcg495sisjpvv.jpg"}, "name": "Maze War", "release_dates": [{"id": 31766, "date": 157680000, "platform": 111, "y": 1974}]}]}

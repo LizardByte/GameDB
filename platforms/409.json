@@ -1,1 +1,1 @@
-{"id": 409, "name": "Legacy Computer", "games": [{"id": 210221, "name": "Draughts", "release_dates": [{"id": 380216, "date": -547084800, "platform": 409, "y": 1952}]}]}
+{"id": 409, "name": "Legacy Computer", "games": [{"id": 210221, "cover": {"id": 233072, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co4zu8.jpg"}, "name": "Draughts", "release_dates": [{"id": 380216, "date": -547084800, "platform": 409, "y": 1952}]}]}
