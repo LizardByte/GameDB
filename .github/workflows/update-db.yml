@@ -6,7 +6,7 @@ on:
     branches: [master, nightly]
     types: [opened, synchronize, reopened]
   push:
-    branches: [master, nightly]
+    branches: [master]
   schedule:
     - cron: '0 0 * * *'  # every day at midnight
   workflow_dispatch:
