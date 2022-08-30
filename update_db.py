@@ -203,6 +203,7 @@ def get_data():
                 games=dict(
                     fields=[
                         'id',
+                        'cover',
                         'name',
                         'release_dates',
                     ]
