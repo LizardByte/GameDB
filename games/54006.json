@@ -1,1 +1,1 @@
-{"id": 54006, "name": "Euro Truck Simulator Gold"}
+{"id": 54006, "age_ratings": [{"id": 90386, "category": 2, "rating": 1}], "collection": {"id": 769, "name": "Euro Truck Simulator"}, "game_modes": [{"id": 1, "name": "Single player"}], "name": "Euro Truck Simulator: Gold Edition", "platforms": [6], "release_dates": [{"id": 386521, "date": 1293753600, "platform": 6, "y": 2010}], "themes": [{"id": 28, "name": "Business"}]}
