@@ -1,1 +1,1 @@
-{"id": 63604, "age_ratings": [{"id": 68069, "category": 3, "rating": 13}], "name": "Winning Post 7 2013"}
+{"id": 63604, "age_ratings": [{"id": 68069, "category": 3, "rating": 13}], "name": "Winning Post 7 2013", "platforms": [9, 38, 46], "release_dates": [{"id": 386798, "date": 1363219200, "platform": 9, "y": 2013}, {"id": 386799, "date": 1371686400, "platform": 46, "y": 2013}, {"id": 386800, "date": 1363219200, "platform": 38, "y": 2013}]}
