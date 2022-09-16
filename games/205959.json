@@ -1,1 +1,1 @@
-{"id": 205959, "age_ratings": [{"id": 75623, "category": 1, "rating": 8}], "name": "Beetle Buggin'"}
+{"id": 205959, "age_ratings": [{"id": 75623, "category": 1, "rating": 8}], "cover": {"id": 246281, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5a15.jpg"}, "genres": [{"id": 10, "name": "Racing"}], "name": "Beetle Buggin'", "platforms": [6], "release_dates": [{"id": 389715, "date": 959904000, "platform": 6, "y": 2000}], "themes": [{"id": 32, "name": "Non-fiction"}]}
