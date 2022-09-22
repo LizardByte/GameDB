@@ -1,1 +1,1 @@
-{"id": 64024, "name": "Pro Yakyuu Famista DS"}
+{"id": 64024, "collection": {"id": 3166, "name": "Family Stadium"}, "franchises": [{"id": 4056, "name": "Family Stadium"}], "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 14, "name": "Sport"}], "involved_companies": [{"id": 188116, "company": {"id": 263, "name": "Namco"}, "developer": false}], "name": "Pro Yakyuu Famista DS", "platforms": [20], "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}], "release_dates": [{"id": 391335, "platform": 20}]}
