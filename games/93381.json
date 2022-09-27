@@ -1,1 +1,1 @@
-{"id": 93381, "name": "Interplay's Classic Collection"}
+{"id": 93381, "cover": {"id": 248816, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5bzk.jpg"}, "involved_companies": [{"id": 188680, "company": {"id": 24213, "name": "Interplay"}, "developer": false}], "name": "Interplay's Classic Collection", "platforms": [6], "release_dates": [{"id": 392408, "platform": 6}, {"id": 392409, "date": 757296000, "platform": 6, "y": 1993}, {"id": 392410, "date": 788832000, "platform": 6, "y": 1994}]}
