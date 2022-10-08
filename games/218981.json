@@ -1,1 +1,1 @@
-{"id": 218981, "name": "Category I: Shisenjou no Survivor"}
+{"id": 218981, "genres": [{"id": 34, "name": "Visual Novel"}], "involved_companies": [{"id": 190039, "company": {"id": 19735, "name": "Orange"}, "developer": true}], "name": "Category I: Shisenjou no Survivor", "platforms": [48, 130], "release_dates": [{"id": 395058, "date": 1656806400, "platform": 48, "y": 2022}, {"id": 395059, "date": 1653523200, "platform": 130, "y": 2022}]}

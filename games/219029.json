@@ -1,1 +1,1 @@
-{"id": 219029, "age_ratings": [{"id": 95621, "category": 3, "rating": 15}], "name": "Full Kiss S"}
+{"id": 219029, "age_ratings": [{"id": 95621, "category": 3, "rating": 15}], "involved_companies": [{"id": 190041, "company": {"id": 4611, "name": "Giga"}, "developer": true}], "name": "Full Kiss S", "platforms": [48, 130], "release_dates": [{"id": 395068, "date": 1635379200, "platform": 48, "y": 2021}, {"id": 395069, "date": 1635379200, "platform": 130, "y": 2021}]}
