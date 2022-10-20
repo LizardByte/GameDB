@@ -1,1 +1,1 @@
-{"id": 211522, "artworks": [{"id": 82101, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1rcl.jpg"}], "cover": {"id": 249855, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5csf.jpg"}, "name": "Clouded VR"}
+{"id": 211522, "artworks": [{"id": 82101, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1rcl.jpg"}], "cover": {"id": 249855, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5csf.jpg"}, "name": "Clouded VR", "platforms": [6], "release_dates": [{"id": 398007, "date": 1665705600, "platform": 6, "y": 2022}]}
