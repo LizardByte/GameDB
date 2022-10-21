@@ -1,1 +1,1 @@
-{"id": 22630, "aggregated_rating": 50.0, "name": "Fire Department 3"}
+{"id": 22630, "aggregated_rating": 50.0, "involved_companies": [{"id": 191511, "company": {"id": 2451, "name": "Monte Cristo"}, "developer": true}], "name": "Fire Department 3", "platforms": [6]}
