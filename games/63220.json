@@ -1,1 +1,1 @@
-{"id": 63220, "name": "Tottoko Hamtaro Nazo Nazo Q Kumonoue no ? Jou"}
+{"id": 63220, "franchises": [{"id": 413, "name": "Hamtaro"}], "involved_companies": [{"id": 191588, "company": {"id": 70, "name": "Nintendo"}, "developer": false}, {"id": 191589, "company": {"id": 1760, "name": "AlphaDream"}, "developer": true}], "name": "Tottoko Hamtaro Nazo Nazo Q: Kumonoue no? Shiro", "platforms": [20], "release_dates": [{"id": 398355, "date": 1133395200, "platform": 20, "y": 2005}]}

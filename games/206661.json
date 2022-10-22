@@ -1,1 +1,1 @@
-{"id": 206661, "age_ratings": [{"id": 76454, "category": 1, "rating": 8}], "name": "Trivial Pursuit: Bring on the 90's Edition"}
+{"id": 206661, "age_ratings": [{"id": 76454, "category": 1, "rating": 8}], "genres": [{"id": 26, "name": "Quiz/Trivia"}], "involved_companies": [{"id": 191699, "company": {"id": 7495, "name": "iWin"}, "developer": true}], "name": "Trivial Pursuit: Bring on the 90's Edition", "platforms": [6], "release_dates": [{"id": 398564, "date": 1172620800, "platform": 6, "y": 2007}]}
