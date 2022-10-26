@@ -1,1 +1,1 @@
-{"id": 94343, "name": "Monkey Kong"}
+{"id": 94343, "genres": [{"id": 8, "name": "Platform"}], "name": "Monkey Kong", "platforms": [48], "release_dates": [{"id": 399335, "date": 1667001600, "platform": 48, "y": 2022}], "summary": "Monkey Kong is a very fun and addictive never-ending scrolling platform game. Jump from platform to platform and collect bananas that will give you energy to use as power-up and destroy all enemies and obstacles."}
