@@ -1,1 +1,1 @@
-{"id": 86187, "name": "Grimoire"}
+{"id": 86187, "artworks": [{"id": 90562, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1xvm.jpg"}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Grimoire", "screenshots": [{"id": 912506, "url": "//images.igdb.com/igdb/image/upload/t_thumb/scjk3e.jpg"}, {"id": 912507, "url": "//images.igdb.com/igdb/image/upload/t_thumb/scjk3f.jpg"}, {"id": 912508, "url": "//images.igdb.com/igdb/image/upload/t_thumb/scjk3g.jpg"}], "summary": "A casual Minesweeper-like for Playdate."}
