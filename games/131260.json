@@ -1,1 +1,1 @@
-{"id": 131260, "name": "Hardboiled Pinball"}
+{"id": 131260, "involved_companies": [{"id": 193727, "company": {"id": 21323, "name": "Stryde Games"}, "developer": true}], "name": "Hardboiled Pinball", "platforms": [12, 74], "release_dates": [{"id": 423446, "platform": 12}, {"id": 423447, "platform": 74}]}
