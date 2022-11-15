@@ -1,1 +1,1 @@
-{"id": 56056, "name": "Lottery Simulator", "summary": "Lottery Simulator is a realistic simulation of the lottery intended as satire."}
+{"id": 56056, "involved_companies": [{"id": 194021, "company": {"id": 10216, "name": "Jarokn Games"}, "developer": true}], "name": "Lottery Simulator", "platforms": [6], "release_dates": [{"id": 424413, "date": 1495065600, "platform": 6, "y": 2017}], "summary": "Lottery Simulator is a realistic simulation of the lottery intended as satire."}
