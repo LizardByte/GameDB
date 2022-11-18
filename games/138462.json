@@ -1,1 +1,1 @@
-{"id": 138462, "name": "My Little Pony: Harmony Quest"}
+{"id": 138462, "game_modes": [{"id": 1, "name": "Single player"}], "name": "My Little Pony: Harmony Quest", "platforms": [34], "player_perspectives": [{"id": 4, "name": "Side view"}], "release_dates": [{"id": 426150, "date": 1472688000, "platform": 34, "y": 2016}]}
