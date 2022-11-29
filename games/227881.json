@@ -1,1 +1,1 @@
-{"id": 227881, "name": "Quiz Thiz USA: Gold Edition"}
+{"id": 227881, "cover": {"id": 272527, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5ua7.jpg"}, "genres": [{"id": 26, "name": "Quiz/Trivia"}], "involved_companies": [{"id": 195077, "company": {"id": 42608, "name": "ThiGames"}, "developer": false}], "name": "Quiz Thiz USA: Gold Edition", "platforms": [48, 167], "release_dates": [{"id": 427843, "date": 1670025600, "platform": 48, "y": 2022}, {"id": 427844, "date": 1670025600, "platform": 167, "y": 2022}]}
