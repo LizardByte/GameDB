@@ -1,1 +1,1 @@
-{"id": 228337, "cover": {"id": 273362, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5uxe.jpg"}, "name": "Genjin Kotts", "platforms": [33], "release_dates": [{"id": 428898, "date": 796003200, "platform": 33, "y": 1995}]}
+{"id": 228337, "cover": {"id": 273362, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5uxe.jpg"}, "game_modes": [{"id": 1, "name": "Single player"}], "name": "Genjin Kotts", "platforms": [33], "release_dates": [{"id": 428898, "date": 796003200, "platform": 33, "y": 1995}], "themes": [{"id": 17, "name": "Fantasy"}]}
