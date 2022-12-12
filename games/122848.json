@@ -1,1 +1,1 @@
-{"id": 122848, "name": "Lusternia: Age of Ascension"}
+{"id": 122848, "game_modes": [{"id": 5, "name": "Massively Multiplayer Online (MMO)"}], "genres": [{"id": 12, "name": "Role-playing (RPG)"}], "involved_companies": [{"id": 196156, "company": {"id": 6336, "name": "Iron Realms Entertainment"}, "developer": true}], "name": "Lusternia: Age of Ascension", "platforms": [6], "player_perspectives": [{"id": 5, "name": "Text"}], "release_dates": [{"id": 430114, "date": 1104451200, "platform": 6, "y": 2004}], "themes": [{"id": 17, "name": "Fantasy"}]}
