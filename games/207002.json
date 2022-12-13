@@ -1,1 +1,1 @@
-{"id": 207002, "age_ratings": [{"id": 76998, "category": 1, "rating": 8}], "name": "The Game of Life: Path to Success"}
+{"id": 207002, "age_ratings": [{"id": 76998, "category": 1, "rating": 8}], "collection": {"id": 8474, "name": "The Game of Life"}, "franchises": [{"id": 3312, "name": "The Game of Life"}], "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 35, "name": "Card & Board Game"}], "name": "The Game of Life: Path to Success", "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}]}
