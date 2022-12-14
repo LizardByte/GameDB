@@ -1,1 +1,1 @@
-{"id": 145214, "involved_companies": [{"id": 122930, "company": {"id": 32941, "name": "KamaGames"}, "developer": true}], "name": "AEW Casino: Double or Nothing", "platforms": [39], "release_dates": [{"id": 305167, "date": 1614211200, "platform": 39, "y": 2021}]}
+{"id": 145214, "involved_companies": [{"id": 122930, "company": {"id": 32941, "name": "KamaGames"}, "developer": true}], "name": "AEW Casino: Double or Nothing", "platforms": [34, 39], "release_dates": [{"id": 305167, "date": 1614211200, "platform": 39, "y": 2021}]}
