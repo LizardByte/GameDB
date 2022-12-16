@@ -1,1 +1,1 @@
-{"id": 194283, "genres": [{"id": 9, "name": "Puzzle"}], "involved_companies": [{"id": 165473, "company": {"id": 40435, "name": "Game Park"}, "developer": true}], "name": "Treasure Island"}
+{"id": 194283, "cover": {"id": 274973, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5w65.jpg"}, "genres": [{"id": 9, "name": "Puzzle"}], "involved_companies": [{"id": 165473, "company": {"id": 40435, "name": "Game Park"}, "developer": true}], "name": "Treasure Island", "summary": "A game for the GamePark 32."}
