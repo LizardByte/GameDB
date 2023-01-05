@@ -1,1 +1,1 @@
-{"id": 95568, "name": "Clear Vision"}
+{"id": 95568, "cover": {"id": 278016, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5yio.jpg"}, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 5, "name": "Shooter"}], "involved_companies": [{"id": 198681, "company": {"id": 10667, "name": "FDG Entertainment"}, "developer": false}], "name": "Clear Vision", "platforms": [6, 82], "release_dates": [{"id": 435816, "date": 1188864000, "platform": 82, "y": 2007}]}
