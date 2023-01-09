@@ -1,1 +1,1 @@
-{"id": 79552, "collection": {"id": 2986, "name": "Disney"}, "name": "Disney's Cinderella: Cinderella's Magic Wishes"}
+{"id": 79552, "collection": {"id": 2986, "name": "Disney"}, "cover": {"id": 278612, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5yz8.jpg"}, "franchises": [{"id": 3791, "name": "Disney's Cinderella"}], "name": "Disney's Cinderella: Cinderella's Magic Wishes", "platforms": [439], "release_dates": [{"id": 436330, "date": 1122681600, "platform": 439, "y": 2005}], "themes": [{"id": 34, "name": "Educational"}]}
