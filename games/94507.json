@@ -1,1 +1,1 @@
-{"id": 94507, "name": "Memory"}
+{"id": 94507, "involved_companies": [{"id": 199325, "company": {"id": 16804, "name": "atGames"}, "developer": false}], "name": "Memory", "platforms": [29], "release_dates": [{"id": 436951, "platform": 29}]}
