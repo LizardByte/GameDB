@@ -1,1 +1,1 @@
-{"id": 28663, "name": "Shattered Steel"}
+{"id": 28663, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 2, "name": "Multiplayer"}], "name": "Shattered Steel", "player_perspectives": [{"id": 1, "name": "First person"}]}

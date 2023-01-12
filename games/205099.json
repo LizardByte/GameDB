@@ -1,1 +1,1 @@
-{"id": 205099, "genres": [{"id": 33, "name": "Arcade"}], "name": "Jumper", "screenshots": [{"id": 813699, "url": "//images.igdb.com/igdb/image/upload/t_thumb/schfur.jpg"}], "summary": "Save the Jumpers", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 205099, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 33, "name": "Arcade"}], "name": "Jumper", "screenshots": [{"id": 813699, "url": "//images.igdb.com/igdb/image/upload/t_thumb/schfur.jpg"}], "summary": "Save the Jumpers", "themes": [{"id": 1, "name": "Action"}]}

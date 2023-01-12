@@ -1,1 +1,1 @@
-{"id": 205101, "genres": [{"id": 12, "name": "Role-playing (RPG)"}], "name": "Wastebraver", "summary": "Wastebraver is a rogue-like survival game set in a post-apocalyptic fantasy hellscape.", "themes": [{"id": 17, "name": "Fantasy"}]}
+{"id": 205101, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 12, "name": "Role-playing (RPG)"}], "name": "Wastebraver", "summary": "Wastebraver is a rogue-like survival game set in a post-apocalyptic fantasy hellscape.", "themes": [{"id": 17, "name": "Fantasy"}]}

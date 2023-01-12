@@ -1,1 +1,1 @@
-{"id": 202030, "name": "Sunset", "platforms": [381], "release_dates": [{"id": 359945, "platform": 381}], "screenshots": [{"id": 797310, "url": "//images.igdb.com/igdb/image/upload/t_thumb/sch37i.jpg"}], "summary": "Sunset, ported to the Playdate using Pulp"}
+{"id": 202030, "game_modes": [{"id": 1, "name": "Single player"}], "name": "Sunset", "platforms": [381], "release_dates": [{"id": 359945, "platform": 381}], "screenshots": [{"id": 797310, "url": "//images.igdb.com/igdb/image/upload/t_thumb/sch37i.jpg"}], "summary": "Sunset, ported to the Playdate using Pulp"}
