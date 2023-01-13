@@ -1,1 +1,1 @@
-{"id": 51694, "name": "Antihero Book Club"}
+{"id": 51694, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 2, "name": "Multiplayer"}], "name": "Antihero Book Club"}
