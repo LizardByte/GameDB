@@ -1,1 +1,1 @@
-{"id": 13417, "name": "Bobsleigh", "platforms": [25], "release_dates": [{"id": 38672, "platform": 25}]}
+{"id": 13417, "cover": {"id": 280743, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co60mf.jpg"}, "genres": [{"id": 14, "name": "Sport"}, {"id": 33, "name": "Arcade"}], "name": "Bobsleigh", "platforms": [15, 25, 26], "release_dates": [{"id": 439404, "date": 567907200, "platform": 25, "y": 1987}, {"id": 439405, "date": 567907200, "platform": 15, "y": 1987}, {"id": 439406, "date": 567907200, "platform": 26, "y": 1987}], "themes": [{"id": 1, "name": "Action"}]}
