@@ -1,1 +1,1 @@
-{"id": 209329, "age_ratings": [{"id": 79754, "category": 1, "rating": 8}], "name": "Popeye and the Sunken Treasure"}
+{"id": 209329, "age_ratings": [{"id": 79754, "category": 1, "rating": 8}], "cover": {"id": 281719, "url": "https://images.igdb.com/igdb/image/upload/t_thumb/co61dj.jpg"}, "franchises": [{"id": 266, "name": "Popeye"}], "game_modes": [{"id": 1, "name": "Single player"}], "name": "Popeye & The Sunken Treasure", "platforms": [6], "release_dates": [{"id": 440155, "date": 915062400, "platform": 6, "y": 1998}]}
