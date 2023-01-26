@@ -1,1 +1,1 @@
-{"id": 143677, "cover": {"id": 131639, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2tkn.jpg"}, "name": "Purumui Purumui", "platforms": [7], "release_dates": [{"id": 229022, "platform": 7}]}
+{"id": 143677, "cover": {"id": 131639, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2tkn.jpg"}, "involved_companies": [{"id": 201424, "company": {"id": 1873, "name": "Culture Publishers"}, "developer": false}], "name": "Purumui Purumui", "platforms": [7], "release_dates": [{"id": 440941, "date": 937267200, "platform": 7, "y": 1999}]}
