@@ -39,7 +39,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m pip install -r requirements.txt
 
       - name: Prepare gh-pages
         run: |
@@ -52,7 +52,7 @@ jobs:
       - name: Update
         working-directory: gh-pages
         run: |
-          python ../update_db.py \
+          python -u ../update_db.py \
           --twitch_client_id ${{ secrets.TWITCH_CLIENT_ID }} \
           --twitch_client_secret ${{ secrets.TWITCH_CLIENT_SECRET }} \
           --youtube_api_key ${{ secrets.YOUTUBE_API_KEY }}
