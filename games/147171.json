@@ -1,1 +1,1 @@
-{"id": 147171, "involved_companies": [{"id": 132070, "company": {"id": 33973, "name": "N8Dev"}, "developer": false}], "name": "COVID Cafe", "platforms": [6], "release_dates": [{"id": 243958, "date": 1596067200, "platform": 6, "y": 2020}]}
+{"id": 147171, "involved_companies": [{"id": 132070, "company": {"id": 33973, "name": "N8Dev"}, "developer": false}], "name": "COVID Cafe", "platforms": [6], "release_dates": [{"id": 243958, "date": 1596067200, "platform": 6, "y": 2020}], "slug": "covid-cafe", "url": "https://www.igdb.com/games/covid-cafe"}

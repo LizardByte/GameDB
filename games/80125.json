@@ -1,1 +1,1 @@
-{"id": 80125, "age_ratings": [{"id": 55727, "category": 2, "rating": 1}], "genres": [{"id": 31, "name": "Adventure"}], "name": "Colorelli", "themes": [{"id": 34, "name": "Educational"}]}
+{"id": 80125, "age_ratings": [{"id": 55727, "category": 2, "rating": 1}], "genres": [{"id": 31, "name": "Adventure"}], "name": "Colorelli", "slug": "colorelli", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/colorelli"}

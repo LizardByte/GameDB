@@ -1,1 +1,1 @@
-{"id": 70424, "cover": {"id": 50313, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ngcptipnngrjwpdc9zpk.jpg"}, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Crapman", "summary": "A Pacman clone originally found on the Synergy Megademo."}
+{"id": 70424, "cover": {"id": 50313, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ngcptipnngrjwpdc9zpk.jpg"}, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Crapman", "slug": "crapman", "summary": "A Pacman clone originally found on the Synergy Megademo.", "url": "https://www.igdb.com/games/crapman"}

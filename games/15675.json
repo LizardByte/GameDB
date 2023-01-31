@@ -1,1 +1,1 @@
-{"id": 15675, "genres": [{"id": 15, "name": "Strategy"}], "name": "Blast!", "platforms": [69], "release_dates": [{"id": 43191, "date": 631065600, "platform": 69, "y": 1989}], "themes": [{"id": 1, "name": "Action"}]}
+{"id": 15675, "genres": [{"id": 15, "name": "Strategy"}], "name": "Blast!", "platforms": [69], "release_dates": [{"id": 43191, "date": 631065600, "platform": 69, "y": 1989}], "slug": "blast", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/blast"}

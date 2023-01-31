@@ -1,1 +1,1 @@
-{"id": 50998, "genres": [{"id": 14, "name": "Sport"}], "name": "TV Total Events", "platforms": [5], "release_dates": [{"id": 96900, "date": 1304812800, "platform": 5, "y": 2011}], "themes": [{"id": 1, "name": "Action"}]}
+{"id": 50998, "genres": [{"id": 14, "name": "Sport"}], "name": "TV Total Events", "platforms": [5], "release_dates": [{"id": 96900, "date": 1304812800, "platform": 5, "y": 2011}], "slug": "tv-total-events", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/tv-total-events"}

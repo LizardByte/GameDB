@@ -1,1 +1,1 @@
-{"id": 71557, "age_ratings": [{"id": 75584, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "WarBirds III", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 71557, "age_ratings": [{"id": 75584, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "WarBirds III", "slug": "warbirds-iii", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/warbirds-iii"}

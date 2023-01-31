@@ -1,1 +1,1 @@
-{"id": 40183, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Guts'n", "platforms": [52], "release_dates": [{"id": 91052, "date": 949363200, "platform": 52, "y": 2000}], "summary": "A puzzle game."}
+{"id": 40183, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Guts'n", "platforms": [52], "release_dates": [{"id": 91052, "date": 949363200, "platform": 52, "y": 2000}], "slug": "gutsn", "summary": "A puzzle game.", "url": "https://www.igdb.com/games/gutsn"}

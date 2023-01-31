@@ -1,1 +1,1 @@
-{"id": 23460, "age_ratings": [{"id": 79603, "category": 1, "rating": 8}], "aggregated_rating": 55.0, "genres": [{"id": 13, "name": "Simulator"}, {"id": 14, "name": "Sport"}], "name": "Real Pool 2"}
+{"id": 23460, "age_ratings": [{"id": 79603, "category": 1, "rating": 8}], "aggregated_rating": 55.0, "genres": [{"id": 13, "name": "Simulator"}, {"id": 14, "name": "Sport"}], "name": "Real Pool 2", "slug": "real-pool-2", "url": "https://www.igdb.com/games/real-pool-2"}

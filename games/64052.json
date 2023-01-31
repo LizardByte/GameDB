@@ -1,1 +1,1 @@
-{"id": 64052, "cover": {"id": 37529, "url": "//images.igdb.com/igdb/image/upload/t_thumb/gceyp4bnxqyhmcxh9mmz.jpg"}, "genres": [{"id": 8, "name": "Platform"}], "name": "Hektik", "summary": "Platformer.", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 64052, "cover": {"id": 37529, "url": "//images.igdb.com/igdb/image/upload/t_thumb/gceyp4bnxqyhmcxh9mmz.jpg"}, "genres": [{"id": 8, "name": "Platform"}], "name": "Hektik", "slug": "hektik", "summary": "Platformer.", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/hektik"}

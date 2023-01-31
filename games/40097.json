@@ -1,1 +1,1 @@
-{"id": 40097, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Double Point", "platforms": [52], "release_dates": [{"id": 91013, "date": 820454400, "platform": 52, "y": 1996}], "summary": "A pattern matching game."}
+{"id": 40097, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Double Point", "platforms": [52], "release_dates": [{"id": 91013, "date": 820454400, "platform": 52, "y": 1996}], "slug": "double-point", "summary": "A pattern matching game.", "url": "https://www.igdb.com/games/double-point"}

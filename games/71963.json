@@ -1,1 +1,1 @@
-{"id": 71963, "age_ratings": [{"id": 78261, "category": 1, "rating": 10}], "genres": [{"id": 15, "name": "Strategy"}], "name": "Shadow Vault", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 71963, "age_ratings": [{"id": 78261, "category": 1, "rating": 10}], "genres": [{"id": 15, "name": "Strategy"}], "name": "Shadow Vault", "slug": "shadow-vault", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/shadow-vault"}

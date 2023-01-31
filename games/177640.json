@@ -1,1 +1,1 @@
-{"id": 177640, "genres": [{"id": 5, "name": "Shooter"}, {"id": 33, "name": "Arcade"}], "name": "Blamdodge", "summary": "Dodge-shoot yourself to death!", "themes": [{"id": 21, "name": "Survival"}]}
+{"id": 177640, "genres": [{"id": 5, "name": "Shooter"}, {"id": 33, "name": "Arcade"}], "name": "Blamdodge", "slug": "blamdodge", "summary": "Dodge-shoot yourself to death!", "themes": [{"id": 21, "name": "Survival"}], "url": "https://www.igdb.com/games/blamdodge"}

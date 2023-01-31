@@ -1,1 +1,1 @@
-{"id": 106068, "age_ratings": [{"id": 24659, "category": 2, "rating": 1}], "genres": [{"id": 2, "name": "Point-and-click"}, {"id": 14, "name": "Sport"}, {"id": 33, "name": "Arcade"}], "name": "Basket Fall", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 106068, "age_ratings": [{"id": 24659, "category": 2, "rating": 1}], "genres": [{"id": 2, "name": "Point-and-click"}, {"id": 14, "name": "Sport"}, {"id": 33, "name": "Arcade"}], "name": "Basket Fall", "slug": "basket-fall", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/basket-fall"}

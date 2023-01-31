@@ -1,1 +1,1 @@
-{"id": 101980, "age_ratings": [{"id": 22306, "category": 1, "rating": 8}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Nodoku", "rating": 50.0, "summary": "A new kind of numbers game."}
+{"id": 101980, "age_ratings": [{"id": 22306, "category": 1, "rating": 8}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Nodoku", "rating": 50.0, "slug": "nodoku", "summary": "A new kind of numbers game.", "url": "https://www.igdb.com/games/nodoku"}

@@ -1,1 +1,1 @@
-{"id": 71534, "age_ratings": [{"id": 65924, "category": 1, "rating": 8}], "genres": [{"id": 10, "name": "Racing"}, {"id": 14, "name": "Sport"}], "name": "Bumper Wars", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 71534, "age_ratings": [{"id": 65924, "category": 1, "rating": 8}], "genres": [{"id": 10, "name": "Racing"}, {"id": 14, "name": "Sport"}], "name": "Bumper Wars", "slug": "bumper-wars", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/bumper-wars"}

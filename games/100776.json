@@ -1,1 +1,1 @@
-{"id": 100776, "age_ratings": [{"id": 21930, "category": 1, "rating": 8}], "name": "Super Corners", "summary": "Strategy game, adding numbers so total is a multiple of 5 while matching colors.", "themes": [{"id": 34, "name": "Educational"}]}
+{"id": 100776, "age_ratings": [{"id": 21930, "category": 1, "rating": 8}], "name": "Super Corners", "slug": "super-corners", "summary": "Strategy game, adding numbers so total is a multiple of 5 while matching colors.", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/super-corners"}

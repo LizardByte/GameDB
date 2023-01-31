@@ -1,1 +1,1 @@
-{"id": 92371, "name": "Galgagon", "platforms": [126], "release_dates": [{"id": 232708, "platform": 126}], "summary": "A Galaga clone for the TRS-80.", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 92371, "name": "Galgagon", "platforms": [126], "release_dates": [{"id": 232708, "platform": 126}], "slug": "galgagon", "summary": "A Galaga clone for the TRS-80.", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/galgagon"}

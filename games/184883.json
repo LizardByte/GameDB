@@ -1,1 +1,1 @@
-{"id": 184883, "artworks": [{"id": 61263, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1b9r.jpg"}], "name": "Minerest", "summary": "Tower defence survival", "themes": [{"id": 1, "name": "Action"}, {"id": 21, "name": "Survival"}]}
+{"id": 184883, "artworks": [{"id": 61263, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar1b9r.jpg"}], "name": "Minerest", "slug": "minerest", "summary": "Tower defence survival", "themes": [{"id": 1, "name": "Action"}, {"id": 21, "name": "Survival"}], "url": "https://www.igdb.com/games/minerest"}

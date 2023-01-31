@@ -1,1 +1,1 @@
-{"id": 40203, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Joyman", "platforms": [52], "release_dates": [{"id": 91095, "date": 381369600, "platform": 52, "y": 1982}], "summary": "A clone of Pacman."}
+{"id": 40203, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Joyman", "platforms": [52], "release_dates": [{"id": 91095, "date": 381369600, "platform": 52, "y": 1982}], "slug": "joyman", "summary": "A clone of Pacman.", "url": "https://www.igdb.com/games/joyman"}

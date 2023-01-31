@@ -1,1 +1,1 @@
-{"id": 46574, "age_ratings": [{"id": 68669, "category": 1, "rating": 8}], "genres": [{"id": 14, "name": "Sport"}], "name": "NFL Instant Replay", "platforms": [117], "release_dates": [{"id": 98067, "date": 791596800, "platform": 117, "y": 1995}]}
+{"id": 46574, "age_ratings": [{"id": 68669, "category": 1, "rating": 8}], "genres": [{"id": 14, "name": "Sport"}], "name": "NFL Instant Replay", "platforms": [117], "release_dates": [{"id": 98067, "date": 791596800, "platform": 117, "y": 1995}], "slug": "nfl-instant-replay", "url": "https://www.igdb.com/games/nfl-instant-replay"}

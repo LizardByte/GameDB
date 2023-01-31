@@ -1,1 +1,1 @@
-{"id": 100611, "age_ratings": [{"id": 21861, "category": 1, "rating": 8}], "genres": [{"id": 26, "name": "Quiz/Trivia"}], "name": "Steph IQ", "rating": 40.784316, "summary": "Compete for 100s of prizes in a live trivia game show triggered by Steph Curry."}
+{"id": 100611, "age_ratings": [{"id": 21861, "category": 1, "rating": 8}], "genres": [{"id": 26, "name": "Quiz/Trivia"}], "name": "Steph IQ", "rating": 40.784316, "slug": "steph-iq", "summary": "Compete for 100s of prizes in a live trivia game show triggered by Steph Curry.", "url": "https://www.igdb.com/games/steph-iq"}

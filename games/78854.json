@@ -1,1 +1,1 @@
-{"id": 78854, "collection": {"id": 4678, "name": "Crayola"}, "genres": [{"id": 10, "name": "Racing"}], "name": "Crayola Arcade", "themes": [{"id": 1, "name": "Action"}]}
+{"id": 78854, "collection": {"id": 4678, "name": "Crayola"}, "genres": [{"id": 10, "name": "Racing"}], "name": "Crayola Arcade", "slug": "crayola-arcade", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/crayola-arcade"}

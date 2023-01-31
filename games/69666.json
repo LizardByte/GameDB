@@ -1,1 +1,1 @@
-{"id": 69666, "genres": [{"id": 13, "name": "Simulator"}, {"id": 15, "name": "Strategy"}], "involved_companies": [{"id": 128012, "company": {"id": 33796, "name": "Armonk Corporation"}, "developer": true}], "name": "Executive Suite"}
+{"id": 69666, "genres": [{"id": 13, "name": "Simulator"}, {"id": 15, "name": "Strategy"}], "involved_companies": [{"id": 128012, "company": {"id": 33796, "name": "Armonk Corporation"}, "developer": true}], "name": "Executive Suite", "slug": "executive-suite", "url": "https://www.igdb.com/games/executive-suite"}

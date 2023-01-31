@@ -1,1 +1,1 @@
-{"id": 73765, "age_ratings": [{"id": 69144, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "Hungry Red Planet", "themes": [{"id": 34, "name": "Educational"}]}
+{"id": 73765, "age_ratings": [{"id": 69144, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "Hungry Red Planet", "slug": "hungry-red-planet", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/hungry-red-planet"}

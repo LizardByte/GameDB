@@ -1,1 +1,1 @@
-{"id": 69331, "age_ratings": [{"id": 70662, "category": 1, "rating": 8}], "genres": [{"id": 10, "name": "Racing"}, {"id": 13, "name": "Simulator"}], "name": "Driver's Education '98", "themes": [{"id": 34, "name": "Educational"}]}
+{"id": 69331, "age_ratings": [{"id": 70662, "category": 1, "rating": 8}], "genres": [{"id": 10, "name": "Racing"}, {"id": 13, "name": "Simulator"}], "name": "Driver's Education '98", "slug": "drivers-education-98", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/drivers-education-98"}

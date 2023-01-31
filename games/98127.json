@@ -1,1 +1,1 @@
-{"id": 98127, "age_ratings": [{"id": 81634, "category": 5, "rating": 23}], "name": "Armageddon Squadron", "platforms": [55, 240], "release_dates": [{"id": 433476, "date": 1254096000, "platform": 240, "y": 2009}, {"id": 433477, "platform": 55}]}
+{"id": 98127, "age_ratings": [{"id": 81634, "category": 5, "rating": 23}], "name": "Armageddon Squadron", "platforms": [55, 240], "release_dates": [{"id": 433476, "date": 1254096000, "platform": 240, "y": 2009}, {"id": 433477, "platform": 55}], "slug": "armageddon-squadron", "url": "https://www.igdb.com/games/armageddon-squadron"}

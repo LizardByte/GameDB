@@ -1,1 +1,1 @@
-{"id": 40567, "genres": [{"id": 5, "name": "Shooter"}], "name": "Zaviga", "platforms": [52], "release_dates": [{"id": 91438, "date": 454982400, "platform": 52, "y": 1984}], "summary": "A vertical shooter tank game."}
+{"id": 40567, "genres": [{"id": 5, "name": "Shooter"}], "name": "Zaviga", "platforms": [52], "release_dates": [{"id": 91438, "date": 454982400, "platform": 52, "y": 1984}], "slug": "zaviga", "summary": "A vertical shooter tank game.", "url": "https://www.igdb.com/games/zaviga"}

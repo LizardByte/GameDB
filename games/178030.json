@@ -1,1 +1,1 @@
-{"id": 178030, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Integer", "summary": "The number must get BIGGER.", "themes": [{"id": 19, "name": "Horror"}]}
+{"id": 178030, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Integer", "slug": "integer", "summary": "The number must get BIGGER.", "themes": [{"id": 19, "name": "Horror"}], "url": "https://www.igdb.com/games/integer"}

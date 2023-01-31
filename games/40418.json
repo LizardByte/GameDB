@@ -1,1 +1,1 @@
-{"id": 40418, "genres": [{"id": 5, "name": "Shooter"}], "name": "S.R.D. Mission", "platforms": [52], "release_dates": [{"id": 91302, "date": 517968000, "platform": 52, "y": 1986}], "summary": "A space shooter where you attempt to rescue astronauts."}
+{"id": 40418, "genres": [{"id": 5, "name": "Shooter"}], "name": "S.R.D. Mission", "platforms": [52], "release_dates": [{"id": 91302, "date": 517968000, "platform": 52, "y": 1986}], "slug": "srd-mission", "summary": "A space shooter where you attempt to rescue astronauts.", "url": "https://www.igdb.com/games/srd-mission"}

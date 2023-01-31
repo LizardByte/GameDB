@@ -1,1 +1,1 @@
-{"id": 182049, "artworks": [{"id": 59443, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar19v7.jpg"}], "genres": [{"id": 33, "name": "Arcade"}], "name": "Keygeon", "summary": "Keyboard+dungeon", "themes": [{"id": 33, "name": "Sandbox"}]}
+{"id": 182049, "artworks": [{"id": 59443, "url": "//images.igdb.com/igdb/image/upload/t_thumb/ar19v7.jpg"}], "genres": [{"id": 33, "name": "Arcade"}], "name": "Keygeon", "slug": "keygeon", "summary": "Keyboard+dungeon", "themes": [{"id": 33, "name": "Sandbox"}], "url": "https://www.igdb.com/games/keygeon"}

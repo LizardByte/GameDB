@@ -1,1 +1,1 @@
-{"id": 13737, "genres": [{"id": 5, "name": "Shooter"}], "name": "Meteors", "platforms": [69], "release_dates": [{"id": 39312, "platform": 69}], "themes": [{"id": 1, "name": "Action"}, {"id": 18, "name": "Science fiction"}]}
+{"id": 13737, "genres": [{"id": 5, "name": "Shooter"}], "name": "Meteors", "platforms": [69], "release_dates": [{"id": 39312, "platform": 69}], "slug": "meteors", "themes": [{"id": 1, "name": "Action"}, {"id": 18, "name": "Science fiction"}], "url": "https://www.igdb.com/games/meteors"}

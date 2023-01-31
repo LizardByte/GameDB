@@ -1,1 +1,1 @@
-{"id": 70257, "age_ratings": [{"id": 68491, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "Solitaire Deluxe", "platforms": [6], "release_dates": [{"id": 237592, "date": 851990400, "platform": 6, "y": 1996}]}
+{"id": 70257, "age_ratings": [{"id": 68491, "category": 1, "rating": 8}], "genres": [{"id": 13, "name": "Simulator"}], "name": "Solitaire Deluxe", "platforms": [6], "release_dates": [{"id": 237592, "date": 851990400, "platform": 6, "y": 1996}], "slug": "solitaire-deluxe", "url": "https://www.igdb.com/games/solitaire-deluxe"}

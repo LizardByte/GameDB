@@ -1,1 +1,1 @@
-{"id": 72242, "genres": [{"id": 15, "name": "Strategy"}], "name": "Xiphos", "themes": [{"id": 1, "name": "Action"}, {"id": 18, "name": "Science fiction"}]}
+{"id": 72242, "genres": [{"id": 15, "name": "Strategy"}], "name": "Xiphos", "slug": "xiphos", "themes": [{"id": 1, "name": "Action"}, {"id": 18, "name": "Science fiction"}], "url": "https://www.igdb.com/games/xiphos"}

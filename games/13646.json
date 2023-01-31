@@ -1,1 +1,1 @@
-{"id": 13646, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 2, "name": "Multiplayer"}], "name": "Espionage", "platforms": [16, 25], "release_dates": [{"id": 39110, "date": 599529600, "platform": 16, "y": 1988}, {"id": 39111, "platform": 25}]}
+{"id": 13646, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 2, "name": "Multiplayer"}], "name": "Espionage", "platforms": [16, 25], "release_dates": [{"id": 39110, "date": 599529600, "platform": 16, "y": 1988}, {"id": 39111, "platform": 25}], "slug": "espionage", "url": "https://www.igdb.com/games/espionage"}
