@@ -199,7 +199,12 @@ def get_data():
             fields=[
                 'abbreviation',
                 'alternative_name',
+                'category',
+                'generation',
                 'name',
+                'platform_logo.url',
+                'summary',
+                'url',
             ],
             append=dict(
                 games=dict(
