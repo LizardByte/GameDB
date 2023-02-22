@@ -1,1 +1,1 @@
-{"id": 91509, "name": "Guttang Gottung", "slug": "guttang-gottung", "url": "https://www.igdb.com/games/guttang-gottung"}
+{"id": 91509, "involved_companies": [{"id": 204849, "company": {"id": 129, "name": "Konami"}, "developer": true}], "name": "Guttang Gottong", "platforms": [22], "release_dates": [{"id": 454517, "date": 978220800, "platform": 22, "y": 2000}, {"id": 454518, "date": 967766400, "platform": 22, "y": 2000}], "slug": "guttang-gottong--1", "summary": "Game Boy Color port of Loco-Motion.", "url": "https://www.igdb.com/games/guttang-gottong--1"}
