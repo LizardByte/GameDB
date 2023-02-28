@@ -1,1 +1,1 @@
-{"id": 181209, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Ma Puzzle", "slug": "ma-puzzle", "summary": "VVVVV but in all directions", "url": "https://www.igdb.com/games/ma-puzzle"}
+{"id": 181209, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Ma Puzzle", "platforms": [6], "release_dates": [{"id": 456251, "date": 1567296000, "platform": 6, "y": 2019}], "slug": "ma-puzzle", "storyline": "Arrows - change gravity\nX - restart", "summary": "VVVVV but in all directions", "url": "https://www.igdb.com/games/ma-puzzle"}
