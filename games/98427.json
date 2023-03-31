@@ -1,1 +1,1 @@
-{"id": 98427, "name": "11wol Sonyeon", "slug": "11wol-sonyeon", "url": "https://www.igdb.com/games/11wol-sonyeon"}
+{"id": 98427, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 31, "name": "Adventure"}], "name": "11wol Sonyeon", "platforms": [6], "release_dates": [{"id": 464051, "date": 1280620800, "platform": 6, "y": 2010}], "slug": "11wol-sonyeon", "summary": "A mystery-adventure game about an obsessive, stalker romance.", "themes": [{"id": 43, "name": "Mystery"}], "url": "https://www.igdb.com/games/11wol-sonyeon"}
