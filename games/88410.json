@@ -1,1 +1,1 @@
-{"id": 88410, "name": "1313 : Puzzle Game", "slug": "1313-puzzle-game", "url": "https://www.igdb.com/games/1313-puzzle-game"}
+{"id": 88410, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 9, "name": "Puzzle"}], "involved_companies": [{"id": 209234, "company": {"id": 24961, "name": "Mark Morrill"}, "developer": true}], "name": "1313 : Puzzle Game", "platforms": [39], "slug": "1313-puzzle-game", "url": "https://www.igdb.com/games/1313-puzzle-game"}
