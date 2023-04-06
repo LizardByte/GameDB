@@ -2,8 +2,11 @@
 let org_name = "LizardByte"
 let base_url = `https://db.${org_name.toLowerCase()}.dev`
 
-// load external scripts
-$.getScript('https://app.lizardbyte.dev/js/ranking_sorter.js')
+// scripts to load
+let scripts = [
+    'https://app.lizardbyte.dev/js/levenshtein_distance.js',
+    'https://app.lizardbyte.dev/js/ranking_sorter.js'
+]
 
 // get search options, we will append each platform to this list
 let search_options = document.getElementById("search_type")
@@ -16,12 +19,20 @@ $(document).ready(function(){
     // Set cache = false for all jquery ajax requests.
     $.ajaxSetup({
         cache: false,
-    });
-});
+    })
+
+    let script_queue = scripts.map(function(script) {
+        return $.getScript(script)
+    })
+
+    $.when.apply(null, script_queue).done(function() {
+        initialize()
+    })
+})
 
 
 // create platform cards
-$(document).ready(function(){
+let initialize = function(){
     $.ajax({
         url: `${base_url}/platforms/all.json`,
         type: "GET",
@@ -60,7 +71,12 @@ $(document).ready(function(){
 
                 let banner = document.createElement("img")
                 banner.className = "card-img-top rounded-0"
-                banner.src = sorted[item]['platform_logo']['url']
+                try {
+                    banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_cover_big")
+                }
+                catch (err) {
+                    banner.src = "https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png"
+                }
                 banner.alt = ""
                 banner_link.append(banner)
 
@@ -90,4 +106,4 @@ $(document).ready(function(){
             }
         }
     })
-})
+}
