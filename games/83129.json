@@ -1,1 +1,1 @@
-{"id": 83129, "name": "1 Line Space Trader", "slug": "1-line-space-trader", "url": "https://www.igdb.com/games/1-line-space-trader"}
+{"id": 83129, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 15, "name": "Strategy"}], "name": "1 Line Space Trader", "platforms": [26], "release_dates": [{"id": 465567, "date": 1199059200, "platform": 26, "y": 2007}], "slug": "1-line-space-trader", "url": "https://www.igdb.com/games/1-line-space-trader"}
