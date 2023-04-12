@@ -1,1 +1,1 @@
-{"id": 110220, "name": "123 Picture Match", "slug": "123-picture-match", "url": "https://www.igdb.com/games/123-picture-match"}
+{"id": 110220, "game_modes": [{"id": 1, "name": "Single player"}], "name": "123 Picture Match", "platforms": [34, 39], "release_dates": [{"id": 467110, "date": 1458691200, "platform": 39, "y": 2016}, {"id": 467111, "date": 1458259200, "platform": 34, "y": 2016}], "slug": "123-picture-match", "url": "https://www.igdb.com/games/123-picture-match"}

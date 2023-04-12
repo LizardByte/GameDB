@@ -1,1 +1,1 @@
-{"id": 94935, "name": "Safari Hunt", "slug": "safari-hunt", "url": "https://www.igdb.com/games/safari-hunt"}
+{"id": 94935, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 5, "name": "Shooter"}], "involved_companies": [{"id": 210251, "company": {"id": 112, "name": "Sega"}, "developer": true}], "name": "Safari Hunt", "platforms": [64], "release_dates": [{"id": 467139, "date": 536371200, "platform": 64, "y": 1986}], "slug": "safari-hunt", "url": "https://www.igdb.com/games/safari-hunt"}
