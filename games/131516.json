@@ -1,1 +1,1 @@
-{"id": 131516, "name": "Basketball", "slug": "basketball--5", "url": "https://www.igdb.com/games/basketball--5"}
+{"id": 131516, "involved_companies": [{"id": 210483, "company": {"id": 2521, "name": "Mattel Electronics"}, "developer": true}], "name": "Basketball", "platforms": [411], "release_dates": [{"id": 467525, "date": 283910400, "platform": 411, "y": 1978}], "slug": "basketball--5", "url": "https://www.igdb.com/games/basketball--5"}

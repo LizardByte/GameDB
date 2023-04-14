@@ -1,1 +1,1 @@
-{"id": 131072, "name": "Solitaire", "slug": "solitaire--10", "url": "https://www.igdb.com/games/solitaire--10"}
+{"id": 131072, "involved_companies": [{"id": 210317, "company": {"id": 41090, "name": "Grandstand"}, "developer": false}], "name": "Solitaire", "platforms": [411], "release_dates": [{"id": 467288, "date": 315446400, "platform": 411, "y": 1979}], "slug": "solitaire--10", "url": "https://www.igdb.com/games/solitaire--10"}

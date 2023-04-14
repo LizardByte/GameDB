@@ -1,1 +1,1 @@
-{"id": 94483, "name": "Zap!", "slug": "zap", "url": "https://www.igdb.com/games/zap"}
+{"id": 94483, "involved_companies": [{"id": 210533, "company": {"id": 6416, "name": "Nuvatec"}, "developer": true}], "name": "Zap!", "platforms": [411], "release_dates": [{"id": 467600, "date": 283910400, "platform": 411, "y": 1978}], "slug": "zap", "url": "https://www.igdb.com/games/zap"}
