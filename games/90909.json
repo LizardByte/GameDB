@@ -1,1 +1,1 @@
-{"id": 90909, "name": "geoDefense", "slug": "geodefense", "url": "https://www.igdb.com/games/geodefense"}
+{"id": 90909, "name": "geoDefense", "platforms": [39, 74], "release_dates": [{"id": 468254, "date": 1230681600, "platform": 39, "y": 2008}, {"id": 468255, "date": 1230681600, "platform": 74, "y": 2008}], "slug": "geodefense", "url": "https://www.igdb.com/games/geodefense"}
