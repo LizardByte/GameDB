@@ -1,1 +1,1 @@
-{"id": 69837, "genres": [{"id": 15, "name": "Strategy"}, {"id": 31, "name": "Adventure"}], "name": "Undersea Adventure", "slug": "undersea-adventure", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/undersea-adventure"}
+{"id": 69837, "genres": [{"id": 15, "name": "Strategy"}, {"id": 31, "name": "Adventure"}], "name": "Undersea Adventure", "platforms": [377], "release_dates": [{"id": 470786, "platform": 377}], "slug": "undersea-adventure", "themes": [{"id": 34, "name": "Educational"}], "url": "https://www.igdb.com/games/undersea-adventure"}
