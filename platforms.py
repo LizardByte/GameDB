@@ -320,7 +320,7 @@ cross_reference = [
     {
         "ids": {
             "igdb": 58,
-            "screenscraper": None,
+            "screenscraper": 4,
         },
         "name": "Super Famicom",
     },
@@ -460,14 +460,14 @@ cross_reference = [
     {
         "ids": {
             "igdb": 79,
-            "screenscraper": 68,
+            "screenscraper": 142,
         },
         "name": "Neo Geo MVS",
     },
     {
         "ids": {
             "igdb": 80,
-            "screenscraper": 142,
+            "screenscraper": 68,
         },
         "name": "Neo Geo AES",
     },
