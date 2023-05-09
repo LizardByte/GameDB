@@ -13,6 +13,7 @@ from igdb.wrapper import IGDBWrapper
 
 # local imports
 from igdb_enums import enums
+import platforms
 
 # setup environment if running locally
 load_dotenv()
@@ -412,6 +413,17 @@ def get_igdb_enums():
     write_json_files(file_path=file_path, data=enums)
 
 
+def get_platform_cross_reference():
+    """
+    Write platform cross-reference to json files.
+    """
+    end_point = 'platforms'
+
+    # write the end_point file
+    file_path = os.path.join(end_point, 'cross-reference')
+    write_json_files(file_path=file_path, data=platforms.cross_reference)
+
+
 if __name__ == '__main__':
     # setup arguments using argparse
     parser = argparse.ArgumentParser(description="Download entire igdb database.")
@@ -440,3 +452,4 @@ if __name__ == '__main__':
     # get date, process dictionaries and write data
     get_data()
     get_igdb_enums()
+    get_platform_cross_reference()
