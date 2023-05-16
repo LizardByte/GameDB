@@ -208,7 +208,11 @@ $(document).ready(function(){
                             banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_cover_big")
                         }
                         catch (err) {
-                            banner.src = "https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png"
+                            banner.src = "images/no-logo.png"
+                            banner.classList.add("bg-dark")
+                            banner.classList.add("bg-gradient")
+                            banner.classList.add("p-4")
+                            banner_div.classList.remove("hover-zoom")
                         }
                     }
                     banner.alt = ""
