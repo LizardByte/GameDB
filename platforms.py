@@ -8,6 +8,11 @@ cross_reference = [
             "screenscraper": 145,
         },
         "name": "Linux",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -15,6 +20,11 @@ cross_reference = [
             "screenscraper": 14,
         },
         "name": "Nintendo 64",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -22,6 +32,11 @@ cross_reference = [
             "screenscraper": 16,
         },
         "name": "Wii",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -29,6 +44,11 @@ cross_reference = [
             "screenscraper": 138,
         },
         "name": "PC (Microsoft Windows)",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -36,6 +56,11 @@ cross_reference = [
             "screenscraper": 57,
         },
         "name": "PlayStation",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -43,6 +68,11 @@ cross_reference = [
             "screenscraper": 58,
         },
         "name": "PlayStation 2",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -50,6 +80,11 @@ cross_reference = [
             "screenscraper": 59,
         },
         "name": "PlayStation 3",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -57,6 +92,11 @@ cross_reference = [
             "screenscraper": 32,
         },
         "name": "Xbox",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -64,6 +104,11 @@ cross_reference = [
             "screenscraper": 33,
         },
         "name": "Xbox 360",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -71,6 +116,11 @@ cross_reference = [
             "screenscraper": 135,
         },
         "name": "DOS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -78,6 +128,11 @@ cross_reference = [
             "screenscraper": 146,
         },
         "name": "Mac",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -85,6 +140,11 @@ cross_reference = [
             "screenscraper": 66,
         },
         "name": "Commodore C64/128/MAX",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -92,6 +152,11 @@ cross_reference = [
             "screenscraper": 64,
         },
         "name": "Amiga",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -99,6 +164,11 @@ cross_reference = [
             "screenscraper": 3,
         },
         "name": "Nintendo Entertainment System",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -106,6 +176,11 @@ cross_reference = [
             "screenscraper": 4,
         },
         "name": "Super Nintendo Entertainment System",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -113,6 +188,11 @@ cross_reference = [
             "screenscraper": 15,
         },
         "name": "Nintendo DS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -120,6 +200,11 @@ cross_reference = [
             "screenscraper": 13,
         },
         "name": "Nintendo GameCube",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -127,6 +212,11 @@ cross_reference = [
             "screenscraper": 10,
         },
         "name": "Game Boy Color",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -134,6 +224,11 @@ cross_reference = [
             "screenscraper": 23,
         },
         "name": "Dreamcast",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -141,6 +236,11 @@ cross_reference = [
             "screenscraper": 12,
         },
         "name": "Game Boy Advance",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -148,6 +248,11 @@ cross_reference = [
             "screenscraper": 65,
         },
         "name": "Amstrad CPC",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -155,6 +260,11 @@ cross_reference = [
             "screenscraper": 76,
         },
         "name": "ZX Spectrum",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -162,6 +272,11 @@ cross_reference = [
             "screenscraper": 113,
         },
         "name": "MSX",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -169,6 +284,11 @@ cross_reference = [
             "screenscraper": 1,
         },
         "name": "Sega Mega Drive/Genesis",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -176,6 +296,11 @@ cross_reference = [
             "screenscraper": 19,
         },
         "name": "Sega 32X",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -183,6 +308,11 @@ cross_reference = [
             "screenscraper": 22,
         },
         "name": "Sega Saturn",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -190,6 +320,11 @@ cross_reference = [
             "screenscraper": 9,
         },
         "name": "Game Boy",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -197,6 +332,11 @@ cross_reference = [
             "screenscraper": 63,
         },
         "name": "Android",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -204,6 +344,11 @@ cross_reference = [
             "screenscraper": 21,
         },
         "name": "Sega Game Gear",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -211,6 +356,11 @@ cross_reference = [
             "screenscraper": 17,
         },
         "name": "Nintendo 3DS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -218,6 +368,11 @@ cross_reference = [
             "screenscraper": 61,
         },
         "name": "PlayStation Portable",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -225,6 +380,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "iOS",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -232,6 +392,11 @@ cross_reference = [
             "screenscraper": 18,
         },
         "name": "Wii U",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -239,6 +404,11 @@ cross_reference = [
             "screenscraper": 30,
         },
         "name": "N-Gage",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -246,6 +416,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Tapwave Zodiac",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -253,6 +428,11 @@ cross_reference = [
             "screenscraper": 62,
         },
         "name": "PlayStation Vita",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -260,6 +440,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Virtual Console",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -267,6 +452,11 @@ cross_reference = [
             "screenscraper": 60,
         },
         "name": "PlayStation 4",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -274,6 +464,11 @@ cross_reference = [
             "screenscraper": 34,
         },
         "name": "Xbox One",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -281,6 +476,11 @@ cross_reference = [
             "screenscraper": 29,
         },
         "name": "3DO Interactive Multiplayer",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -288,6 +488,11 @@ cross_reference = [
             "screenscraper": 106,
         },
         "name": "Family Computer Disk System",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -295,6 +500,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Arcade",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -302,6 +512,11 @@ cross_reference = [
             "screenscraper": 116,
         },
         "name": "MSX2",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -309,6 +524,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Legacy Mobile Device",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -316,6 +536,11 @@ cross_reference = [
             "screenscraper": 45,
         },
         "name": "WonderSwan",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -323,6 +548,11 @@ cross_reference = [
             "screenscraper": 4,
         },
         "name": "Super Famicom",
+        "variables": {
+            "screenscraper": {
+                "region": "jp",
+            },
+        },
     },
     {
         "ids": {
@@ -330,6 +560,11 @@ cross_reference = [
             "screenscraper": 26,
         },
         "name": "Atari 2600",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -337,6 +572,11 @@ cross_reference = [
             "screenscraper": 41,
         },
         "name": "Atari 7800",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -344,6 +584,11 @@ cross_reference = [
             "screenscraper": 28,
         },
         "name": "Atari Lynx",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -351,6 +596,11 @@ cross_reference = [
             "screenscraper": 27,
         },
         "name": "Atari Jaguar",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -358,6 +608,11 @@ cross_reference = [
             "screenscraper": 42,
         },
         "name": "Atari ST/STE",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -365,6 +620,11 @@ cross_reference = [
             "screenscraper": 2,
         },
         "name": "Sega Master System/Mark III",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -372,6 +632,11 @@ cross_reference = [
             "screenscraper": 43,
         },
         "name": "Atari 8-bit",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -379,6 +644,11 @@ cross_reference = [
             "screenscraper": 40,
         },
         "name": "Atari 5200",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -386,6 +656,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Intellivision",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -393,6 +668,11 @@ cross_reference = [
             "screenscraper": 48,
         },
         "name": "ColecoVision",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -400,6 +680,11 @@ cross_reference = [
             "screenscraper": 37,
         },
         "name": "BBC Microcomputer System",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -407,6 +692,11 @@ cross_reference = [
             "screenscraper": 102,
         },
         "name": "Vectrex",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -414,6 +704,11 @@ cross_reference = [
             "screenscraper": 73,
         },
         "name": "Commodore VIC-20",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -421,6 +716,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Ouya",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -428,6 +728,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "BlackBerry OS",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -435,6 +740,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Windows Phone",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -442,6 +752,11 @@ cross_reference = [
             "screenscraper": 86,
         },
         "name": "Apple II",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -449,6 +764,11 @@ cross_reference = [
             "screenscraper": 220,
         },
         "name": "Sharp X1",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -456,6 +776,11 @@ cross_reference = [
             "screenscraper": 20,
         },
         "name": "Sega CD",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -463,6 +788,11 @@ cross_reference = [
             "screenscraper": 142,
         },
         "name": "Neo Geo MVS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -470,6 +800,11 @@ cross_reference = [
             "screenscraper": 68,
         },
         "name": "Neo Geo AES",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -477,6 +812,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Web browser",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -484,6 +824,11 @@ cross_reference = [
             "screenscraper": 109,
         },
         "name": "SG-1000",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -491,6 +836,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Donner Model 30",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -498,6 +848,11 @@ cross_reference = [
             "screenscraper": 31,
         },
         "name": "TurboGrafx-16/PC Engine",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -505,6 +860,11 @@ cross_reference = [
             "screenscraper": 11,
         },
         "name": "Virtual Boy",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -512,6 +872,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Odyssey",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -519,6 +884,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Microvision",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -526,6 +896,11 @@ cross_reference = [
             "screenscraper": 240,
         },
         "name": "Commodore PET",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -533,6 +908,11 @@ cross_reference = [
             "screenscraper": 44,
         },
         "name": "Bally Astrocade",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -540,6 +920,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Commodore 16",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -547,6 +932,11 @@ cross_reference = [
             "screenscraper": 99,
         },
         "name": "Commodore Plus/4",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -554,6 +944,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PDP-1",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -561,6 +956,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PDP-10",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -568,6 +968,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PDP-8",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -575,6 +980,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "DEC GT40",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -582,6 +992,11 @@ cross_reference = [
             "screenscraper": 3,
         },
         "name": "Family Computer",
+        "variables": {
+            "screenscraper": {
+                "region": "jp",
+            },
+        },
     },
     {
         "ids": {
@@ -589,6 +1004,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Analogue electronics",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -596,6 +1016,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Ferranti Nimrod Computer",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -603,6 +1028,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "EDSAC",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -610,6 +1040,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PDP-7",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -617,6 +1052,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "HP 2100",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -624,6 +1064,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "HP 3000",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -631,6 +1076,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "SDS Sigma 7",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -638,6 +1088,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Call-A-Computer time-shared mainframe computer system",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -645,6 +1100,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PDP-11",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -652,6 +1112,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "CDC Cyber 70",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -659,6 +1124,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PLATO",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -666,6 +1136,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Imlac PDS-1",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -673,6 +1148,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Microcomputer",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -680,6 +1160,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "OnLive Game System",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -687,6 +1172,11 @@ cross_reference = [
             "screenscraper": 134,
         },
         "name": "Amiga CD32",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -694,6 +1184,11 @@ cross_reference = [
             "screenscraper": 217,
         },
         "name": "Apple IIGS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -701,6 +1196,11 @@ cross_reference = [
             "screenscraper": 84,
         },
         "name": "Acorn Archimedes",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -708,6 +1208,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Philips CD-i",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -715,6 +1220,11 @@ cross_reference = [
             "screenscraper": 253,
         },
         "name": "FM Towns",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -722,6 +1232,11 @@ cross_reference = [
             "screenscraper": 25,
         },
         "name": "Neo Geo Pocket",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -729,6 +1244,11 @@ cross_reference = [
             "screenscraper": 82,
         },
         "name": "Neo Geo Pocket Color",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -736,6 +1256,11 @@ cross_reference = [
             "screenscraper": 79,
         },
         "name": "Sharp X68000",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -743,6 +1268,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Nuon",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -750,6 +1280,11 @@ cross_reference = [
             "screenscraper": 46,
         },
         "name": "WonderSwan Color",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -757,6 +1292,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "SwanCrystal",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -764,6 +1304,11 @@ cross_reference = [
             "screenscraper": 221,
         },
         "name": "PC-8801",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -771,6 +1316,11 @@ cross_reference = [
             "screenscraper": 144,
         },
         "name": "TRS-80",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -778,6 +1328,11 @@ cross_reference = [
             "screenscraper": 80,
         },
         "name": "Fairchild Channel F",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -785,6 +1340,11 @@ cross_reference = [
             "screenscraper": 105,
         },
         "name": "PC Engine SuperGrafx",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -792,6 +1352,11 @@ cross_reference = [
             "screenscraper": 205,
         },
         "name": "Texas Instruments TI-99",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -799,6 +1364,11 @@ cross_reference = [
             "screenscraper": 225,
         },
         "name": "Nintendo Switch",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -806,6 +1376,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Nintendo PlayStation",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -813,6 +1388,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Amazon Fire TV",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -820,6 +1400,11 @@ cross_reference = [
             "screenscraper": 104,
         },
         "name": "Odyssey 2 / Videopac G7000",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -827,6 +1412,11 @@ cross_reference = [
             "screenscraper": 85,
         },
         "name": "Acorn Electron",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -834,6 +1424,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Hyper Neo Geo 64",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -841,6 +1436,11 @@ cross_reference = [
             "screenscraper": 70,
         },
         "name": "Neo Geo CD",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -848,6 +1448,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "New Nintendo 3DS",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -855,6 +1460,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "VC 4000",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -862,6 +1472,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "1292 Advanced Programmable Video System",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -869,6 +1484,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8500",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -876,6 +1496,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8610",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -883,6 +1508,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PC-50X Family",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -890,6 +1520,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8760",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -897,6 +1532,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8710",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -904,6 +1544,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8603",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -911,6 +1556,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8605",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -918,6 +1568,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8606",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -925,6 +1580,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AY-3-8607",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -932,6 +1592,11 @@ cross_reference = [
             "screenscraper": 208,
         },
         "name": "PC-98",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -939,6 +1604,11 @@ cross_reference = [
             "screenscraper": 114,
         },
         "name": "Turbografx-16/PC Engine CD",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -946,6 +1616,11 @@ cross_reference = [
             "screenscraper": 144,
         },
         "name": "TRS-80 Color Computer",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -953,6 +1628,11 @@ cross_reference = [
             "screenscraper": 97,
         },
         "name": "FM-7",
+        "variables": {
+            "screenscraper": {
+                "region": "jp",
+            },
+        },
     },
     {
         "ids": {
@@ -960,6 +1640,11 @@ cross_reference = [
             "screenscraper": 91,
         },
         "name": "Dragon 32/64",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -967,6 +1652,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Amstrad PCW",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -974,6 +1664,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Tatung Einstein",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -981,6 +1676,11 @@ cross_reference = [
             "screenscraper": 141,
         },
         "name": "Thomson MO5",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -988,6 +1688,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "NEC PC-6000 Series",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -995,6 +1700,11 @@ cross_reference = [
             "screenscraper": 129,
         },
         "name": "Commodore CDTV",
+        "variables": {
+            "screenscraper": {
+                "region": "us",
+            },
+        },
     },
     {
         "ids": {
@@ -1002,6 +1712,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Nintendo DSi",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1009,6 +1724,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Windows Mixed Reality",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1016,6 +1736,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Oculus VR",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1023,6 +1748,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "SteamVR",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1030,6 +1760,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Daydream",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1037,6 +1772,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PlayStation VR",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1044,6 +1784,11 @@ cross_reference = [
             "screenscraper": 211,
         },
         "name": "Pokémon mini",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1051,6 +1796,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PlayStation 5",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1058,6 +1808,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Xbox Series X|S",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1065,6 +1820,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Google Stadia",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1072,6 +1832,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "DUPLICATE Stadia",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1079,6 +1844,11 @@ cross_reference = [
             "screenscraper": 165,
         },
         "name": "Exidy Sorcerer",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1086,6 +1856,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Sol-20",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1093,6 +1868,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "DVD Player",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1100,6 +1880,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Blu-ray Player",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1107,6 +1892,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Zeebo",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1114,6 +1904,11 @@ cross_reference = [
             "screenscraper": 72,
         },
         "name": "PC-FX",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1121,6 +1916,11 @@ cross_reference = [
             "screenscraper": 107,
         },
         "name": "Satellaview",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1128,6 +1928,11 @@ cross_reference = [
             "screenscraper": 52,
         },
         "name": "Game & Watch",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1135,6 +1940,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Playdia",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1142,6 +1952,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Evercade",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1149,6 +1964,11 @@ cross_reference = [
             "screenscraper": 250,
         },
         "name": "Sega Pico",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1156,6 +1976,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "OOParts",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1163,6 +1988,11 @@ cross_reference = [
             "screenscraper": 77,
         },
         "name": "Sinclair ZX81",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1170,6 +2000,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Sharp MZ-2200",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1177,6 +2012,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Epoch Cassette Vision",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1184,6 +2024,11 @@ cross_reference = [
             "screenscraper": 67,
         },
         "name": "Epoch Super Cassette Vision",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1191,6 +2036,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Plug & Play",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1198,6 +2048,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Gamate",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1205,6 +2060,11 @@ cross_reference = [
             "screenscraper": 121,
         },
         "name": "Game.com",
+        "variables": {
+            "screenscraper": {
+                "region": "us",
+            },
+        },
     },
     {
         "ids": {
@@ -1212,6 +2072,11 @@ cross_reference = [
             "screenscraper": 98,
         },
         "name": "Casio Loopy",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1219,6 +2084,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Playdate",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1226,6 +2096,11 @@ cross_reference = [
             "screenscraper": 115,
         },
         "name": "Intellivision Amico",
+        "variables": {
+            "screenscraper": {
+                "region": "us",
+            },
+        },
     },
     {
         "ids": {
@@ -1233,6 +2108,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Oculus Quest",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1240,6 +2120,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Oculus Rift",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1247,6 +2132,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Meta Quest 2",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1254,6 +2144,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Oculus Go",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1261,6 +2156,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Gear VR",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1268,6 +2168,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "AirConsole",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1275,6 +2180,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PlayStation VR2",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1282,6 +2192,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Windows Mobile",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1289,6 +2204,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Sinclair QL",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1296,6 +2216,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "HyperScan",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1303,6 +2228,11 @@ cross_reference = [
             "screenscraper": 90,
         },
         "name": "Mega Duck/Cougar Boy",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1310,6 +2240,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Legacy Computer",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1317,6 +2252,11 @@ cross_reference = [
             "screenscraper": 171,
         },
         "name": "Atari Jaguar CD",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1324,6 +2264,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Handheld Electronic LCD",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1331,6 +2276,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Leapster",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1338,6 +2288,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Leapster Explorer/LeadPad Explorer",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1345,6 +2300,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "LeapTV",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1352,6 +2312,11 @@ cross_reference = [
             "screenscraper": 207,
         },
         "name": "Watara/QuickShot Supervision",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1359,6 +2324,11 @@ cross_reference = [
             "screenscraper": 122,
         },
         "name": "Nintendo 64DD",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1366,6 +2336,11 @@ cross_reference = [
             "screenscraper": 219,
         },
         "name": "Palm OS",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1373,6 +2348,11 @@ cross_reference = [
             "screenscraper": 263,
         },
         "name": "Arduboy",
+        "variables": {
+            "screenscraper": {
+                "region": "wor",
+            },
+        },
     },
     {
         "ids": {
@@ -1380,6 +2360,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "V.Smile",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1387,6 +2372,11 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "Visual Memory Unit / Visual Memory System",
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
     },
     {
         "ids": {
@@ -1394,5 +2384,10 @@ cross_reference = [
             "screenscraper": None,
         },
         "name": "PocketStation",
-    }
+        "variables": {
+            "screenscraper": {
+                "region": None,
+            },
+        },
+    },
 ]

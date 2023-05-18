@@ -156,10 +156,12 @@ $(document).ready(function(){
 
                     // add screenscraper id to platform, start with null value
                     result[platform]['screenscraper_id'] = null
+                    result[platform]['screenscraper_region'] = null
 
                     for (let xref in platform_xref) {
                         if (platform_xref[xref]['ids']['igdb'] === result[platform]['id']) {
                             result[platform]['screenscraper_id'] = platform_xref[xref]['ids']['screenscraper']
+                            result[platform]['screenscraper_region'] = platform_xref[xref]['variables']['screenscraper']['region']
                         }
                     }
 
@@ -196,9 +198,8 @@ $(document).ready(function(){
                     banner.className = "card-img-top rounded-0"
 
                     // see if screensraper id has an image
-                    if (sorted[item]['screenscraper_id'] !== null) {
-                        // todo - check if png image url is valid
-                        banner.src = `https://screenscraper.fr/image.php?plateformid=${sorted[item]['screenscraper_id']}&media=wheel&region=wor&num=&version=&maxwidth=600&maxheight=600`
+                    if (sorted[item]['screenscraper_id'] !== null && sorted[item]['screenscraper_region'] !== null) {
+                        banner.src = `https://screenscraper.fr/image.php?plateformid=${sorted[item]['screenscraper_id']}&media=wheel&region=${sorted[item]['screenscraper_region']}&num=&version=&maxwidth=600&maxheight=600`
                         banner.classList.add("bg-dark")
                         banner.classList.add("bg-gradient")
                         banner.classList.add("p-4")
