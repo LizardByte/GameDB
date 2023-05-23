@@ -1,1 +1,1 @@
-{"id": 87404, "name": "2048 Tile!", "rating": 90.0, "slug": "2048-tile", "url": "https://www.igdb.com/games/2048-tile"}
+{"id": 87404, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "2048 Tile!", "platforms": [39], "rating": 90.0, "release_dates": [{"id": 477129, "date": 1396915200, "platform": 39, "y": 2014}], "slug": "2048-tile", "url": "https://www.igdb.com/games/2048-tile"}
