@@ -1,1 +1,1 @@
-{"id": 93995, "name": "2Moons", "slug": "2moons", "url": "https://www.igdb.com/games/2moons"}
+{"id": 93995, "game_modes": [{"id": 1, "name": "Single player"}, {"id": 5, "name": "Massively Multiplayer Online (MMO)"}], "involved_companies": [{"id": 216736, "company": {"id": 18709, "name": "GameHi"}, "developer": true}], "name": "2Moons", "platforms": [6], "slug": "2moons", "themes": [{"id": 17, "name": "Fantasy"}], "url": "https://www.igdb.com/games/2moons"}
