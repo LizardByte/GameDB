@@ -1,1 +1,1 @@
-{"id": 95405, "name": "Peter Pan", "slug": "peter-pan", "url": "https://www.igdb.com/games/peter-pan"}
+{"id": 95405, "name": "Peter Pan", "platforms": [16, 25, 63], "release_dates": [{"id": 479702, "platform": 16}, {"id": 479703, "platform": 25}, {"id": 479704, "platform": 63}], "slug": "peter-pan", "url": "https://www.igdb.com/games/peter-pan"}
