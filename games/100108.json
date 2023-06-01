@@ -1,1 +1,1 @@
-{"id": 100108, "name": "3-K Trivia", "slug": "3-k-trivia", "url": "https://www.igdb.com/games/3-k-trivia"}
+{"id": 100108, "genres": [{"id": 26, "name": "Quiz/Trivia"}], "involved_companies": [{"id": 217751, "company": {"id": 2391, "name": "IBM"}, "developer": false}], "name": "3-K Trivia", "platforms": [13], "release_dates": [{"id": 479888, "date": 462499200, "platform": 13, "y": 1984}], "slug": "3-k-trivia", "url": "https://www.igdb.com/games/3-k-trivia"}
