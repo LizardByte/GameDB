@@ -1,1 +1,1 @@
-{"id": 233167, "genres": [{"id": 10, "name": "Racing"}, {"id": 33, "name": "Arcade"}], "name": "4 Cats", "slug": "4-cats", "summary": "Simple timing game!", "url": "https://www.igdb.com/games/4-cats"}
+{"id": 233167, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 10, "name": "Racing"}, {"id": 33, "name": "Arcade"}], "name": "4 Cats", "platforms": [39], "release_dates": [{"id": 482665, "date": 1405641600, "platform": 39, "y": 2014}], "slug": "4-cats", "summary": "Simple timing game!", "url": "https://www.igdb.com/games/4-cats"}
