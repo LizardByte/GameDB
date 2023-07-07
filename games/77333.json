@@ -1,1 +1,1 @@
-{"id": 77333, "name": "Shadowfax", "slug": "shadowfax", "url": "https://www.igdb.com/games/shadowfax"}
+{"id": 77333, "name": "Shadowfax", "platforms": [15, 26, 69, 71], "release_dates": [{"id": 487947, "date": 410140800, "platform": 15, "y": 1982}, {"id": 487948, "date": 410140800, "platform": 71, "y": 1982}, {"id": 487949, "date": 410140800, "platform": 69, "y": 1982}, {"id": 487950, "date": 441676800, "platform": 26, "y": 1983}], "slug": "shadowfax", "url": "https://www.igdb.com/games/shadowfax"}

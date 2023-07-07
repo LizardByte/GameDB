@@ -1,1 +1,1 @@
-{"id": 105799, "name": "Bloop Go!", "slug": "bloop-go", "url": "https://www.igdb.com/games/bloop-go"}
+{"id": 105799, "genres": [{"id": 10, "name": "Racing"}, {"id": 33, "name": "Arcade"}], "name": "Bloop Go!", "slug": "bloop-go", "summary": "Bloop Go! is a fun physics-based multiplayer racing game.\nRoll, bounce, crush and destroy your opponents with crazy power ups to reach the finish line.", "url": "https://www.igdb.com/games/bloop-go"}
