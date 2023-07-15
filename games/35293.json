@@ -1,1 +1,1 @@
-{"id": 35293, "name": "OreLight", "slug": "orelight", "url": "https://www.igdb.com/games/orelight"}
+{"id": 35293, "name": "OreLight", "platforms": [3, 6, 14], "release_dates": [{"id": 491440, "date": 1435536000, "platform": 6, "y": 2015}, {"id": 491441, "date": 1435536000, "platform": 14, "y": 2015}, {"id": 491442, "date": 1435536000, "platform": 3, "y": 2015}], "slug": "orelight", "url": "https://www.igdb.com/games/orelight"}
