@@ -1,1 +1,1 @@
-{"id": 131526, "name": "Pinball", "slug": "pinball--11", "url": "https://www.igdb.com/games/pinball--11"}
+{"id": 131526, "cover": {"id": 318441, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co6tpl.jpg"}, "involved_companies": [{"id": 223943, "company": {"id": 2848, "name": "eGames"}, "developer": false}, {"id": 223944, "company": {"id": 3745, "name": "Magic Pixel Games"}, "developer": true}], "name": "Pinball", "platforms": [6], "release_dates": [{"id": 496938, "platform": 6}], "slug": "pinball--11", "url": "https://www.igdb.com/games/pinball--11"}
