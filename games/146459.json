@@ -1,1 +1,1 @@
-{"id": 146459, "name": "LEGO Fever", "slug": "lego-fever", "url": "https://www.igdb.com/games/lego-fever"}
+{"id": 146459, "collection": {"id": 3015, "name": "LEGO"}, "franchises": [{"id": 51, "name": "LEGO"}], "genres": [{"id": 8, "name": "Platform"}, {"id": 9, "name": "Puzzle"}], "name": "LEGO Fever", "platforms": [6], "release_dates": [{"id": 500375, "date": 1165449600, "platform": 6, "y": 2006}], "slug": "lego-fever", "url": "https://www.igdb.com/games/lego-fever"}
