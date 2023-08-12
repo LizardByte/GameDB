@@ -152,6 +152,24 @@ def get_data():
             ],
             write_all=True,
         ),
+        collections=dict(
+            fields=[
+                'games',
+                'name',
+                'slug',
+                'url',
+            ],
+            write_all=True,
+        ),
+        franchises=dict(
+            fields=[
+                'games',
+                'name',
+                'slug',
+                'url',
+            ],
+            write_all=True,
+        ),
         games=dict(
             fields=[
                 'age_ratings.category',
