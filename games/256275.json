@@ -1,1 +1,1 @@
-{"id": 256275, "name": "2D Dogfight", "slug": "2d-dogfight", "url": "https://www.igdb.com/games/2d-dogfight"}
+{"id": 256275, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 13, "name": "Simulator"}, {"id": 32, "name": "Indie"}], "name": "2D Dogfight", "platforms": [6], "release_dates": [{"id": 515936, "date": 1682899200, "platform": 6, "y": 2023}], "slug": "2d-dogfight", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/2d-dogfight"}
