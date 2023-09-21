@@ -1,1 +1,1 @@
-{"id": 79982, "genres": [{"id": 31, "name": "Adventure"}], "name": "ElfLand", "slug": "elfland", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/elfland"}
+{"id": 79982, "genres": [{"id": 31, "name": "Adventure"}], "name": "ElfLand", "platforms": [18], "release_dates": [{"id": 517530, "platform": 18}], "slug": "elfland", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/elfland"}
