@@ -1,1 +1,1 @@
-{"id": 94226, "name": "World Circuit", "slug": "world-circuit", "url": "https://www.igdb.com/games/world-circuit"}
+{"id": 94226, "involved_companies": [{"id": 237699, "company": {"id": 9150, "name": "MicroProse Software, Inc."}, "developer": true}], "name": "World Circuit", "platforms": [6, 16, 63], "release_dates": [{"id": 532060, "platform": 16}, {"id": 532061, "platform": 63}, {"id": 532062, "platform": 6}], "slug": "world-circuit", "url": "https://www.igdb.com/games/world-circuit"}
