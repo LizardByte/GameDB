@@ -1,1 +1,1 @@
-{"id": 91722, "age_ratings": [{"id": 69890, "category": 1, "rating": 8}], "name": "Cheer We Go!", "slug": "cheer-we-go", "url": "https://www.igdb.com/games/cheer-we-go"}
+{"id": 91722, "age_ratings": [{"id": 69890, "category": 1, "rating": 8}], "involved_companies": [{"id": 238106, "company": {"id": 716, "name": "Natsume Inc."}, "developer": true}], "name": "Cheer We Go!", "platforms": [39], "release_dates": [{"id": 532587, "date": 1293753600, "platform": 39, "y": 2010}], "slug": "cheer-we-go", "url": "https://www.igdb.com/games/cheer-we-go"}
