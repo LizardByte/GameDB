@@ -1,1 +1,1 @@
-{"id": 55949, "name": "Croc Mobile: Pinball", "slug": "croc-mobile-pinball", "url": "https://www.igdb.com/games/croc-mobile-pinball"}
+{"id": 55949, "genres": [{"id": 33, "name": "Arcade"}], "involved_companies": [{"id": 241496, "company": {"id": 22273, "name": "Morpheme"}, "developer": true}], "name": "Croc Mobile: Pinball", "platforms": [55], "release_dates": [{"id": 537857, "date": 1149811200, "platform": 55, "y": 2006}], "slug": "croc-mobile-pinball", "url": "https://www.igdb.com/games/croc-mobile-pinball"}
