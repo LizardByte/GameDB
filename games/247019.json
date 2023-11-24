@@ -1,1 +1,1 @@
-{"id": 247019, "name": "Lawn Purge", "platforms": [377], "release_dates": [{"id": 470741, "platform": 377}], "slug": "lawn-purge", "url": "https://www.igdb.com/games/lawn-purge"}
+{"id": 247019, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 33, "name": "Arcade"}], "name": "Lawn Purge", "platforms": [99], "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}], "release_dates": [{"id": 538800, "platform": 99}], "slug": "lawn-purge", "url": "https://www.igdb.com/games/lawn-purge"}
