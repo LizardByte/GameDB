@@ -1,1 +1,1 @@
-{"id": 247035, "name": "Smart Bomber", "platforms": [377], "release_dates": [{"id": 470758, "platform": 377}], "slug": "smart-bomber", "url": "https://www.igdb.com/games/smart-bomber"}
+{"id": 247035, "involved_companies": [{"id": 242390, "company": {"id": 51125, "name": "Cube Technology"}, "developer": true}], "name": "Smart Bomber", "platforms": [377], "release_dates": [{"id": 539369, "platform": 377}], "slug": "smart-bomber", "summary": "Clone of Bomberman.", "url": "https://www.igdb.com/games/smart-bomber"}

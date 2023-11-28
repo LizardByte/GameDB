@@ -1,1 +1,1 @@
-{"id": 247031, "name": "Harry", "platforms": [377], "release_dates": [{"id": 470754, "platform": 377}], "slug": "harry", "url": "https://www.igdb.com/games/harry"}
+{"id": 247031, "involved_companies": [{"id": 242389, "company": {"id": 51125, "name": "Cube Technology"}, "developer": true}], "name": "Harry", "platforms": [377], "release_dates": [{"id": 539368, "platform": 377}], "slug": "harry", "summary": "A puzzle game somewhat similar to Flipull.", "url": "https://www.igdb.com/games/harry"}
