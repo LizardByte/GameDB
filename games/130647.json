@@ -1,1 +1,1 @@
-{"id": 130647, "name": "Trisker", "slug": "trisker", "url": "https://www.igdb.com/games/trisker"}
+{"id": 130647, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 5, "name": "Shooter"}, {"id": 32, "name": "Indie"}, {"id": 33, "name": "Arcade"}], "name": "Trisker", "platforms": [6], "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}], "release_dates": [{"id": 540108, "date": 1479513600, "platform": 6, "y": 2016}], "slug": "trisker", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/trisker"}
