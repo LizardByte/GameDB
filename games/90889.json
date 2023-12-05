@@ -1,1 +1,1 @@
-{"id": 90889, "name": "Eternal City", "slug": "eternal-city", "url": "https://www.igdb.com/games/eternal-city"}
+{"id": 90889, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 12, "name": "Role-playing (RPG)"}], "name": "Eternal City", "platforms": [34], "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}], "release_dates": [{"id": 541079, "date": 1557273600, "platform": 34, "y": 2019}], "slug": "eternal-city", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/eternal-city"}
