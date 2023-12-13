@@ -1,1 +1,1 @@
-{"id": 279695, "involved_companies": [{"id": 244088, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "Bigfoot", "slug": "bigfoot--3", "url": "https://www.igdb.com/games/bigfoot--3"}
+{"id": 279695, "involved_companies": [{"id": 244088, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "Bigfoot", "platforms": [26], "release_dates": [{"id": 543580, "platform": 26}], "slug": "bigfoot--3", "url": "https://www.igdb.com/games/bigfoot--3"}

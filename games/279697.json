@@ -1,1 +1,1 @@
-{"id": 279697, "involved_companies": [{"id": 244090, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "3D Star Fighter", "slug": "3d-star-fighter", "url": "https://www.igdb.com/games/3d-star-fighter"}
+{"id": 279697, "involved_companies": [{"id": 244090, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "3D Star Fighter", "platforms": [25], "release_dates": [{"id": 543582, "platform": 25}], "slug": "3d-star-fighter", "url": "https://www.igdb.com/games/3d-star-fighter"}

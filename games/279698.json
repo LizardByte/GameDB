@@ -1,1 +1,1 @@
-{"id": 279698, "involved_companies": [{"id": 244093, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "Moto X", "slug": "moto-x", "url": "https://www.igdb.com/games/moto-x"}
+{"id": 279698, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 10, "name": "Racing"}], "involved_companies": [{"id": 244093, "company": {"id": 115, "name": "Codemasters"}, "developer": false}], "name": "Moto X", "platforms": [26], "release_dates": [{"id": 543585, "platform": 26}], "slug": "moto-x", "url": "https://www.igdb.com/games/moto-x"}
