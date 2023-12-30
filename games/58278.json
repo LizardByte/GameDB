@@ -1,1 +1,1 @@
-{"id": 58278, "name": "American Football", "slug": "american-football--1", "url": "https://www.igdb.com/games/american-football--1"}
+{"id": 58278, "genres": [{"id": 14, "name": "Sport"}], "involved_companies": [{"id": 245873, "company": {"id": 51734, "name": "UA Limited"}, "developer": true}, {"id": 245874, "company": {"id": 51735, "name": "Emerson Radio"}, "developer": false}], "name": "American Football", "slug": "american-football--1", "url": "https://www.igdb.com/games/american-football--1"}

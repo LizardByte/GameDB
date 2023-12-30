@@ -1,1 +1,1 @@
-{"id": 73621, "genres": [{"id": 31, "name": "Adventure"}], "name": "Noah's Adventures", "slug": "noahs-adventures", "url": "https://www.igdb.com/games/noahs-adventures"}
+{"id": 73621, "genres": [{"id": 31, "name": "Adventure"}], "involved_companies": [{"id": 245736, "company": {"id": 4820, "name": "Cougar Interactive"}, "developer": true}], "name": "Noah's Adventures", "platforms": [6], "release_dates": [{"id": 547594, "date": 1104451200, "platform": 6, "y": 2004}], "slug": "noahs-adventures", "url": "https://www.igdb.com/games/noahs-adventures"}
