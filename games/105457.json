@@ -1,1 +1,1 @@
-{"id": 105457, "name": "Gavel", "slug": "gavel", "url": "https://www.igdb.com/games/gavel"}
+{"id": 105457, "genres": [{"id": 34, "name": "Visual Novel"}], "involved_companies": [{"id": 248544, "company": {"id": 5186, "name": "increpare"}, "developer": true}], "name": "Gavel", "platforms": [82], "release_dates": [{"id": 554275, "date": 1519689600, "platform": 82, "y": 2018}], "slug": "gavel", "url": "https://www.igdb.com/games/gavel"}
