@@ -1,1 +1,1 @@
-{"id": 99334, "name": "Minesweepr", "slug": "minesweepr", "url": "https://www.igdb.com/games/minesweepr"}
+{"id": 99334, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Minesweeper", "platforms": [18], "player_perspectives": [{"id": 3, "name": "Bird view / Isometric"}], "release_dates": [{"id": 556001, "platform": 18}], "slug": "minesweeper--2", "url": "https://www.igdb.com/games/minesweeper--2"}
