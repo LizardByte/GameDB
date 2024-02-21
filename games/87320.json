@@ -1,1 +1,1 @@
-{"id": 87320, "name": "Dice", "rating": 60.0, "slug": "dice", "url": "https://www.igdb.com/games/dice"}
+{"id": 87320, "age_ratings": [{"id": 167851, "category": 6, "rating": 28}], "involved_companies": [{"id": 254241, "company": {"id": 5826, "name": "Nice Code Software"}, "developer": true}], "name": "Dice", "platforms": [99], "rating": 60.0, "release_dates": [{"id": 565980, "date": 1041292800, "platform": 99, "y": 2002}], "slug": "dice", "url": "https://www.igdb.com/games/dice"}
