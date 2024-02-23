@@ -1,1 +1,1 @@
-{"id": 277868, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Maze Puzzle", "platforms": [99], "release_dates": [{"id": 538925, "platform": 99}], "slug": "maze-puzzle", "url": "https://www.igdb.com/games/maze-puzzle"}
+{"id": 277868, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Maze Puzzle", "platforms": [99, 377], "release_dates": [{"id": 566815, "platform": 99}, {"id": 566820, "platform": 377}], "slug": "maze-puzzle", "url": "https://www.igdb.com/games/maze-puzzle"}
