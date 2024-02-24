@@ -1,1 +1,1 @@
-{"id": 123065, "name": "Outlaw", "slug": "outlaw--2", "url": "https://www.igdb.com/games/outlaw--2"}
+{"id": 123065, "name": "Outlaw", "platforms": [34, 39], "release_dates": [{"id": 567119, "date": 1577750400, "platform": 39, "y": 2019}, {"id": 567120, "date": 1577750400, "platform": 34, "y": 2019}], "slug": "outlaw--2", "url": "https://www.igdb.com/games/outlaw--2"}
