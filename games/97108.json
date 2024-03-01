@@ -1,1 +1,1 @@
-{"id": 97108, "name": "12", "slug": "12", "url": "https://www.igdb.com/games/12"}
+{"id": 97108, "involved_companies": [{"id": 255765, "company": {"id": 2002, "name": "Phoenix Games Studios"}, "developer": true}], "name": "12", "platforms": [20], "release_dates": [{"id": 568661, "date": 1230681600, "platform": 20, "y": 2008}], "slug": "12", "url": "https://www.igdb.com/games/12"}

@@ -1,1 +1,1 @@
-{"id": 83702, "name": "31", "slug": "31", "url": "https://www.igdb.com/games/31"}
+{"id": 83702, "genres": [{"id": 35, "name": "Card & Board Game"}], "involved_companies": [{"id": 255764, "company": {"id": 43128, "name": "ROM Tech, Inc."}, "developer": true}], "name": "31", "platforms": [6], "release_dates": [{"id": 568660, "date": 915062400, "platform": 6, "y": 1998}], "slug": "31", "url": "https://www.igdb.com/games/31"}
