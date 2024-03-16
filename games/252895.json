@@ -1,1 +1,1 @@
-{"id": 252895, "name": "Touring", "slug": "touring", "summary": "Touring card game for the Panic Playdate", "url": "https://www.igdb.com/games/touring"}
+{"id": 252895, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 32, "name": "Indie"}, {"id": 35, "name": "Card & Board Game"}], "name": "Touring", "platforms": [381], "release_dates": [{"id": 573122, "date": 1686355200, "platform": 381, "y": 2023}], "slug": "touring", "summary": "Touring card game for the Panic Playdate", "url": "https://www.igdb.com/games/touring"}

@@ -1,1 +1,1 @@
-{"id": 275911, "genres": [{"id": 9, "name": "Puzzle"}], "name": "Quandino", "slug": "quandino", "summary": "Falling-blocks game for playdate", "url": "https://www.igdb.com/games/quandino"}
+{"id": 275911, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 9, "name": "Puzzle"}], "name": "Quandino", "platforms": [381], "release_dates": [{"id": 573350, "date": 1699488000, "platform": 381, "y": 2023}], "slug": "quandino", "summary": "Falling-blocks game for playdate", "url": "https://www.igdb.com/games/quandino"}
