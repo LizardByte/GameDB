@@ -1,1 +1,1 @@
-{"id": 99893, "name": "Brick Buster", "slug": "brick-buster", "url": "https://www.igdb.com/games/brick-buster"}
+{"id": 99893, "name": "Brick Buster", "platforms": [48, 167], "release_dates": [{"id": 576502, "date": 1711152000, "platform": 48, "y": 2024}, {"id": 576503, "date": 1711152000, "platform": 167, "y": 2024}], "slug": "brick-buster", "url": "https://www.igdb.com/games/brick-buster"}

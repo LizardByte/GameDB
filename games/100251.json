@@ -1,1 +1,1 @@
-{"id": 100251, "age_ratings": [{"id": 61333, "category": 1, "rating": 8}], "name": "Enlightenus", "slug": "enlightenus", "url": "https://www.igdb.com/games/enlightenus"}
+{"id": 100251, "age_ratings": [{"id": 61333, "category": 1, "rating": 8}], "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 31, "name": "Adventure"}], "name": "Enlightenus", "platforms": [6], "release_dates": [{"id": 576138, "platform": 6}], "slug": "enlightenus", "url": "https://www.igdb.com/games/enlightenus"}
