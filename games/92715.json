@@ -1,1 +1,1 @@
-{"id": 92715, "name": "Star Wreck", "slug": "star-wreck", "url": "https://www.igdb.com/games/star-wreck"}
+{"id": 92715, "name": "Star Wreck", "platforms": [15, 25, 26], "release_dates": [{"id": 577045, "date": 567907200, "platform": 26, "y": 1987}, {"id": 577046, "date": 567907200, "platform": 25, "y": 1987}, {"id": 577047, "date": 567907200, "platform": 15, "y": 1987}], "slug": "star-wreck", "themes": [{"id": 27, "name": "Comedy"}], "url": "https://www.igdb.com/games/star-wreck"}

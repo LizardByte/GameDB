@@ -1,1 +1,1 @@
-{"id": 71678, "genres": [{"id": 13, "name": "Simulator"}], "name": "Phoenix Fire", "slug": "phoenix-fire", "url": "https://www.igdb.com/games/phoenix-fire"}
+{"id": 71678, "genres": [{"id": 13, "name": "Simulator"}], "name": "Phoenix Fire", "platforms": [13], "release_dates": [{"id": 577305, "date": 757296000, "platform": 13, "y": 1993}], "slug": "phoenix-fire", "url": "https://www.igdb.com/games/phoenix-fire"}
