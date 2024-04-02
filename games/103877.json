@@ -1,1 +1,1 @@
-{"id": 103877, "name": "Gnumz: Arcane Power", "slug": "gnumz-arcane-power", "url": "https://www.igdb.com/games/gnumz-arcane-power"}
+{"id": 103877, "game_modes": [{"id": 1, "name": "Single player"}], "involved_companies": [{"id": 260119, "company": {"id": 17561, "name": "8FLOOR"}, "developer": false}], "name": "Gnumz: Arcane Power", "platforms": [6], "release_dates": [{"id": 578294, "date": 1496016000, "platform": 6, "y": 2017}], "slug": "gnumz-arcane-power", "url": "https://www.igdb.com/games/gnumz-arcane-power"}
