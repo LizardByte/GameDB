@@ -1,1 +1,1 @@
-{"id": 92710, "name": "Hover Racing", "slug": "hover-racing", "url": "https://www.igdb.com/games/hover-racing"}
+{"id": 92710, "genres": [{"id": 10, "name": "Racing"}], "involved_companies": [{"id": 261306, "company": {"id": 53972, "name": "Tomokazu Sato"}, "developer": true}], "name": "Hover Racing", "platforms": [7], "release_dates": [{"id": 581240, "platform": 7}], "slug": "hover-racing", "themes": [{"id": 18, "name": "Science fiction"}], "url": "https://www.igdb.com/games/hover-racing"}
