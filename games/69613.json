@@ -1,1 +1,1 @@
-{"id": 69613, "genres": [{"id": 31, "name": "Adventure"}], "name": "Dungeon", "slug": "dungeon", "summary": "A budget first person dungeon crawler.", "url": "https://www.igdb.com/games/dungeon"}
+{"id": 69613, "genres": [{"id": 31, "name": "Adventure"}], "name": "Dungeon", "platforms": [63], "release_dates": [{"id": 586120, "date": 757296000, "platform": 63, "y": 1993}], "slug": "dungeon", "summary": "A budget first person dungeon crawler.", "url": "https://www.igdb.com/games/dungeon"}
