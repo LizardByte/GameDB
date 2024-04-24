@@ -1,1 +1,1 @@
-{"id": 87693, "name": "Farm Up", "rating": 60.0, "slug": "farm-up", "url": "https://www.igdb.com/games/farm-up"}
+{"id": 87693, "name": "Farm Up", "platforms": [6, 34, 39], "rating": 60.0, "release_dates": [{"id": 586563, "date": 1334620800, "platform": 39, "y": 2012}, {"id": 586564, "date": 1392249600, "platform": 34, "y": 2014}, {"id": 586565, "date": 1355443200, "platform": 6, "y": 2012}], "slug": "farm-up", "url": "https://www.igdb.com/games/farm-up"}
