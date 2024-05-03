@@ -1,1 +1,1 @@
-{"id": 93205, "name": "Wizard Wars", "slug": "wizard-wars", "url": "https://www.igdb.com/games/wizard-wars"}
+{"id": 93205, "involved_companies": [{"id": 265001, "company": {"id": 1157, "name": "Paragon Software Corporation"}, "developer": false}], "name": "Wizard Wars", "platforms": [13], "release_dates": [{"id": 590463, "date": 599529600, "platform": 13, "y": 1988}], "slug": "wizard-wars", "url": "https://www.igdb.com/games/wizard-wars"}
