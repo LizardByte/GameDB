@@ -1,1 +1,1 @@
-{"id": 138632, "name": "Will to Power", "slug": "will-to-power", "url": "https://www.igdb.com/games/will-to-power"}
+{"id": 138632, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 12, "name": "Role-playing (RPG)"}], "involved_companies": [{"id": 265034, "company": {"id": 54449, "name": "Kinpukurin"}, "developer": true}], "name": "Blue: Will to Power", "platforms": [118], "release_dates": [{"id": 590526, "date": 702086400, "platform": 118, "y": 1992}], "slug": "blue-will-to-power", "url": "https://www.igdb.com/games/blue-will-to-power"}
