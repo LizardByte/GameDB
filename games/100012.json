@@ -1,1 +1,1 @@
-{"id": 100012, "name": "Scopa", "slug": "scopa", "url": "https://www.igdb.com/games/scopa"}
+{"id": 100012, "genres": [{"id": 35, "name": "Card & Board Game"}], "name": "Scopa", "platforms": [34], "release_dates": [{"id": 593815, "date": 1419292800, "platform": 34, "y": 2014}], "slug": "scopa", "url": "https://www.igdb.com/games/scopa"}
