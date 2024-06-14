@@ -1,1 +1,1 @@
-{"id": 41421, "name": "Chicky Woggy", "slug": "chicky-woggy", "url": "https://www.igdb.com/games/chicky-woggy"}
+{"id": 41421, "genres": [{"id": 33, "name": "Arcade"}], "involved_companies": [{"id": 270289, "company": {"id": 23285, "name": "VTech"}, "developer": true}], "name": "Chicky Woggy", "platforms": [411], "release_dates": [{"id": 603605, "platform": 411}], "slug": "chicky-woggy", "url": "https://www.igdb.com/games/chicky-woggy"}

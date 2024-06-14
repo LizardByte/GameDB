@@ -1,1 +1,1 @@
-{"id": 84350, "name": "Roller Coaster", "slug": "roller-coaster", "url": "https://www.igdb.com/games/roller-coaster"}
+{"id": 84350, "involved_companies": [{"id": 270335, "company": {"id": 23285, "name": "VTech"}, "developer": true}], "name": "Roller Coaster", "platforms": [411], "release_dates": [{"id": 603654, "platform": 411}], "slug": "roller-coaster", "url": "https://www.igdb.com/games/roller-coaster"}

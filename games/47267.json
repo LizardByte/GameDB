@@ -1,1 +1,1 @@
-{"id": 47267, "name": "Crazy Chewy", "slug": "crazy-chewy", "url": "https://www.igdb.com/games/crazy-chewy"}
+{"id": 47267, "genres": [{"id": 33, "name": "Arcade"}], "involved_companies": [{"id": 270293, "company": {"id": 23285, "name": "VTech"}, "developer": true}], "name": "Crazy Chewy", "platforms": [411], "release_dates": [{"id": 603610, "platform": 411}], "slug": "crazy-chewy", "url": "https://www.igdb.com/games/crazy-chewy"}

@@ -1,1 +1,1 @@
-{"id": 47257, "name": "Fowling", "slug": "fowling", "summary": "Russian variation of Egg.", "url": "https://www.igdb.com/games/fowling"}
+{"id": 47257, "game_modes": [{"id": 1, "name": "Single player"}], "genres": [{"id": 33, "name": "Arcade"}], "involved_companies": [{"id": 270313, "company": {"id": 46756, "name": "Elektronika"}, "developer": true}], "name": "Fowling", "platforms": [411], "release_dates": [{"id": 603631, "platform": 411}], "slug": "fowling", "summary": "Russian variation of Egg.", "url": "https://www.igdb.com/games/fowling"}
