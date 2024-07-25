@@ -1,1 +1,1 @@
-{"id": 69832, "genres": [{"id": 31, "name": "Adventure"}], "name": "Maraca\u00efbo", "slug": "maracaibo", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/maracaibo"}
+{"id": 69832, "cover": {"id": 395161, "url": "//images.igdb.com/igdb/image/upload/t_thumb/co8gwp.jpg"}, "genres": [{"id": 31, "name": "Adventure"}], "name": "Maraca\u00efbo", "platforms": [25], "release_dates": [{"id": 616057, "date": 536371200, "platform": 25, "y": 1986}], "slug": "maracaibo", "themes": [{"id": 1, "name": "Action"}], "url": "https://www.igdb.com/games/maracaibo"}
