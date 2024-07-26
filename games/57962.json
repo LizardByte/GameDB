@@ -1,1 +1,1 @@
-{"id": 57962, "age_ratings": [{"id": 71075, "category": 1, "rating": 10}], "name": "Lost in the City", "slug": "lost-in-the-city", "url": "https://www.igdb.com/games/lost-in-the-city"}
+{"id": 57962, "age_ratings": [{"id": 71075, "category": 1, "rating": 10}], "name": "Lost in the City", "platforms": [6, 14], "release_dates": [{"id": 616895, "platform": 6}, {"id": 616896, "platform": 14}], "slug": "lost-in-the-city", "url": "https://www.igdb.com/games/lost-in-the-city"}
