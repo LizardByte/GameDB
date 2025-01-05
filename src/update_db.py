@@ -1,5 +1,6 @@
 # standard imports
 import argparse
+from datetime import timedelta
 import pathlib
 import json
 import os
@@ -8,6 +9,7 @@ import time
 
 # lib imports
 import requests
+import requests_cache
 from dotenv import load_dotenv
 from igdb.wrapper import IGDBWrapper
 
@@ -44,48 +46,8 @@ def igdb_authorization(client_id: str, client_secret: str) -> dict:
 
     token_url = 'https://id.twitch.tv/oauth2/token'
 
-    authorization = post_json(url=token_url, headers=auth_headers)
-    return authorization
-
-
-def get_json(url: str, headers: dict) -> dict:
-    """
-    Send a GET request and return a json formatted dictionary.
-
-    Parameters
-    ----------
-    url : str
-        The url to request.
-    headers
-        The headers to use in the request.
-
-    Returns
-    -------
-    dict
-        Dictionary of json data.
-    """
-    result = requests.get(url=url, headers=headers).json()
-    return result
-
-
-def post_json(url: str, headers: dict) -> dict:
-    """
-    Send a POST request and return a json formatted dictionary.
-
-    Parameters
-    ----------
-    url : str
-        The url to request.
-    headers
-        The headers to use in the request.
-
-    Returns
-    -------
-    dict
-        Dictionary of json data.
-    """
-    result = requests.post(url=url, data=headers).json()
-    return result
+    authorization = requests.post(url=token_url, data=auth_headers)
+    return authorization.json()
 
 
 def write_json_files(file_path: str, data: dict):
@@ -129,8 +91,13 @@ def get_youtube(video_ids: list) -> dict:
     url = f'{uri}?id={videos}&key={args.youtube_api_key}&part=snippet&fields={fields}'
     headers = dict(Accept='application/json')
 
-    result = get_json(url=url, headers=headers)
-    return result
+    session = requests_cache.CachedSession(
+        cache_name='cache/youtube_cache',
+        backend='sqlite',
+        expire_after=timedelta(days=1),
+    )
+    response = session.get(url=url, headers=headers)
+    return response.json()
 
 
 def get_data():
@@ -293,7 +260,7 @@ def get_data():
 
         if end_point_dict['write_all']:
             # write the end_point file
-            file_path = os.path.join(end_point, 'all')
+            file_path = os.path.join(args.out_dir, end_point, 'all')
             write_json_files(file_path=file_path, data=full_dict[end_point])
 
         print(f'{len(full_dict[end_point])} items processed in endpoint: {end_point}')
@@ -368,7 +335,7 @@ def get_data():
 
     # write the full game index
     for bucket, bucket_data in buckets.items():
-        file_path = os.path.join('buckets', str(bucket))
+        file_path = os.path.join(args.out_dir, 'buckets', str(bucket))
         write_json_files(file_path=file_path, data=bucket_data)
 
     # get data for videos
@@ -378,8 +345,33 @@ def get_data():
     end_point = 'videos'
     full_dict[end_point] = dict()
 
-    all_videos = [all_videos[x:x + 50] for x in range(0, len(all_videos), 50)]
-    for video_group in all_videos:
+    all_videos.sort()
+
+    cache_file = 'cache/video_groups.json'
+    os.makedirs(os.path.dirname(cache_file), exist_ok=True)
+
+    group_size = 50
+    if not os.path.isfile(cache_file):
+        all_video_groups = [all_videos[x:x + group_size] for x in range(0, len(all_videos), group_size)]
+    else:
+        with open(cache_file, 'r') as f:
+            cached_video_groups = json.load(f)
+
+        # Filter cached video groups to include only those where all videos are in all_videos
+        all_video_groups = [x for x in cached_video_groups if all(video in all_videos for video in x)]
+
+        # Find videos that are not in any cached video group
+        uncached_videos = [video for video in all_videos if not any(video in group for group in cached_video_groups)]
+
+        # Append uncached videos in groups of up to 50 to all_video_groups
+        uncached_video_groups = [uncached_videos[x:x + group_size] for x in range(0, len(uncached_videos), group_size)]
+        all_video_groups.extend(uncached_video_groups)
+
+    # write the new video groups to cache
+    with open(cache_file, 'w') as f:
+        json.dump(all_video_groups, f)
+
+    for video_group in all_video_groups:
         json_result = get_youtube(video_ids=video_group)
 
         try:
@@ -424,7 +416,7 @@ def get_data():
     for end_point, end_point_dict in full_dict.items():
         print(f'writing individual files for {end_point}')
         for item_id, data in end_point_dict.items():
-            file_path = os.path.join(end_point, str(item_id))
+            file_path = os.path.join(args.out_dir, end_point, str(item_id))
             write_json_files(file_path=file_path, data=data)
 
 
@@ -434,14 +426,14 @@ def get_igdb_enums():
     """
     end_point = 'enums'
     for enum, values in enums.items():
-        file_path = os.path.join(end_point, enum)
+        file_path = os.path.join(args.out_dir, end_point, enum)
         write_json_files(file_path=file_path, data=values)
 
         if args.test_mode:
             break
 
     # write the end_point file
-    file_path = os.path.join(end_point, 'all')
+    file_path = os.path.join(args.out_dir, end_point, 'all')
     write_json_files(file_path=file_path, data=enums)
 
 
@@ -452,22 +444,54 @@ def get_platform_cross_reference():
     end_point = 'platforms'
 
     # write the end_point file
-    file_path = os.path.join(end_point, 'cross-reference')
+    file_path = os.path.join(args.out_dir, end_point, 'cross-reference')
     write_json_files(file_path=file_path, data=platforms.cross_reference)
 
 
 if __name__ == '__main__':
     # setup arguments using argparse
     parser = argparse.ArgumentParser(description="Download entire igdb database.")
-    parser.add_argument('--twitch_client_id', type=str, required=False, default=os.getenv('TWITCH_CLIENT_ID'),
-                        help='Twitch developer client id')
-    parser.add_argument('--twitch_client_secret', type=str, required=False, default=os.getenv('TWITCH_CLIENT_SECRET'),
-                        help='Twitch developer client secret')
-    parser.add_argument('--youtube_api_key', type=str, required=False, default=os.getenv('YOUTUBE_API_KEY'),
-                        help='Youtube API key')
-    parser.add_argument('-t', '--test_mode', action='store_true',
-                        help='Only write one item file per end point, per request.')
-    parser.add_argument('-i', '--indent_json', action='store_true', help='Indent json files.')
+    parser.add_argument(
+        '-o',
+        '--out_dir',
+        type=str,
+        required=False,
+        default='gh-pages',
+        help='Output directory for json files.',
+    )
+    parser.add_argument(
+        '--twitch_client_id',
+        type=str,
+        required=False,
+        default=os.getenv('TWITCH_CLIENT_ID'),
+        help='Twitch developer client id',
+    )
+    parser.add_argument(
+        '--twitch_client_secret',
+        type=str,
+        required=False,
+        default=os.getenv('TWITCH_CLIENT_SECRET'),
+        help='Twitch developer client secret',
+    )
+    parser.add_argument(
+        '--youtube_api_key',
+        type=str,
+        required=False,
+        default=os.getenv('YOUTUBE_API_KEY'),
+        help='Youtube API key',
+    )
+    parser.add_argument(
+        '-t',
+        '--test_mode',
+        action='store_true',
+        help='Only write one item file per end point, per request.',
+    )
+    parser.add_argument(
+        '-i',
+        '--indent_json',
+        action='store_true',
+        help='Indent json files.',
+    )
 
     args = parser.parse_args()
     args.indent = 4 if args.indent_json else None
