@@ -279,18 +279,12 @@ def get_data():
                 continue
 
             json_result = json.loads(byte_array)  # this is a list of dictionaries
-            # items.extend(json_result)
 
             for item in json_result:
                 full_dict[end_point][item['id']] = item
 
-                # file_path = os.path.join(end_point, str(item['id']))
-                # write_json_files(file_path=file_path, data=item)
-
                 if args.test_mode:
                     break
-
-            # print(json.dumps(json_result, indent=4))
 
             offset += limit
 

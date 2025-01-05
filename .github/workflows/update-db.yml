@@ -11,6 +11,10 @@ on:
     - cron: '0 0 * * *'  # every day at midnight
   workflow_dispatch:
 
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -52,7 +56,7 @@ jobs:
       - name: Update
         working-directory: gh-pages
         run: |
-          python -u ../update_db.py \
+          python -u ../src/update_db.py \
           --twitch_client_id ${{ secrets.TWITCH_CLIENT_ID }} \
           --twitch_client_secret ${{ secrets.TWITCH_CLIENT_SECRET }} \
           --youtube_api_key ${{ secrets.YOUTUBE_API_KEY }}
