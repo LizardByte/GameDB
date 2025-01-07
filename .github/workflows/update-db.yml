@@ -55,15 +55,13 @@ jobs:
       - name: Prepare Artifacts  # uploading artifacts will fail if not zipped due to very large quantity of files
         shell: bash
         run: |
-          7z a "./build.zip" "gh-pages"
+          7z a build.zip ./gh-pages/* ./gh-pages-template/*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: update
-          path: |
-            ${{ github.workspace }}/build.zip
-            gh-pages-template/
+          path: ${{ github.workspace }}/build.zip
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 1
