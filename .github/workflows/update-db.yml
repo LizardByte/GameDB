@@ -3,10 +3,15 @@ name: Update
 
 on:
   pull_request:
-    branches: [master]
-    types: [opened, synchronize, reopened]
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
   push:
-    branches: [master]
+    branches:
+      - master
   schedule:
     - cron: '0 0 * * *'  # every day at midnight
   workflow_dispatch:
@@ -23,24 +28,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Checkout gh-pages
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages
-          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
-          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
-
       - name: Cache
         id: cache
         uses: actions/cache@v4
         with:
           path: cache
-          key: none
-
-      - name: Get current date
-        id: date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          key: update-${{ github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,14 +45,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Prepare gh-pages
-        run: |
-          # empty contents to ensure deleted igdb are removed
-          rm -f -r ./gh-pages/*
-
-          # copy template back to pages
-          cp -f -r ./gh-pages-template/* ./gh-pages/
-
       - name: Update
         env:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
@@ -69,27 +54,29 @@ jobs:
 
       - name: Prepare Artifacts  # uploading artifacts will fail if not zipped due to very large quantity of files
         shell: bash
-        if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
         run: |
-          7z a "./gh-pages.zip" "gh-pages"
+          7z a "./build.zip" "gh-pages"
 
-      - name: Upload Artifacts
-        if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: gh-pages
-          if-no-files-found: error  # 'warn' or 'ignore' are also available, defaults to `warn`
+          name: update
           path: |
-            ${{ github.workspace }}/gh-pages.zip
+            ${{ github.workspace }}/build.zip
+            gh-pages-template/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
 
-      - name: Deploy to gh-pages
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}  # yamllint disable-line rule:line-length
-        uses: actions-js/push@v1.5
-        with:
-          github_token: ${{ secrets.GH_BOT_TOKEN }}
-          author_email: ${{ secrets.GH_BOT_EMAIL }}
-          author_name: ${{ secrets.GH_BOT_NAME }}
-          directory: gh-pages
-          branch: gh-pages
-          force: false
-          message: automatic-update-${{ steps.date.outputs.date }}
+  call-jekyll-build:
+    needs: update
+    uses: LizardByte/LizardByte.github.io/.github/workflows/jekyll-build.yml@master
+    with:
+      site_artifact: 'update'
+      extract_archive: 'build.zip'
+      target_branch: 'gh-pages'
+      clean_gh_pages: true
+    secrets:
+      GH_BOT_EMAIL: ${{ secrets.GH_BOT_EMAIL }}
+      GH_BOT_NAME: ${{ secrets.GH_BOT_NAME }}
+      GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}

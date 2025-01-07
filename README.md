@@ -8,7 +8,7 @@ Information from YouTube API is also added to the database for videos.
 
 ## Plans
 
-- [ ] Build with Jekyll
+- [x] Build with Jekyll
   - [ ] Revamp index page
   - [ ] Provide an item page for each API item
 - [ ] Remove CNAME after next Sunshine release (> v0.23.1)

@@ -1,34 +1,18 @@
 // setup defaults
 let org_name = "LizardByte"
-let base_url = `https://db.${org_name.toLowerCase()}.dev`
-
-// scripts to load
-let scripts = [
-    'https://app.lizardbyte.dev/js/levenshtein_distance.js',
-    'https://app.lizardbyte.dev/js/ranking_sorter.js'
-]
+let base_url = `https://app.${org_name.toLowerCase()}.dev/GameDB`
 
 // get search options, we will append each platform to this list
 let search_options = document.getElementById("search_type")
 
 // get platforms container
-platforms_container = document.getElementById("platforms-container")
+let platforms_container = document.getElementById("platforms-container")
 
 
 $(document).ready(function(){
     // Set cache = false for all jquery ajax requests.
     $.ajaxSetup({
         cache: false,
-    })
-
-    let script_queue = scripts.map(function(script) {
-        return $.getScript(script)
-    })
-
-    $.when.apply(null, script_queue).done(function() {
-        get_platform_enums()
-        get_platform_xref()
-        initialize()
     })
 
     // get platform enums from json file
@@ -134,7 +118,6 @@ $(document).ready(function(){
                 // Split the string at the end of the last full word
                 const splitIndex = match[1].length;
                 const firstPart = string.slice(0, splitIndex);
-                // const secondPart = string.slice(splitIndex);
 
                 return [firstPart, string];
             }
@@ -168,7 +151,7 @@ $(document).ready(function(){
                     platforms.push(result[platform])
                 }
 
-                let sorted = platforms.sort(rankingSorter("name", "id")).reverse()
+                let sorted = platforms.sort(window.rankingSorter("name", "id")).reverse()
 
                 for(let item in sorted) {
                     // create search option
@@ -209,7 +192,7 @@ $(document).ready(function(){
                             banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_cover_big")
                         }
                         catch (err) {
-                            banner.src = "images/no-logo.png"
+                            banner.src = "/GameDB/assets/img/no-logo.png"
                             banner.classList.add("bg-dark")
                             banner.classList.add("bg-gradient")
                             banner.classList.add("p-4")
@@ -220,7 +203,7 @@ $(document).ready(function(){
                     banner_link.append(banner)
 
                     let card_body = document.createElement("div")
-                    card_body.className = "bg-dark text-white card-body p-4 rounded-0"
+                    card_body.className = "card-body text-white p-4 rounded-0"
                     card.appendChild(card_body)
 
                     let card_title_link = document.createElement("a")
@@ -246,7 +229,7 @@ $(document).ready(function(){
                     card_paragraph_div.appendChild(card_paragraph)
 
                     let card_footer = document.createElement("div")
-                    card_footer.className = "card-footer p-2 pt-0 bg-dark text-white border-0 rounded-0"
+                    card_footer.className = "card-footer p-2 pt-0 border-0 rounded-0"
                     card.appendChild(card_footer)
 
                     // get first or last version depending on "category"
@@ -350,4 +333,8 @@ $(document).ready(function(){
             }
         })
     }
+
+    get_platform_enums()
+    get_platform_xref()
+    initialize()
 })
