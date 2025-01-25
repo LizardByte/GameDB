@@ -1,1 +1,1 @@
-{"id": 123000, "name": "Castle Red", "slug": "castle-red", "url": "https://www.igdb.com/games/castle-red"}
+{"id": 123000, "external_games": [{"id": 1776123, "category": 3, "name": "Castle Red", "uid": "74027", "url": "https://www.giantbomb.com/games/3030-74027/"}, {"id": 1914742, "category": 14, "name": "Castle Red", "uid": "513206", "url": "https://www.twitch.tv/directory/game/Castle%20Red"}], "name": "Castle Red", "slug": "castle-red", "url": "https://www.igdb.com/games/castle-red"}

@@ -1,1 +1,1 @@
-{"id": 79713, "genres": [{"id": 31, "name": "Adventure"}], "name": "The Boggit", "slug": "the-boggit", "url": "https://www.igdb.com/games/the-boggit"}
+{"id": 79713, "external_games": [{"id": 140080, "category": 3, "name": "The Boggit", "uid": "18625", "url": "https://www.giantbomb.com/games/3030-18625/"}, {"id": 1875312, "category": 14, "name": "The Boggit", "uid": "17066", "url": "https://www.twitch.tv/directory/game/The%20Boggit"}], "genres": [{"id": 31, "name": "Adventure"}], "name": "The Boggit", "slug": "the-boggit", "url": "https://www.igdb.com/games/the-boggit"}

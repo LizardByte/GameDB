@@ -1,1 +1,1 @@
-{"id": 86162, "name": "Simon", "platforms": [377], "release_dates": [{"id": 470806, "platform": 377}], "slug": "simon", "url": "https://www.igdb.com/games/simon"}
+{"id": 86162, "external_games": [{"id": 147789, "category": 3, "name": "Simon", "uid": "10131", "url": "https://www.giantbomb.com/games/3030-10131/"}, {"id": 1871004, "category": 14, "name": "Simon", "uid": "9288", "url": "https://www.twitch.tv/directory/game/Simon"}], "name": "Simon", "platforms": [377], "release_dates": [{"id": 470806, "platform": 377}], "slug": "simon", "url": "https://www.igdb.com/games/simon"}

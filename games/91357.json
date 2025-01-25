@@ -1,1 +1,1 @@
-{"id": 91357, "age_ratings": [{"id": 79721, "category": 1, "rating": 8}], "name": "Racing", "slug": "racing", "url": "https://www.igdb.com/games/racing"}
+{"id": 91357, "age_ratings": [{"id": 79721, "category": 1, "rating": 8}], "external_games": [{"id": 212451, "category": 3, "name": "Racing", "uid": "50934", "url": "https://www.giantbomb.com/games/3030-50934/"}, {"id": 1903450, "category": 14, "name": "Racing", "uid": "490769", "url": "https://www.twitch.tv/directory/game/Racing"}], "name": "Racing", "slug": "racing", "url": "https://www.igdb.com/games/racing"}
