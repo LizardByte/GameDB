@@ -335,6 +335,7 @@ enums = dict(
     external_games=dict(
         category={
             1: 'steam',
+            3: 'giantbomb',  # undocumented
             5: 'gog',
             10: 'youtube',
             11: 'microsoft',
