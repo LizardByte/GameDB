@@ -15,20 +15,6 @@ $(document).ready(function(){
         cache: false,
     })
 
-    // get platform enums from json file
-    let platform_enums
-    let get_platform_enums = function() {
-        $.ajax({
-            url: `${base_url}/enums/platform_version_release_dates.json`,
-            async: false,  // false so we can set the variable
-            type: "GET",
-            dataType:"json",
-            success: function (result) {
-                platform_enums = result
-            }
-        })
-    }
-
     // get platform cross-reference from json
     let platform_xref
     let get_platform_xref = function() {
@@ -266,11 +252,11 @@ $(document).ready(function(){
                                         metadata_div.appendChild(release_date_div)
 
                                         // show flag emoji as prefix
-                                        let regionIndex = platform_enums['region'][version[key][release_date]['region']]
+                                        let regionName = version[key][release_date]['release_region']['region']
                                         let flag_prefix = document.createElement("span")
-                                        flag_prefix.className = `${platform_region_flag_map[regionIndex]['size']} me-3 text-center`
-                                        flag_prefix.textContent = platform_region_flag_map[regionIndex]['code']
-                                        flag_prefix.title = regionIndex.replace("_", " ")
+                                        flag_prefix.className = `${platform_region_flag_map[regionName]['size']} me-3 text-center`
+                                        flag_prefix.textContent = platform_region_flag_map[regionName]['code']
+                                        flag_prefix.title = regionName.replace("_", " ")
                                         release_date_div.appendChild(flag_prefix)
 
                                         // add date
@@ -334,7 +320,6 @@ $(document).ready(function(){
         })
     }
 
-    get_platform_enums()
     get_platform_xref()
     initialize()
 })
