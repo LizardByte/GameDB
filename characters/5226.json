@@ -1,1 +1,1 @@
-{"id": 5226, "games": [1042, 103261], "gender": 0, "name": "Rico Rodriguez", "species": 1}
+{"id": 5226, "games": [1042, 103261], "name": "Rico Rodriguez", "character_gender": {"id": 0, "name": "Male"}, "character_species": {"id": 1, "name": "Human"}}

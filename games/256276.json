@@ -1,1 +1,1 @@
-{"id": 256276, "external_games": [{"id": 2720597, "category": 14, "name": "Lofi Ball", "uid": "1180626986", "url": "https://www.twitch.tv/directory/game/Lofi%20Ball"}], "name": "Lofi Ball", "slug": "lofi-ball", "url": "https://www.igdb.com/games/lofi-ball"}
+{"id": 256276, "external_games": [{"id": 2720597, "name": "Lofi Ball", "uid": "1180626986", "url": "https://www.twitch.tv/directory/game/Lofi%20Ball", "external_game_source": {"id": 14, "name": "Twitch"}}], "name": "Lofi Ball", "slug": "lofi-ball", "url": "https://www.igdb.com/games/lofi-ball"}

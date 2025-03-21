@@ -1,1 +1,1 @@
-{"id": 2133, "games": [549, 550, 551, 1291, 9016, 19560, 93746, 113112], "gender": 0, "mug_shot": {"id": 3885, "url": "//images.igdb.com/igdb/image/upload/t_thumb/cm2zx.jpg"}, "name": "Zeus", "species": 5}
+{"id": 2133, "games": [549, 550, 551, 1291, 9016, 19560, 93746, 113112], "mug_shot": {"id": 3885, "url": "//images.igdb.com/igdb/image/upload/t_thumb/cm2zx.jpg"}, "name": "Zeus", "character_gender": {"id": 0, "name": "Male"}, "character_species": {"id": 5, "name": "Unknown"}}

@@ -1,1 +1,1 @@
-{"id": 10394, "gender": 1, "name": "Ship Computer", "species": 5}
+{"id": 10394, "name": "Ship Computer", "character_gender": {"id": 1, "name": "Female"}, "character_species": {"id": 5, "name": "Unknown"}}

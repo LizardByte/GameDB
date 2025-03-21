@@ -1,1 +1,1 @@
-{"id": 3143, "games": [2444, 3234, 5522, 6142, 11416, 14172, 139749], "gender": 0, "mug_shot": {"id": 3756, "url": "//images.igdb.com/igdb/image/upload/t_thumb/bfexuo33zrkt9qipq6km.jpg"}, "name": "Hero", "species": 1}
+{"id": 3143, "games": [2444, 3234, 5522, 6142, 11416, 14172, 139749], "mug_shot": {"id": 3756, "url": "//images.igdb.com/igdb/image/upload/t_thumb/bfexuo33zrkt9qipq6km.jpg"}, "name": "Hero", "character_gender": {"id": 0, "name": "Male"}, "character_species": {"id": 1, "name": "Human"}}

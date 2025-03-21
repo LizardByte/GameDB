@@ -1,1 +1,1 @@
-{"id": 100331, "external_games": [{"id": 627118, "category": 13, "name": "Fish!", "uid": "1313955304", "url": "https://itunes.apple.com/us/app/fish/id1313955304?mt=12&uo=4"}], "name": "Fish!", "slug": "fish--1", "url": "https://www.igdb.com/games/fish--1"}
+{"id": 100331, "external_games": [{"id": 627118, "name": "Fish!", "uid": "1313955304", "url": "https://itunes.apple.com/us/app/fish/id1313955304?mt=12&uo=4", "external_game_source": {"id": 13, "name": "Apple"}}], "name": "Fish!", "slug": "fish--1", "url": "https://www.igdb.com/games/fish--1"}

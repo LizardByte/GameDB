@@ -1,1 +1,1 @@
-{"id": 16691, "games": [138933], "gender": 0, "name": "Dread Unit", "species": 4}
+{"id": 16691, "games": [138933], "name": "Dread Unit", "character_gender": {"id": 0, "name": "Male"}, "character_species": {"id": 4, "name": "Android"}}

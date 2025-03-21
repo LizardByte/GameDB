@@ -1,1 +1,1 @@
-{"id": 2168, "games": [376, 379, 382, 1985, 5328], "gender": 0, "name": "Snake", "species": 1}
+{"id": 2168, "games": [376, 379, 382, 1985, 5328], "name": "Snake", "character_gender": {"id": 0, "name": "Male"}, "character_species": {"id": 1, "name": "Human"}}

@@ -1,1 +1,1 @@
-{"id": 251123, "age_ratings": [{"id": 140461, "category": 5, "rating": 23}], "external_games": [], "name": "Bunny Bundle", "slug": "bunny-bundle", "url": "https://www.igdb.com/games/bunny-bundle"}
+{"id": 251123, "age_ratings": [{"id": 140461, "organization": {"id": 5, "name": "GRAC"}, "rating_category": {"id": 23, "rating": "GRAC ALL"}}], "external_games": [], "name": "Bunny Bundle", "slug": "bunny-bundle", "url": "https://www.igdb.com/games/bunny-bundle"}

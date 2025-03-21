@@ -1,1 +1,1 @@
-{"id": 333029, "external_games": [{"id": 2987062, "category": 14, "name": "Hexcavator", "uid": "299992620", "url": "https://www.twitch.tv/directory/game/Hexcavator"}], "name": "Hexcavator", "slug": "hexcavator", "url": "https://www.igdb.com/games/hexcavator"}
+{"id": 333029, "external_games": [{"id": 2987062, "name": "Hexcavator", "uid": "299992620", "url": "https://www.twitch.tv/directory/game/Hexcavator", "external_game_source": {"id": 14, "name": "Twitch"}}], "name": "Hexcavator", "slug": "hexcavator", "url": "https://www.igdb.com/games/hexcavator"}

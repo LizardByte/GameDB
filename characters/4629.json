@@ -1,1 +1,1 @@
-{"id": 4629, "games": [897], "gender": 1, "mug_shot": {"id": 4068, "url": "//images.igdb.com/igdb/image/upload/t_thumb/cm350.jpg"}, "name": "Cate Archer", "species": 1}
+{"id": 4629, "games": [897], "mug_shot": {"id": 4068, "url": "//images.igdb.com/igdb/image/upload/t_thumb/cm350.jpg"}, "name": "Cate Archer", "character_gender": {"id": 1, "name": "Female"}, "character_species": {"id": 1, "name": "Human"}}

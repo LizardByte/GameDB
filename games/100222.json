@@ -1,1 +1,1 @@
-{"id": 100222, "external_games": [{"id": 508617, "category": 3, "name": "NBA", "uid": "22315", "url": "https://www.giantbomb.com/games/3030-22315/"}], "name": "NBA", "slug": "nba", "url": "https://www.igdb.com/games/nba"}
+{"id": 100222, "external_games": [{"id": 508617, "name": "NBA", "uid": "22315", "url": "https://www.giantbomb.com/games/3030-22315/", "external_game_source": {"id": 3, "name": "GiantBomb"}}], "name": "NBA", "slug": "nba", "url": "https://www.igdb.com/games/nba"}

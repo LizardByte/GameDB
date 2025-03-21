@@ -1,1 +1,1 @@
-{"id": 2432, "games": [2135, 2136], "gender": 1, "name": "Bayonetta", "species": 5}
+{"id": 2432, "games": [2135, 2136], "name": "Bayonetta", "character_gender": {"id": 1, "name": "Female"}, "character_species": {"id": 5, "name": "Unknown"}}
