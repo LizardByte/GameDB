@@ -14,7 +14,6 @@ from dotenv import load_dotenv
 from igdb.wrapper import IGDBWrapper
 
 # local imports
-from igdb_enums import enums
 import platforms
 
 # setup environment if running locally
@@ -111,11 +110,11 @@ def get_data():
     request_dict = dict(
         characters=dict(
             fields=[
+                'character_gender.name',
+                'character_species.name',
                 'games',
-                'gender',
                 'mug_shot.url',
                 'name',
-                'species',
             ],
             write_all=True,
         ),
@@ -139,14 +138,14 @@ def get_data():
         ),
         games=dict(
             fields=[
-                'age_ratings.category',
-                'age_ratings.rating',
+                'age_ratings.organization.name',
+                'age_ratings.rating_category.rating',
                 'aggregated_rating',
                 'artworks.url',
-                'collection.name',
+                'collections.name',
                 'cover.url',
-                'external_games.category',
-                'external_games.media',
+                'external_games.external_game_source.name',
+                'external_games.game_release_format.format',
                 'external_games.name',
                 'external_games.platform',
                 'external_games.uid',
@@ -165,6 +164,7 @@ def get_data():
                 'release_dates.date',
                 'release_dates.y',
                 'release_dates.platform',
+                'release_dates.release_region.region',
                 'screenshots.url',
                 'slug',
                 'storyline',
@@ -191,10 +191,10 @@ def get_data():
             fields=[
                 'abbreviation',
                 'alternative_name',
-                'category',
                 'generation',
                 'name',
                 'platform_logo.url',
+                'platform_type.name',
                 'summary',
                 'url',
                 'versions.connectivity',
@@ -210,7 +210,7 @@ def get_data():
                 'versions.platform_version_release_dates.date',
                 'versions.platform_version_release_dates.human',
                 'versions.platform_version_release_dates.m',
-                'versions.platform_version_release_dates.region',
+                'versions.platform_version_release_dates.release_region.region',
                 'versions.platform_version_release_dates.y',
                 'versions.resolutions',
                 'versions.sound',
@@ -426,23 +426,6 @@ def get_data():
             write_json_files(file_path=file_path, data=data)
 
 
-def get_igdb_enums():
-    """
-    Write igdb enums to json files.
-    """
-    end_point = 'enums'
-    for enum, values in enums.items():
-        file_path = os.path.join(args.out_dir, end_point, enum)
-        write_json_files(file_path=file_path, data=values)
-
-        if args.test_mode:
-            break
-
-    # write the end_point file
-    file_path = os.path.join(args.out_dir, end_point, 'all')
-    write_json_files(file_path=file_path, data=enums)
-
-
 def get_platform_cross_reference():
     """
     Write platform cross-reference to json files.
@@ -513,5 +496,4 @@ if __name__ == '__main__':
 
     # get date, process dictionaries and write data
     get_data()
-    get_igdb_enums()
     get_platform_cross_reference()
