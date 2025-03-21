@@ -11,7 +11,5 @@ Information from YouTube API is also added to the database for videos.
 - [x] Build with Jekyll
   - [ ] Revamp index page
   - [ ] Provide an item page for each API item
-- [ ] Remove CNAME after next Sunshine release (> v0.23.1)
-- [x] Move python code to `src` directory
 - [ ] Add unit tests
 - [ ] Add code coverage
