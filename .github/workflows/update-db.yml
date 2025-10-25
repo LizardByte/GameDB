@@ -58,7 +58,7 @@ jobs:
         run: 7z a build.zip ./gh-pages/* ./gh-pages-template/*
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: update
           path: ${{ github.workspace }}/build.zip
