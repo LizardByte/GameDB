@@ -189,11 +189,11 @@ $(document).ready(function(){
                     banner_link.append(banner)
 
                     let card_body = document.createElement("div")
-                    card_body.className = "card-body text-white p-4 rounded-0"
+                    card_body.className = "card-body p-4 rounded-0"
                     card.appendChild(card_body)
 
                     let card_title_link = document.createElement("a")
-                    card_title_link.className = "text-decoration-none link-light"
+                    card_title_link.className = "text-decoration-none project-card-link"
                     card_title_link.href = sorted[item]['url']
                     card_title_link.target = "_blank"
                     card_body.appendChild(card_title_link)
@@ -297,7 +297,7 @@ $(document).ready(function(){
                         let see_less = document.createElement("a")
 
                         // populate see more/less links
-                        see_more.className = "link-light"
+                        see_more.className = ""
                         see_more.onclick = function() {
                             card_paragraph.textContent = summary[1]
                             see_more.classList.add("d-none")
@@ -306,7 +306,7 @@ $(document).ready(function(){
                         see_more.textContent = "See more"
                         card_paragraph_div.appendChild(see_more)
 
-                        see_less.className = "link-light d-none"
+                        see_less.className = "d-none"
                         see_less.onclick = function() {
                             card_paragraph.textContent = summary[0]
                             see_less.classList.add("d-none")
