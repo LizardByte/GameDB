@@ -1,0 +1,56 @@
+---
+title: Character
+layout: page
+full-width: false
+css:
+  - /assets/css/hide-heading.css
+js:
+  - /GameDB/assets/js/item_detail.js
+  - /GameDB/assets/js/character_detail.js
+ext-css:
+  - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
+---
+
+<script>
+window.GAMEDB_CONFIG = {
+  base_path: "{{ site.baseurl }}"
+};
+</script>
+
+<div id="item-loading" class="text-center py-5">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2 text-muted">Loading character data…</p>
+</div>
+
+<div id="item-error" class="alert alert-danger d-none" role="alert"></div>
+
+<div id="item-content" class="d-none">
+
+  <div class="row gx-4 gy-4 mb-4">
+    <!-- Mug shot -->
+    <div class="col-12 col-lg-3 col-md-4 text-center">
+      <img id="character-mug" src="" alt="" class="img-fluid rounded shadow w-100" style="max-width:240px; display:none;">
+      <div id="character-mug-placeholder" class="bg-secondary d-flex align-items-center justify-content-center rounded"
+           style="min-height:240px; display:none !important;">
+        <span class="material-symbols-outlined text-white" style="font-size:5rem;">person</span>
+      </div>
+    </div>
+
+    <!-- Core info -->
+    <div class="col-12 col-lg-9 col-md-8">
+      <h1 id="character-name" class="mb-2"></h1>
+      <div id="character-badges" class="mb-3 d-flex flex-wrap gap-1"></div>
+    </div>
+  </div>
+
+  <!-- Appears in -->
+  <div id="character-games-section" class="d-none mb-5">
+    <h3 class="mb-3">Appears In</h3>
+    <div id="character-games"></div>
+  </div>
+
+</div>
+
+{% include image_modal.html %}

@@ -1,6 +1,9 @@
-// setup defaults
-let org_name = "LizardByte"
-let base_url = `https://app.${org_name.toLowerCase()}.dev/GameDB`
+// setup defaults — base_path is injected by Jekyll via window.GAMEDB_CONFIG
+const _cfg = window.GAMEDB_CONFIG || {};
+let base_path = _cfg.base_path
+    ? ("/" + _cfg.base_path).replace(/\/+/g, "/").replace(/\/$/, "")
+    : "/GameDB";
+let base_url = window.location.origin + base_path;
 
 // get search options, we will append each platform to this list
 let search_options = document.getElementById("search_type")
@@ -159,8 +162,7 @@ $(document).ready(function(){
                     card.append(banner_div)
 
                     let banner_link = document.createElement("a")
-                    banner_link.href = sorted[item]['url']
-                    banner_link.target = "_blank"
+                    banner_link.href = `${base_path}/browse/platforms/?id=${sorted[item]['id']}`
                     banner_div.append(banner_link)
 
                     let banner = document.createElement("img")
@@ -178,7 +180,7 @@ $(document).ready(function(){
                             banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_cover_big")
                         }
                         catch (err) {
-                            banner.src = "/GameDB/assets/img/no-logo.png"
+                            banner.src = `${base_path}/assets/img/no-logo.png`
                             banner.classList.add("bg-dark")
                             banner.classList.add("bg-gradient")
                             banner.classList.add("p-4")
@@ -194,14 +196,22 @@ $(document).ready(function(){
 
                     let card_title_link = document.createElement("a")
                     card_title_link.className = "text-decoration-none project-card-link"
-                    card_title_link.href = sorted[item]['url']
-                    card_title_link.target = "_blank"
+                    card_title_link.href = `${base_path}/browse/platforms/?id=${sorted[item]['id']}`
                     card_body.appendChild(card_title_link)
 
                     let card_title_text = document.createElement("h5")
-                    card_title_text.className = "card-title mb-3 fw-bolder"
+                    card_title_text.className = "card-title mb-1 fw-bolder"
                     card_title_text.textContent = sorted[item]['name']
                     card_title_link.appendChild(card_title_text)
+
+                    // small external IGDB link
+                    let igdb_link = document.createElement("a")
+                    igdb_link.href = sorted[item]['url']
+                    igdb_link.target = "_blank"
+                    igdb_link.rel = "noopener"
+                    igdb_link.className = "small text-muted text-decoration-none mb-2 d-inline-block"
+                    igdb_link.textContent = "View on IGDB ↗"
+                    card_body.appendChild(igdb_link)
 
                     let summary = splitString(sorted[item]['summary'])
 
@@ -323,3 +333,106 @@ $(document).ready(function(){
     get_platform_xref()
     initialize()
 })
+
+/**
+ * Search for games by name across all buckets.
+ * Results link to game detail pages.
+ */
+function run_search() {
+    const search_term = document.getElementById("search_term").value.trim()
+    const search_container = document.getElementById("search-container")
+
+    search_container.innerHTML = ""
+
+    if (!search_term) {
+        return
+    }
+
+
+    // Determine the bucket for the search term (same logic as Python backend)
+    const bucket = search_term.replaceAll(/[^a-z0-9]/gi, '').slice(0, 2).toLowerCase() || '@'
+    const bucket_url = `${base_url}/buckets/${encodeURIComponent(bucket)}.json`
+
+    const loading = document.createElement("p")
+    loading.className = "text-muted"
+    loading.textContent = "Searching…"
+    search_container.appendChild(loading)
+
+    fetch(bucket_url)
+        .then(r => {
+            if (!r.ok) throw new Error(`Bucket not found`)
+            return r.json()
+        })
+        .then(bucket_data => {
+            loading.remove()
+
+            // Filter results by name (case-insensitive)
+            const term_lower = search_term.toLowerCase()
+            const matches = Object.entries(bucket_data).filter(([_id, game]) =>
+                game.name.toLowerCase().includes(term_lower)
+            )
+
+            if (matches.length === 0) {
+                const noResults = document.createElement("p")
+                noResults.className = "text-muted"
+                noResults.textContent = `No games found matching "${search_term}".`
+                search_container.appendChild(noResults)
+                return
+            }
+
+            const resultsHeading = document.createElement("h5")
+            resultsHeading.className = "mb-3"
+            resultsHeading.textContent = `Search Results for "${search_term}" (${matches.length} found)`
+            search_container.appendChild(resultsHeading)
+
+            const row = document.createElement("div")
+            row.className = "row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2"
+            search_container.appendChild(row)
+
+            matches.slice(0, 60).forEach(([id, game]) => {
+                const col = document.createElement("div")
+                col.className = "col"
+                row.appendChild(col)
+
+                const card = document.createElement("a")
+                card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0"
+                card.href = `${base_path}/browse/games/?id=${id}`
+                col.appendChild(card)
+
+                // Placeholder cover
+                const placeholder = document.createElement("div")
+                placeholder.className = "card-img-top bg-dark d-flex align-items-center justify-content-center"
+                placeholder.style.height = "120px"
+                const icon = document.createElement("span")
+                icon.className = "material-symbols-outlined text-white"
+                icon.style.fontSize = "3rem"
+                icon.textContent = "sports_esports"
+                placeholder.appendChild(icon)
+                card.appendChild(placeholder)
+
+                const cardBody = document.createElement("div")
+                cardBody.className = "card-body p-2"
+                card.appendChild(cardBody)
+
+                const nameEl = document.createElement("p")
+                nameEl.className = "card-text small mb-0"
+                nameEl.textContent = game.name
+                nameEl.title = game.name
+                cardBody.appendChild(nameEl)
+            })
+
+            if (matches.length > 60) {
+                const moreNote = document.createElement("p")
+                moreNote.className = "text-muted mt-2 small"
+                moreNote.textContent = `Showing first 60 of ${matches.length} results. Try a more specific search term.`
+                search_container.appendChild(moreNote)
+            }
+        })
+        .catch(err => {
+            loading.remove()
+            const errEl = document.createElement("p")
+            errEl.className = "text-danger"
+            errEl.textContent = `Search failed: ${err.message}`
+            search_container.appendChild(errEl)
+        })
+}

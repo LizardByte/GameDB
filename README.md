@@ -10,6 +10,6 @@ Information from YouTube API is also added to the database for videos.
 
 - [x] Build with Jekyll
   - [ ] Revamp index page
-  - [ ] Provide an item page for each API item
+  - [x] Provide an item page for each API item
 - [ ] Add unit tests
 - [ ] Add code coverage

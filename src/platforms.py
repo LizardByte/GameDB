@@ -1793,7 +1793,7 @@ cross_reference = [
     {
         "ids": {
             "igdb": 167,
-            "screenscraper": None,
+            "screenscraper": 284,
         },
         "name": "PlayStation 5",
         "variables": {

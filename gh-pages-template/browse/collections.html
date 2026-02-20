@@ -1,0 +1,46 @@
+---
+title: Series
+layout: page
+full-width: false
+css:
+  - /assets/css/hide-heading.css
+js:
+  - /GameDB/assets/js/item_detail.js
+  - /GameDB/assets/js/collection_detail.js
+ext-css:
+  - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
+---
+
+<script>
+window.GAMEDB_CONFIG = {
+  base_path: "{{ site.baseurl }}"
+};
+</script>
+
+<div id="item-loading" class="text-center py-5">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2 text-muted">Loading series data…</p>
+</div>
+
+<div id="item-error" class="alert alert-danger d-none" role="alert"></div>
+
+<div id="item-content" class="d-none">
+
+  <h1 id="collection-name" class="mb-2"></h1>
+  <div class="mb-3">
+    <a id="collection-igdb-link" href="#" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm d-none">
+      View on IGDB <span class="material-symbols-outlined" style="font-size:1em;vertical-align:middle;">open_in_new</span>
+    </a>
+  </div>
+
+  <!-- Games -->
+  <div id="collection-games-section" class="d-none mb-5">
+    <h3 class="mb-3">Games in this Series</h3>
+    <div id="collection-games"></div>
+  </div>
+
+</div>
+
+{% include image_modal.html %}
