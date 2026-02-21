@@ -63,7 +63,7 @@
     });
 
     // Global function to open modal
-    window.openImageModal = function(images, index) {
+    globalThis.openImageModal = function(images, index) {
         currentImages = images;
         currentIndex = index;
         updateImage();

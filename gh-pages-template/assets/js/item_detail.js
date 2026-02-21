@@ -172,7 +172,7 @@ function renderGameList(container, games) {
         Promise.all(fetchPromises).then(results => {
             results.forEach(({ id, data }) => {
                 const name = data ? data.name : null;
-                const coverUrl = data && data.cover ? igdbImageUrl(data.cover.url, "t_cover_small_2x") : null;
+                const coverUrl = data?.cover ? igdbImageUrl(data.cover.url, "t_cover_small_2x") : null;
                 renderGameCard(row, id, name, coverUrl);
             });
         });
