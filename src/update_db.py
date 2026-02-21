@@ -19,6 +19,10 @@ import platforms
 # setup environment if running locally
 load_dotenv()
 
+# module-level globals populated by main()
+args = None
+wrapper = None
+
 
 def igdb_authorization(client_id: str, client_secret: str) -> dict:
     """
@@ -97,6 +101,283 @@ def get_youtube(video_ids: list) -> dict:
     )
     response = session.get(url=url, headers=headers)
     return response.json()
+
+
+def _fetch_endpoint(endpoint: str, fields: list, limit: int, test_mode: bool, test_limit: int) -> dict:
+    """
+    Fetch all pages from IGDB for a single endpoint.
+
+    Parameters
+    ----------
+    endpoint : str
+        The IGDB endpoint name.
+    fields : list
+        List of field names to request.
+    limit : int
+        Number of items per page.
+    test_mode : bool
+        Whether to stop early after test_limit items.
+    test_limit : int
+        Maximum items to collect when test_mode is True.
+
+    Returns
+    -------
+    dict
+        Dictionary of {id: item} for all fetched items.
+    """
+    result_dict = {}
+    offset = 0
+    has_more = True
+    test_count = 0
+
+    while has_more:
+        try:
+            byte_array = wrapper.api_request(
+                endpoint=endpoint,
+                query=f'fields {", ".join(fields)}; limit {limit}; offset {offset};'
+            )
+        except requests.exceptions.HTTPError:
+            time.sleep(1)
+            continue
+
+        json_result = json.loads(byte_array)
+
+        for item in json_result:
+            result_dict[item['id']] = item
+
+            if test_mode:
+                test_count += 1
+                if test_count >= test_limit:
+                    has_more = False
+                    break
+
+        offset += limit
+
+        if not json_result:
+            has_more = False
+
+    return result_dict
+
+
+def _fetch_all_endpoints(request_dict: dict, limit: int, test_mode: bool, test_limit: int) -> dict:
+    """
+    Fetch data from all IGDB endpoints and write all.json files where applicable.
+
+    Parameters
+    ----------
+    request_dict : dict
+        Endpoint configuration dictionary.
+    limit : int
+        Items per IGDB page.
+    test_mode : bool
+        Whether to stop early.
+    test_limit : int
+        Max items per endpoint in test mode.
+
+    Returns
+    -------
+    dict
+        Combined dictionary of all fetched data keyed by endpoint name.
+    """
+    full_dict = {}
+
+    for endpoint, endpoint_dict in request_dict.items():
+        print(f'now processing endpoint: {endpoint}')
+        full_dict[endpoint] = _fetch_endpoint(
+            endpoint=endpoint,
+            fields=endpoint_dict['fields'],
+            limit=limit,
+            test_mode=test_mode,
+            test_limit=test_limit,
+        )
+
+        if endpoint_dict['write_all']:
+            file_path = os.path.join(args.out_dir, endpoint, 'all')
+            write_json_files(file_path=file_path, data=full_dict[endpoint])
+
+        print(f'{len(full_dict[endpoint])} items processed in endpoint: {endpoint}')
+
+    return full_dict
+
+
+def _append_related_items(full_dict: dict, request_dict: dict) -> None:
+    """
+    Append related items (e.g. characters to games, games to platforms) into full_dict in-place.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    request_dict : dict
+        Endpoint configuration containing 'append' sub-dicts.
+    """
+    for endpoint, endpoint_dict in request_dict.items():
+        try:
+            append_dict = endpoint_dict['append']
+        except KeyError:
+            continue
+
+        for item_type, item_type_dict in append_dict.items():
+            print(f'adding {item_type} to {endpoint}')
+            for item_id_src, value in full_dict[item_type].items():
+                try:
+                    append_to = value[endpoint]
+                except KeyError:
+                    continue
+
+                for item_id_dest in append_to:
+                    if item_id_dest not in full_dict[endpoint]:
+                        continue
+
+                    if item_type not in full_dict[endpoint][item_id_dest]:
+                        full_dict[endpoint][item_id_dest][item_type] = []
+
+                    new_entry = {}
+                    for field in item_type_dict['fields']:
+                        if field in value:
+                            new_entry[field] = value[field]
+
+                    full_dict[endpoint][item_id_dest][item_type].append(new_entry)
+
+
+def _add_platform_game_counts(full_dict: dict) -> None:
+    """
+    Calculate and attach game counts to each platform, then rewrite platforms/all.json.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    """
+    print('calculating game counts for platforms')
+    for platform_data in full_dict['platforms'].values():
+        platform_data['game_count'] = len(platform_data.get('games', []))
+
+    file_path = os.path.join(args.out_dir, 'platforms', 'all')
+    write_json_files(file_path=file_path, data=full_dict['platforms'])
+
+
+def _build_buckets_and_collect_videos(full_dict: dict) -> tuple:
+    """
+    Build search buckets from game names and collect all unique video IDs.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary.
+
+    Returns
+    -------
+    tuple
+        A (buckets dict, all_videos list) pair.
+    """
+    print('creating buckets / collecting video ids')
+    buckets = {}
+    all_videos = []
+
+    for game_id, game_data in full_dict['games'].items():
+        bucket = "".join(x.strip().lower() for x in game_data['name'][:2] if x.isalnum())
+        if not re.fullmatch(r'[\da-z]+', bucket):
+            bucket = '@'
+
+        if bucket not in buckets:
+            buckets[bucket] = {}
+        buckets[bucket][game_id] = {'name': game_data['name']}
+
+        for video in game_data.get('videos', []):
+            video_id = video['video_id']
+            if video_id not in all_videos:
+                all_videos.append(video_id)
+
+    return buckets, all_videos
+
+
+def _resolve_video_groups(all_videos: list, cache_file: str, group_size: int) -> list:
+    """
+    Resolve the list of video groups, using and updating the cache file.
+
+    Parameters
+    ----------
+    all_videos : list
+        All video IDs that currently exist.
+    cache_file : str
+        Path to the JSON file caching previous video groups.
+    group_size : int
+        Maximum number of videos per YouTube API call.
+
+    Returns
+    -------
+    list
+        List of video-ID sub-lists ready for YouTube API requests.
+    """
+    os.makedirs(os.path.dirname(cache_file), exist_ok=True)
+
+    if not os.path.isfile(cache_file):
+        all_video_groups = [all_videos[x:x + group_size] for x in range(0, len(all_videos), group_size)]
+    else:
+        with open(cache_file, 'r') as f:
+            cached_video_groups = json.load(f)
+
+        all_video_groups = [g for g in cached_video_groups if all(v in all_videos for v in g)]
+
+        uncached_videos = [v for v in all_videos if not any(v in g for g in cached_video_groups)]
+        uncached_groups = [uncached_videos[x:x + group_size] for x in range(0, len(uncached_videos), group_size)]
+        all_video_groups.extend(uncached_groups)
+
+    with open(cache_file, 'w') as f:
+        json.dump(all_video_groups, f)
+
+    return all_video_groups
+
+
+def _fetch_youtube_metadata(full_dict: dict, all_video_groups: list) -> None:
+    """
+    Fetch YouTube metadata for all video groups and store in full_dict['videos'].
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    all_video_groups : list
+        List of video-ID sub-lists.
+    """
+    print('collecting video metadata')
+    full_dict['videos'] = {}
+
+    for video_group in all_video_groups:
+        json_result = get_youtube(video_ids=video_group)
+        try:
+            for item in json_result['items']:
+                full_dict['videos'][item['id']] = item
+        except KeyError as e:
+            print(f'KeyError: {e}\n\n{json.dumps(json_result, indent=2)}')
+
+
+def _enrich_game_videos(full_dict: dict) -> None:
+    """
+    Attach YouTube URL, title, and thumbnail to each video in game data.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    """
+    print('adding videos to games')
+    for game_data in full_dict['games'].values():
+        for video in game_data.get('videos', []):
+            try:
+                video_details = full_dict['videos'][video['video_id']]
+            except (IndexError, KeyError):
+                continue
+
+            video_thumbs = video_details['snippet']['thumbnails']
+            video_thumbs = {k: v for k, v in video_thumbs.items() if v is not None}
+
+            video_thumbs = sorted(video_thumbs.items(), key=lambda x: x[1]['width'], reverse=True)
+
+            video['url'] = f'https://www.youtube.com/watch?v={video_details["id"]}'
+            video['title'] = video_details['snippet']['title']
+            video['thumb'] = video_thumbs[0][1]['url']
 
 
 def get_data():
@@ -231,214 +512,41 @@ def get_data():
             'write_all': True,
         },
     }
+
     limit = 500
-    full_dict = {}
 
-    for end_point, end_point_dict in request_dict.items():
-        print(f'now processing endpoint: {end_point}')
-        offset = 0
-        result = True
-        full_dict[end_point] = {}
-        test_count = 0
+    full_dict = _fetch_all_endpoints(
+        request_dict=request_dict,
+        limit=limit,
+        test_mode=args.test_mode,
+        test_limit=args.test_limit,
+    )
 
-        while result:
-            try:
-                byte_array = wrapper.api_request(
-                    endpoint=end_point,
-                    query=f'fields {", ".join(end_point_dict["fields"])}; limit {limit}; offset {offset};'
-                )
-            except requests.exceptions.HTTPError:
-                # handle too many requests
-                time.sleep(1)
-                continue
+    _append_related_items(full_dict=full_dict, request_dict=request_dict)
 
-            json_result = json.loads(byte_array)  # this is a list of dictionaries
+    _add_platform_game_counts(full_dict=full_dict)
 
-            for item in json_result:
-                full_dict[end_point][item['id']] = item
+    buckets, all_videos = _build_buckets_and_collect_videos(full_dict=full_dict)
 
-                if args.test_mode:
-                    test_count += 1
-                    if test_count >= args.test_limit:
-                        result = False
-                        break
-
-            offset += limit
-
-            if not json_result:
-                result = False
-
-        if end_point_dict['write_all']:
-            # write the end_point file
-            file_path = os.path.join(args.out_dir, end_point, 'all')
-            write_json_files(file_path=file_path, data=full_dict[end_point])
-
-        print(f'{len(full_dict[end_point])} items processed in endpoint: {end_point}')
-
-    for end_point, end_point_dict in request_dict.items():
-        try:
-            append_dict = request_dict[end_point]['append']
-        except KeyError:
-            pass
-        else:
-            for item_type, item_type_dict in append_dict.items():
-                print(f'adding {item_type} to {end_point}')
-                for item_id_src, value in full_dict[item_type].items():
-                    try:
-                        append_to = value[end_point]
-                    except KeyError:
-                        pass
-                    else:
-                        for item_id_dest in append_to:
-                            try:
-                                full_dict[end_point][item_id_dest]
-                            except KeyError:
-                                # the destination item doesn't exist
-                                pass
-                            else:
-                                try:
-                                    full_dict[end_point][item_id_dest][item_type]
-                                except KeyError:
-                                    full_dict[end_point][item_id_dest][item_type] = []
-                                finally:
-                                    full_dict[end_point][item_id_dest][item_type].append({})
-
-                                    for field in item_type_dict['fields']:
-                                        try:
-                                            field_value = value[field]
-                                        except KeyError:
-                                            # this item doesn't have the specified field, no problem
-                                            pass
-                                        else:
-                                            full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
-
-    # Add game counts to platforms for the all.json file
-    print('calculating game counts for platforms')
-    for platform_id, platform_data in full_dict['platforms'].items():
-        try:
-            games = platform_data['games']
-            platform_data['game_count'] = len(games)
-        except KeyError:
-            # no games for this platform
-            platform_data['game_count'] = 0
-
-    # Rewrite platforms/all.json with game counts
-    file_path = os.path.join(args.out_dir, 'platforms', 'all')
-    write_json_files(file_path=file_path, data=full_dict['platforms'])
-
-    # create buckets and get list of all videos
-    print('creating buckets / collecting video ids')
-    buckets = {}
-    all_videos = []
-    for game_id, game_data in full_dict['games'].items():
-        # games
-        bucket = "".join(x.strip().lower() for x in game_data['name'][:2] if x.isalnum())
-        if not re.fullmatch(r'[\da-z]+', bucket):
-            bucket = '@'
-
-        try:
-            buckets[bucket]
-        except KeyError:
-            buckets[bucket] = {}
-        finally:
-            buckets[bucket][game_id] = {'name': game_data['name']}
-
-        # videos
-        try:
-            game_videos = game_data['videos']
-        except KeyError:
-            # no videos for this game
-            pass
-        else:
-            for video in game_videos:
-                video_id = video['video_id']
-                if video_id not in all_videos:
-                    all_videos.append(video_id)
-
-    # write the full game index
     for bucket, bucket_data in buckets.items():
         file_path = os.path.join(args.out_dir, 'buckets', str(bucket))
         write_json_files(file_path=file_path, data=bucket_data)
 
-    # get data for videos
-    # we can only make 10,000 requests to YouTube api per day, so let's get as much data as possible in each request
-    print('collecting video metadata')
-
-    end_point = 'videos'
-    full_dict[end_point] = {}
-
     all_videos.sort()
+    all_video_groups = _resolve_video_groups(
+        all_videos=all_videos,
+        cache_file='cache/video_groups.json',
+        group_size=50,
+    )
 
-    cache_file = 'cache/video_groups.json'
-    os.makedirs(os.path.dirname(cache_file), exist_ok=True)
+    _fetch_youtube_metadata(full_dict=full_dict, all_video_groups=all_video_groups)
 
-    group_size = 50
-    if not os.path.isfile(cache_file):
-        all_video_groups = [all_videos[x:x + group_size] for x in range(0, len(all_videos), group_size)]
-    else:
-        with open(cache_file, 'r') as f:
-            cached_video_groups = json.load(f)
+    _enrich_game_videos(full_dict=full_dict)
 
-        # Filter cached video groups to include only those where all videos are in all_videos
-        all_video_groups = [x for x in cached_video_groups if all(video in all_videos for video in x)]
-
-        # Find videos that are not in any cached video group
-        uncached_videos = [video for video in all_videos if not any(video in group for group in cached_video_groups)]
-
-        # Append uncached videos in groups of up to 50 to all_video_groups
-        uncached_video_groups = [uncached_videos[x:x + group_size] for x in range(0, len(uncached_videos), group_size)]
-        all_video_groups.extend(uncached_video_groups)
-
-    # write the new video groups to cache
-    with open(cache_file, 'w') as f:
-        json.dump(all_video_groups, f)
-
-    for video_group in all_video_groups:
-        json_result = get_youtube(video_ids=video_group)
-
-        try:
-            for item in json_result['items']:
-                full_dict[end_point][item['id']] = item
-        except KeyError as e:
-            print(f'KeyError: {e}\n\n{json.dumps(json_result, indent=2)}')
-
-    # get video details for games
-    print('adding videos to games')
-    for game_id, game_data in full_dict['games'].items():
-        try:
-            game_videos = game_data['videos']
-        except KeyError:
-            # no videos for this game
-            pass
-        else:
-            for video in game_videos:
-                try:
-                    video_details = full_dict['videos'][video['video_id']]
-                except (IndexError, KeyError):
-                    # no data for this video
-                    pass
-                else:
-                    video_thumbs = video_details['snippet']['thumbnails']
-
-                    # remove keys that have no value
-                    # create a copy of original dictionary since we may alter it, https://stackoverflow.com/a/33815594
-                    for video_key, video_value in dict(video_thumbs).items():
-                        if video_value is None:
-                            del video_thumbs[video_key]
-
-                    # sort the video thumbnails by width into a list
-                    video_thumbs = sorted(video_thumbs.items(), key=lambda x: x[1]['width'], reverse=True)
-
-                    # the final video thumbnail
-                    video['url'] = f'https://www.youtube.com/watch?v={video_details["id"]}'
-                    video['title'] = video_details['snippet']['title']
-                    video['thumb'] = video_thumbs[0][1]['url']
-
-    # write the individual files
-    for end_point, end_point_dict in full_dict.items():
-        print(f'writing individual files for {end_point}')
-        for item_id, data in end_point_dict.items():
-            file_path = os.path.join(args.out_dir, end_point, str(item_id))
+    for endpoint, endpoint_dict in full_dict.items():
+        print(f'writing individual files for {endpoint}')
+        for item_id, data in endpoint_dict.items():
+            file_path = os.path.join(args.out_dir, endpoint, str(item_id))
             write_json_files(file_path=file_path, data=data)
 
 
@@ -453,8 +561,10 @@ def get_platform_cross_reference():
     write_json_files(file_path=file_path, data=platforms.cross_reference)
 
 
-if __name__ == '__main__':
-    # setup arguments using argparse
+def main():
+    """Parse CLI arguments, initialise IGDB wrapper, and run the database update."""
+    global args, wrapper
+
     parser = argparse.ArgumentParser(description="Download entire igdb database.")
     parser.add_argument(
         '-o',
@@ -513,10 +623,12 @@ if __name__ == '__main__':
                          '"YOUTUBE_API_KEY". They should be placed in org/repo secrets if using github, '
                          'or ".env" file if running local.')
 
-    # setup igdb authorization and wrapper
     auth = igdb_authorization(client_id=args.twitch_client_id, client_secret=args.twitch_client_secret)
     wrapper = IGDBWrapper(client_id=args.twitch_client_id, auth_token=auth['access_token'])
 
-    # get date, process dictionaries and write data
     get_data()
     get_platform_cross_reference()
+
+
+if __name__ == '__main__':
+    main()

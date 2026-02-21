@@ -5,11 +5,3 @@
 This repository clones IGDB to gh-pages to be consumed by LizardByte projects, such as LizardByte/Sunshine.
 
 Information from YouTube API is also added to the database for videos.
-
-## Plans
-
-- [x] Build with Jekyll
-  - [ ] Revamp index page
-  - [x] Provide an item page for each API item
-- [ ] Add unit tests
-- [ ] Add code coverage

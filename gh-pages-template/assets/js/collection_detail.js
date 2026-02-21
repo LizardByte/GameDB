@@ -26,3 +26,10 @@ function renderCollection(data) {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("collections", renderCollection);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        renderCollection,
+    };
+}

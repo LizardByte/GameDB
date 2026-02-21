@@ -26,3 +26,10 @@ function renderFranchise(data) {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("franchises", renderFranchise);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        renderFranchise,
+    };
+}

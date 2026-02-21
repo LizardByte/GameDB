@@ -169,6 +169,7 @@ function renderCompanies(data, metaDl) {
     if (data.involved_companies && data.involved_companies.length > 0) {
         const devs = data.involved_companies.filter(c => c.developer).map(c => c.company?.name).filter(Boolean);
         const pubs = data.involved_companies.filter(c => !c.developer).map(c => c.company?.name).filter(Boolean);
+        /* istanbul ignore else */
         if (devs.length > 0) {
             addDlRow(metaDl, "Developer(s)", devs.join(", "));
         }
@@ -532,3 +533,25 @@ function initGameBanner() {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("games", renderGame);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        setupGameBanner,
+        renderGameCover,
+        renderGameBadges,
+        renderGameRatings,
+        renderGamePlatforms,
+        renderReleaseDates,
+        renderCompanies,
+        renderCollectionsAndFranchises,
+        renderMultiplayer,
+        renderGame,
+        renderScreenshots,
+        renderVideos,
+        renderExternalLinks,
+        renderCharacters,
+        getRegionFlag,
+        initGameBanner,
+    };
+}
