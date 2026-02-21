@@ -26,7 +26,7 @@ function renderGame(data) {
 
         if (pageHeader) {
             // Set data attributes for each artwork
-            bigImgsEl.setAttribute("data-num-img", data.artworks.length);
+            bigImgsEl.dataset.numImg = data.artworks.length;
             data.artworks.forEach((artwork, index) => {
                 const imgNum = index + 1;
                 bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge_2x"));
@@ -58,7 +58,7 @@ function renderGame(data) {
     // Cover
     const coverEl = document.getElementById("game-cover");
     const coverPlaceholder = document.getElementById("game-cover-placeholder");
-    if (data.cover && data.cover.url) {
+    if (data.cover?.url) {
         coverEl.src = igdbImageUrl(data.cover.url, "t_cover_big_2x");
         coverEl.alt = data.name || "";
         coverEl.style.display = "";
@@ -146,7 +146,7 @@ function renderGame(data) {
         data.release_dates.forEach(rd => {
             if (rd.date || rd.y) {
                 const div = document.createElement("div");
-                const regionName = (rd.release_region && rd.release_region.region) || null;
+                const regionName = rd.release_region?.region || null;
                 const flag = regionName ? getRegionFlag(regionName) : "";
                 div.textContent = `${flag} ${rd.human || rd.y || ""}`.trim();
                 releasesEl.appendChild(div);
@@ -159,8 +159,8 @@ function renderGame(data) {
 
     // Developers / Publishers
     if (data.involved_companies && data.involved_companies.length > 0) {
-        const devs = data.involved_companies.filter(c => c.developer).map(c => c.company && c.company.name).filter(Boolean);
-        const pubs = data.involved_companies.filter(c => !c.developer).map(c => c.company && c.company.name).filter(Boolean);
+        const devs = data.involved_companies.filter(c => c.developer).map(c => c.company?.name).filter(Boolean);
+        const pubs = data.involved_companies.filter(c => !c.developer).map(c => c.company?.name).filter(Boolean);
         if (devs.length > 0) {
             addDlRow(metaDl, "Developer(s)", devs.join(", "));
         }
@@ -193,7 +193,7 @@ function renderGame(data) {
             el.appendChild(a);
         });
         addDlRow(metaDl, "Franchise(s)", el);
-    } else if (data.franchise && data.franchise.name) {
+    } else if (data.franchise?.name) {
         const el = document.createDocumentFragment();
         const a = document.createElement("a");
         a.href = `${base_path}/browse/franchises/?id=${data.franchise.id || ""}`;
@@ -244,7 +244,7 @@ function renderGame(data) {
             col.className = "col";
             const btn = document.createElement("button");
             btn.className = "btn p-0 border-0 w-100";
-            btn.onclick = () => window.openImageModal(fullSizeUrls, index);
+            btn.onclick = () => globalThis.openImageModal(fullSizeUrls, index);
             const img = document.createElement("img");
             img.className = "img-fluid rounded shadow-sm w-100";
             img.src = igdbImageUrl(ss.url, "t_screenshot_med_2x");
@@ -302,7 +302,7 @@ function renderGame(data) {
         const container = document.getElementById("game-external");
         data.external_games.forEach(ext => {
             if (!ext.url && !ext.uid) return;
-            const sourceName = (ext.external_game_source && ext.external_game_source.name) || "External";
+            const sourceName = ext.external_game_source?.name || "External";
             const a = document.createElement("a");
             a.href = ext.url || "#";
             a.target = "_blank";
@@ -328,7 +328,7 @@ function renderGame(data) {
             col.appendChild(card);
             container.appendChild(col);
 
-            if (char.mug_shot && char.mug_shot.url) {
+            if (char.mug_shot?.url) {
                 const img = document.createElement("img");
                 img.className = "card-img-top rounded-top";
                 img.src = igdbImageUrl(char.mug_shot.url, "t_cover_small_2x");
@@ -392,7 +392,7 @@ function getRegionFlag(regionName) {
  */
 function initGameBanner() {
     const bigImgsEl = document.getElementById("header-big-imgs");
-    const numImgs = parseInt(bigImgsEl.getAttribute("data-num-img"));
+    const numImgs = Number.parseInt(bigImgsEl.dataset.numImg, 10);
 
     if (!numImgs || numImgs === 0) return;
 

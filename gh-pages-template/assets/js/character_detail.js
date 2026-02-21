@@ -11,7 +11,7 @@ function renderCharacter(data) {
     // Mug shot
     const mugEl = document.getElementById("character-mug");
     const mugPlaceholder = document.getElementById("character-mug-placeholder");
-    const mugUrl = data.mug_shot && data.mug_shot.url
+    const mugUrl = data.mug_shot?.url
         ? igdbImageUrl(data.mug_shot.url, "t_cover_big_2x")
         : null;
     if (mugUrl) {
@@ -26,10 +26,10 @@ function renderCharacter(data) {
     // Badges / meta
     const badgesEl = document.getElementById("character-badges");
 
-    if (data.character_gender && data.character_gender.name) {
+    if (data.character_gender?.name) {
         badgesEl.appendChild(makeBadge(data.character_gender.name, "bg-info text-dark"));
     }
-    if (data.character_species && data.character_species.name) {
+    if (data.character_species?.name) {
         badgesEl.appendChild(makeBadge(data.character_species.name, "bg-secondary"));
     }
 

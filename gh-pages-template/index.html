@@ -19,7 +19,7 @@ js:
 ---
 
 <script>
-window.GAMEDB_CONFIG = {
+globalThis.GAMEDB_CONFIG = {
   base_path: "{{ site.baseurl }}"
 };
 </script>
@@ -33,6 +33,7 @@ window.GAMEDB_CONFIG = {
                 <form id="searchForm" onsubmit="event.preventDefault(); run_search();">
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-8 col-lg-6">
+                            <label for="search_term" class="visually-hidden">Search games by name</label>
                             <div class="input-group">
                                 <input type="text" class="form-control rounded-0" placeholder="Search games by name..." id="search_term"
                                        onkeydown="if(event.key==='Enter'){event.preventDefault(); run_search()}">

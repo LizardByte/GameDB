@@ -1,13 +1,174 @@
-// setup defaults — base_path is injected by Jekyll via window.GAMEDB_CONFIG
-const _cfg = window.GAMEDB_CONFIG || {};
+// setup defaults — base_path is injected by Jekyll via globalThis.GAMEDB_CONFIG
+const _cfg = globalThis.GAMEDB_CONFIG || {};
 let base_path = _cfg.base_path
-    ? ("/" + _cfg.base_path).replace(/\/+/g, "/").replace(/\/$/, "")
+    ? ("/" + _cfg.base_path).replaceAll(/\/+/g, "/").replace(/\/$/, "")
     : "/GameDB";
-let base_url = window.location.origin + base_path;
+let base_url = globalThis.location.origin + base_path;
 
 
 // get platforms container
 let platforms_container = document.getElementById("platforms-container")
+
+/**
+ * Split string for card display
+ */
+function splitString(string) {
+    if (string === undefined) {
+        return [undefined];
+    }
+
+    // Ensure the string is longer than 200 characters for more consistent card heights
+    if (string.length > 200) {
+        // Find the last full word prior to the 200th character using regex
+        const regex = /(.{0,200})\b/;
+        const match = regex.exec(string);
+
+        if (match) {
+            // Split the string at the end of the last full word
+            const splitIndex = match[1].length;
+            const firstPart = string.slice(0, splitIndex);
+
+            return [firstPart, string];
+        }
+  }
+
+  // Return the string as is if it's shorter than 200 characters
+  return [string];
+}
+
+/**
+ * Fetch game data for search results
+ */
+function fetchGameData(id, gameName) {
+    return fetch(`${base_url}/games/${id}.json`)
+        .then(r => r.ok ? r.json() : null)
+        .then(fullGame => ({ id, game: fullGame || { name: gameName } }))
+        .catch(() => ({ id, game: { name: gameName } }));
+}
+
+/**
+ * Create game card element for search results
+ */
+function createGameCard(id, game, allPlatforms = null) {
+    const col = document.createElement("div")
+    col.className = "col"
+    col.style.maxWidth = "180px"
+
+    const card = document.createElement("a")
+    card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0"
+    card.href = `${base_path}/browse/games/?id=${id}`
+    col.appendChild(card)
+
+    // Cover image or placeholder
+    if (game.cover?.url) {
+        const coverImg = document.createElement("img")
+        coverImg.className = "card-img-top rounded-top-0"
+        let coverUrl = game.cover.url
+        coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big_2x')
+        coverImg.src = coverUrl
+        coverImg.alt = game.name
+        coverImg.loading = "lazy"
+        coverImg.style.width = "100%"
+        coverImg.style.aspectRatio = "3 / 4"
+        coverImg.style.objectFit = "cover"
+        card.appendChild(coverImg)
+    } else {
+        const placeholder = document.createElement("div")
+        placeholder.className = "card-img-top bg-secondary d-flex align-items-center justify-content-center"
+        placeholder.style.width = "100%"
+        placeholder.style.aspectRatio = "3 / 4"
+        const icon = document.createElement("span")
+        icon.className = "material-symbols-outlined text-white"
+        icon.style.fontSize = "3rem"
+        icon.textContent = "sports_esports"
+        placeholder.appendChild(icon)
+        card.appendChild(placeholder)
+    }
+
+    const cardBody = document.createElement("div")
+    cardBody.className = "card-body p-2"
+    card.appendChild(cardBody)
+
+    // Game name
+    const nameEl = document.createElement("h6")
+    nameEl.className = "card-title small mb-2 fw-bold"
+    nameEl.textContent = game.name
+    nameEl.title = game.name
+    nameEl.style.overflow = "hidden"
+    nameEl.style.display = "-webkit-box"
+    nameEl.style.webkitLineClamp = "2"
+    nameEl.style.setProperty("-webkit-box-orient", "vertical")
+    cardBody.appendChild(nameEl)
+
+    // Platforms with release years
+    if (allPlatforms && game.platforms && game.platforms.length > 0) {
+        const platformsDiv = document.createElement("div")
+        platformsDiv.className = "mb-2"
+        platformsDiv.style.wordBreak = "break-word"
+        platformsDiv.style.overflow = "hidden"
+
+        // Group release dates by platform
+        const platformYears = {}
+        if (game.release_dates && game.release_dates.length > 0) {
+            game.release_dates.forEach(rd => {
+                if (rd.platform && rd.y) {
+                    if (!platformYears[rd.platform] || rd.y < platformYears[rd.platform]) {
+                        platformYears[rd.platform] = rd.y
+                    }
+                }
+            })
+        }
+
+        // Show first 3 platforms
+        game.platforms.slice(0, 3).forEach(platformId => {
+            const platform = allPlatforms[String(platformId)]
+            const platformName = platform ? platform.name : `Platform ${platformId}`
+            const year = platformYears[platformId] ? ` (${platformYears[platformId]})` : ""
+
+            const badge = document.createElement("span")
+            badge.className = "badge bg-secondary me-1 mb-1 small"
+            badge.style.fontSize = "0.7rem"
+            badge.style.whiteSpace = "normal"
+            badge.style.wordBreak = "break-word"
+            badge.textContent = platformName + year
+            platformsDiv.appendChild(badge)
+        })
+
+        if (game.platforms.length > 3) {
+            const moreBadge = document.createElement("span")
+            moreBadge.className = "badge bg-secondary me-1 mb-1 small"
+            moreBadge.style.fontSize = "0.7rem"
+            moreBadge.textContent = `+${game.platforms.length - 3} more`
+            platformsDiv.appendChild(moreBadge)
+        }
+
+        cardBody.appendChild(platformsDiv)
+    }
+
+    return col
+}
+
+/**
+ * Render search results into the row container
+ */
+function renderSearchResults(results, row, allPlatforms) {
+    results.forEach(({ id, game }) => {
+        row.appendChild(createGameCard(id, game, allPlatforms))
+    })
+}
+
+/**
+ * Add "showing X of Y" note if there are more results
+ */
+function addMoreResultsNote(container, totalCount, shownCount) {
+    if (totalCount > shownCount) {
+        const moreNote = document.createElement("p")
+        moreNote.className = "text-muted mt-3 small"
+        moreNote.textContent = `Showing first ${shownCount} of ${totalCount} results. Try a more specific search term.`
+        container.appendChild(moreNote)
+    }
+}
+
 
 $(document).ready(function(){
     // Set cache = false for all jquery ajax requests.
@@ -89,29 +250,6 @@ $(document).ready(function(){
         'summary': null,
     }
 
-    let splitString = function(string) {
-        if (string === undefined) {
-            return [undefined];
-        }
-
-        // Ensure the string is longer than 200 characters for more consistent card heights
-        if (string.length > 200) {
-            // Find the last full word prior to the 200th character using regex
-            const regex = /(.{0,200})\b/;
-            const match = regex.exec(string);
-
-            if (match) {
-                // Split the string at the end of the last full word
-                const splitIndex = match[1].length;
-                const firstPart = string.slice(0, splitIndex);
-
-                return [firstPart, string];
-            }
-      }
-
-      // Return the string as is if it's shorter than 200 characters
-      return [string];
-    }
 
     // create platform cards
     let initialize = function(){
@@ -137,7 +275,7 @@ $(document).ready(function(){
                     platforms.push(result[platform])
                 }
 
-                let sorted = platforms.sort(window.rankingSorter("name", "id")).reverse()
+                let sorted = platforms.toSorted(globalThis.rankingSorter("name", "id")).reverse()
 
                 for(let item in sorted) {
                     let column = document.createElement("div")
@@ -162,19 +300,15 @@ $(document).ready(function(){
                     // see if screensraper id has an image
                     if (sorted[item]['screenscraper_id'] !== null && sorted[item]['screenscraper_region'] !== null) {
                         banner.src = `https://screenscraper.fr/image.php?plateformid=${sorted[item]['screenscraper_id']}&media=wheel&region=${sorted[item]['screenscraper_region']}&num=&version=&maxwidth=600&maxheight=600`
-                        banner.classList.add("bg-dark")
-                        banner.classList.add("bg-gradient")
-                        banner.classList.add("p-4")
+                        banner.classList.add("bg-gradient", "p-4")
                     }
                     else {
-                        try {
-                            banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_720p")
-                        }
-                        catch (err) {
+                        const logoUrl = sorted[item]['platform_logo']?.url
+                        if (logoUrl) {
+                            banner.src = logoUrl.replace("t_thumb", "t_720p")
+                        } else {
                             banner.src = `${base_path}/assets/img/no-logo.png`
-                            banner.classList.add("bg-dark")
-                            banner.classList.add("bg-gradient")
-                            banner.classList.add("p-4")
+                            banner.classList.add("bg-gradient", "p-4")
                             banner_div.classList.remove("hover-zoom")
                         }
                     }
@@ -394,188 +528,23 @@ function run_search() {
                 .then(allPlatforms => {
                     // Fetch full game data for each match
                     const gamePromises = matches.slice(0, 60).map(([id, _game]) =>
-                        fetch(`${base_url}/games/${id}.json`)
-                            .then(r => r.ok ? r.json() : null)
-                            .then(fullGame => ({ id, game: fullGame || { name: _game.name } }))
-                            .catch(() => ({ id, game: { name: _game.name } }))
+                        fetchGameData(id, _game.name)
                     )
 
                     Promise.all(gamePromises).then(results => {
-                        results.forEach(({ id, game }) => {
-                            const col = document.createElement("div")
-                            col.className = "col"
-                            col.style.maxWidth = "180px"
-                            row.appendChild(col)
-
-                            const card = document.createElement("a")
-                            card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0"
-                            card.href = `${base_path}/browse/games/?id=${id}`
-                            col.appendChild(card)
-
-                            // Cover image or placeholder
-                            if (game.cover && game.cover.url) {
-                                const coverImg = document.createElement("img")
-                                coverImg.className = "card-img-top rounded-top-0"
-                                // Convert IGDB URL properly - URLs start with //
-                                let coverUrl = game.cover.url
-                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big_2x')
-                                coverImg.src = coverUrl
-                                coverImg.alt = game.name
-                                coverImg.loading = "lazy"
-                                coverImg.style.width = "100%"
-                                coverImg.style.aspectRatio = "3 / 4"
-                                coverImg.style.objectFit = "cover"
-                                card.appendChild(coverImg)
-                            } else {
-                                const placeholder = document.createElement("div")
-                                placeholder.className = "card-img-top bg-secondary d-flex align-items-center justify-content-center"
-                                placeholder.style.width = "100%"
-                                placeholder.style.aspectRatio = "3 / 4"
-                                const icon = document.createElement("span")
-                                icon.className = "material-symbols-outlined text-white"
-                                icon.style.fontSize = "3rem"
-                                icon.textContent = "sports_esports"
-                                placeholder.appendChild(icon)
-                                card.appendChild(placeholder)
-                            }
-
-                            const cardBody = document.createElement("div")
-                            cardBody.className = "card-body p-2"
-                            card.appendChild(cardBody)
-
-                            // Game name
-                            const nameEl = document.createElement("h6")
-                            nameEl.className = "card-title small mb-2 fw-bold"
-                            nameEl.textContent = game.name
-                            nameEl.title = game.name
-                            nameEl.style.overflow = "hidden"
-                            nameEl.style.display = "-webkit-box"
-                            nameEl.style.webkitLineClamp = "2"
-                            nameEl.style.webkitBoxOrient = "vertical"
-                            cardBody.appendChild(nameEl)
-
-                            // Platforms with release years
-                            if (game.platforms && game.platforms.length > 0) {
-                                const platformsDiv = document.createElement("div")
-                                platformsDiv.className = "mb-2"
-                                platformsDiv.style.wordBreak = "break-word"
-                                platformsDiv.style.overflow = "hidden"
-
-                                // Group release dates by platform
-                                const platformYears = {}
-                                if (game.release_dates && game.release_dates.length > 0) {
-                                    game.release_dates.forEach(rd => {
-                                        if (rd.platform && rd.y) {
-                                            if (!platformYears[rd.platform] || rd.y < platformYears[rd.platform]) {
-                                                platformYears[rd.platform] = rd.y
-                                            }
-                                        }
-                                    })
-                                }
-
-                                // Show first 3 platforms
-                                game.platforms.slice(0, 3).forEach(platformId => {
-                                    const platform = allPlatforms[String(platformId)]
-                                    const platformName = platform ? platform.name : `Platform ${platformId}`
-                                    const year = platformYears[platformId] ? ` (${platformYears[platformId]})` : ""
-
-                                    const badge = document.createElement("span")
-                                    badge.className = "badge bg-secondary me-1 mb-1 small"
-                                    badge.style.fontSize = "0.7rem"
-                                    badge.style.whiteSpace = "normal"
-                                    badge.style.wordBreak = "break-word"
-                                    badge.textContent = platformName + year
-                                    platformsDiv.appendChild(badge)
-                                })
-
-                                if (game.platforms.length > 3) {
-                                    const moreBadge = document.createElement("span")
-                                    moreBadge.className = "badge bg-secondary me-1 mb-1 small"
-                                    moreBadge.style.fontSize = "0.7rem"
-                                    moreBadge.textContent = `+${game.platforms.length - 3} more`
-                                    platformsDiv.appendChild(moreBadge)
-                                }
-
-                                cardBody.appendChild(platformsDiv)
-                            }
-                        })
-
-                        if (matches.length > 60) {
-                            const moreNote = document.createElement("p")
-                            moreNote.className = "text-muted mt-3 small"
-                            moreNote.textContent = `Showing first 60 of ${matches.length} results. Try a more specific search term.`
-                            search_container.appendChild(moreNote)
-                        }
+                        renderSearchResults(results, row, allPlatforms)
+                        addMoreResultsNote(search_container, matches.length, 60)
                     })
                 })
                 .catch(() => {
                     // Fallback if platforms can't be loaded - still fetch game data
                     const gamePromises = matches.slice(0, 60).map(([id, _game]) =>
-                        fetch(`${base_url}/games/${id}.json`)
-                            .then(r => r.ok ? r.json() : null)
-                            .then(fullGame => ({ id, game: fullGame || { name: _game.name } }))
-                            .catch(() => ({ id, game: { name: _game.name } }))
+                        fetchGameData(id, _game.name)
                     )
 
                     Promise.all(gamePromises).then(results => {
-                        results.forEach(({ id, game }) => {
-                            const col = document.createElement("div")
-                            col.className = "col"
-                            col.style.maxWidth = "180px"
-                            row.appendChild(col)
-
-                            const card = document.createElement("a")
-                            card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0"
-                            card.href = `${base_path}/browse/games/?id=${id}`
-                            col.appendChild(card)
-
-                            if (game.cover && game.cover.url) {
-                                const coverImg = document.createElement("img")
-                                coverImg.className = "card-img-top rounded-top-0"
-                                // Convert IGDB URL properly - URLs start with //
-                                let coverUrl = game.cover.url
-                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big_2x')
-                                coverImg.src = coverUrl
-                                coverImg.alt = game.name
-                                coverImg.loading = "lazy"
-                                coverImg.style.width = "100%"
-                                coverImg.style.aspectRatio = "3 / 4"
-                                coverImg.style.objectFit = "cover"
-                                card.appendChild(coverImg)
-                            } else {
-                                const placeholder = document.createElement("div")
-                                placeholder.className = "card-img-top bg-secondary d-flex align-items-center justify-content-center"
-                                placeholder.style.width = "100%"
-                                placeholder.style.aspectRatio = "3 / 4"
-                                const icon = document.createElement("span")
-                                icon.className = "material-symbols-outlined text-white"
-                                icon.style.fontSize = "3rem"
-                                icon.textContent = "sports_esports"
-                                placeholder.appendChild(icon)
-                                card.appendChild(placeholder)
-                            }
-
-                            const cardBody = document.createElement("div")
-                            cardBody.className = "card-body p-2"
-                            card.appendChild(cardBody)
-
-                            const nameEl = document.createElement("p")
-                            nameEl.className = "card-text small mb-0 fw-bold"
-                            nameEl.textContent = game.name
-                            nameEl.title = game.name
-                            nameEl.style.overflow = "hidden"
-                            nameEl.style.display = "-webkit-box"
-                            nameEl.style.webkitLineClamp = "2"
-                            nameEl.style.webkitBoxOrient = "vertical"
-                            cardBody.appendChild(nameEl)
-                        })
-
-                        if (matches.length > 60) {
-                            const moreNote = document.createElement("p")
-                            moreNote.className = "text-muted mt-3 small"
-                            moreNote.textContent = `Showing first 60 of ${matches.length} results. Try a more specific search term.`
-                            search_container.appendChild(moreNote)
-                        }
+                        renderSearchResults(results, row, null)
+                        addMoreResultsNote(search_container, matches.length, 60)
                     })
                 })
         })

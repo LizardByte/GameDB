@@ -49,7 +49,7 @@ function renderPlatform(data) {
     // Logo
     const logoEl = document.getElementById("platform-logo");
     const logoPlaceholder = document.getElementById("platform-logo-placeholder");
-    const logoUrl = data.platform_logo && data.platform_logo.url
+    const logoUrl = data.platform_logo?.url
         ? igdbImageUrl(data.platform_logo.url, "t_logo_med_2x")
         : null;
     if (logoUrl) {
@@ -84,7 +84,7 @@ function renderPlatform(data) {
     if (data.alternative_name) {
         addDlRow(metaDl, "Also Known As", data.alternative_name);
     }
-    if (data.platform_type && data.platform_type.name) {
+    if (data.platform_type?.name) {
         addDlRow(metaDl, "Type", data.platform_type.name);
     }
 
@@ -118,14 +118,14 @@ function renderPlatform(data) {
             const button = document.createElement("button");
             button.className = "accordion-button" + (index > 0 ? " collapsed" : "");
             button.type = "button";
-            button.setAttribute("data-bs-toggle", "collapse");
-            button.setAttribute("data-bs-target", `#${itemId}`);
+            button.dataset.bsToggle = "collapse";
+            button.dataset.bsTarget = `#${itemId}`;
             button.setAttribute("aria-expanded", index === 0 ? "true" : "false");
             button.setAttribute("aria-controls", itemId);
             button.textContent = version.name || `Version ${index + 1}`;
 
             // Add logo next to version name if available
-            if (version.platform_logo && version.platform_logo.url) {
+            if (version.platform_logo?.url) {
                 const vLogo = document.createElement("img");
                 vLogo.src = igdbImageUrl(version.platform_logo.url, "t_thumb");
                 vLogo.alt = "";
@@ -165,7 +165,7 @@ function renderPlatform(data) {
                 rdList.className = "list-unstyled ms-2 mb-3";
                 version.platform_version_release_dates.forEach(rd => {
                     const li = document.createElement("li");
-                    const regionName = rd.release_region && rd.release_region.region;
+                    const regionName = rd.release_region?.region;
                     const flag = regionName ? getRegionFlag(regionName) : "🌐";
                     li.textContent = `${flag} ${rd.human || rd.y || ""}`;
                     rdList.appendChild(li);
