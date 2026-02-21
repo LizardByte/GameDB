@@ -14,6 +14,7 @@ function renderGame(data) {
 
     // Also set in page header if it exists
     const pageHeaderH1 = document.querySelector("header.header-section .page-heading h1");
+    const pageHeading = document.querySelector("header.header-section .page-heading");
     if (pageHeaderH1) {
         pageHeaderH1.textContent = gameName;
     }
@@ -41,9 +42,17 @@ function renderGame(data) {
                 pageHeader.appendChild(imgDesc);
             }
 
+            // Hide the .page-heading (but keep space) when there's a banner image
+            if (pageHeading) {
+                pageHeading.style.visibility = "hidden";
+            }
+
             // Initialize the image display
             initGameBanner();
         }
+    } else if (pageHeading) {
+        // No banner image, completely hide the .page-heading
+        pageHeading.style.display = "none";
     }
 
     // Cover
