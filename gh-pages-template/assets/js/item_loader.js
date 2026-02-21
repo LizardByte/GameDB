@@ -9,7 +9,6 @@ let base_url = window.location.origin + base_path;
 // get platforms container
 let platforms_container = document.getElementById("platforms-container")
 
-
 $(document).ready(function(){
     // Set cache = false for all jquery ajax requests.
     $.ajaxSetup({
@@ -141,7 +140,6 @@ $(document).ready(function(){
                 let sorted = platforms.sort(window.rankingSorter("name", "id")).reverse()
 
                 for(let item in sorted) {
-
                     let column = document.createElement("div")
                     column.className = "col-lg-4 mb-5"
                     platforms_container.appendChild(column)

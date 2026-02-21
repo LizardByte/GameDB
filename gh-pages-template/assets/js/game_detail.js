@@ -7,25 +7,43 @@
 function renderGame(data) {
     // Title
     document.title = (data.name || "Game") + " – GameDB";
-    document.getElementById("game-name").textContent = data.name || "Unknown Game";
 
-    // Banner/Artworks (beautiful-jekyll-next style)
+    // Set game name in both the page header and the content section
+    const gameName = data.name || "Unknown Game";
+    document.getElementById("game-name").textContent = gameName;
+
+    // Also set in page header if it exists
+    const pageHeaderH1 = document.querySelector("header.header-section .page-heading h1");
+    if (pageHeaderH1) {
+        pageHeaderH1.textContent = gameName;
+    }
+
+    // Banner/Artworks (inject into existing page header)
     if (data.artworks && data.artworks.length > 0) {
-        const bigImgsEl = document.getElementById("game-big-imgs");
-        const bannerHeader = document.getElementById("game-banner-header");
+        const bigImgsEl = document.getElementById("header-big-imgs");
+        const pageHeader = document.querySelector("header.header-section .intro-header");
 
-        // Set data attributes for each artwork
-        bigImgsEl.setAttribute("data-num-img", data.artworks.length);
-        data.artworks.forEach((artwork, index) => {
-            const imgNum = index + 1;
-            bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge"));
-        });
+        if (pageHeader) {
+            // Set data attributes for each artwork
+            bigImgsEl.setAttribute("data-num-img", data.artworks.length);
+            data.artworks.forEach((artwork, index) => {
+                const imgNum = index + 1;
+                bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge"));
+            });
 
-        // Show the banner
-        bannerHeader.classList.remove("d-none");
+            // Add big-img class and img-desc span to existing header
+            pageHeader.classList.add("big-img");
 
-        // Initialize the image display (mimics beautifuljekyll.js behavior)
-        initGameBanner();
+            // Add img-desc span if it doesn't exist
+            if (!pageHeader.querySelector(".img-desc")) {
+                const imgDesc = document.createElement("span");
+                imgDesc.className = "img-desc";
+                pageHeader.appendChild(imgDesc);
+            }
+
+            // Initialize the image display
+            initGameBanner();
+        }
     }
 
     // Cover
@@ -364,10 +382,14 @@ function getRegionFlag(regionName) {
  * Initialize game banner with cycling images (mimics beautiful-jekyll-next behavior)
  */
 function initGameBanner() {
-    const bigImgsEl = document.getElementById("game-big-imgs");
+    const bigImgsEl = document.getElementById("header-big-imgs");
     const numImgs = parseInt(bigImgsEl.getAttribute("data-num-img"));
 
     if (!numImgs || numImgs === 0) return;
+
+    // Target the existing page header
+    const introHeader = document.querySelector("header.header-section .intro-header.big-img");
+    if (!introHeader) return;
 
     // Set initial image
     const getImgInfo = function(imgNum) {
@@ -377,15 +399,16 @@ function initGameBanner() {
     };
 
     const setImg = function(src, desc) {
-        const bannerHeader = document.getElementById("game-banner-header");
-        bannerHeader.style.backgroundImage = `url(${src})`;
+        introHeader.style.backgroundImage = `url(${src})`;
 
-        const imgDesc = bannerHeader.querySelector(".img-desc");
-        if (desc && desc !== "null") {
-            imgDesc.textContent = desc;
-            imgDesc.style.display = "block";
-        } else {
-            imgDesc.style.display = "none";
+        const imgDesc = introHeader.querySelector(".img-desc");
+        if (imgDesc) {
+            if (desc && desc !== "null") {
+                imgDesc.textContent = desc;
+                imgDesc.style.display = "block";
+            } else {
+                imgDesc.style.display = "none";
+            }
         }
     };
 
@@ -411,7 +434,7 @@ function initGameBanner() {
                 const img = document.createElement("div");
                 img.className = "big-img-transition";
                 img.style.backgroundImage = `url(${src})`;
-                document.getElementById("game-banner-header").prepend(img);
+                introHeader.prepend(img);
 
                 setTimeout(function() {
                     img.style.opacity = "1";

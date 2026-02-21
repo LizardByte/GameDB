@@ -1,15 +1,19 @@
 ---
-title: Game
 layout: page
 full-width: false
-css:
-  - /assets/css/hide-heading.css
+cover-img: "https://via.placeholder.com/1920x400/333/333"
 js:
   - /GameDB/assets/js/item_detail.js
   - /GameDB/assets/js/game_detail.js
 ext-css:
   - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
 ---
+
+<style>
+.page-heading h1 {
+  display: none;
+}
+</style>
 
 <script>
 window.GAMEDB_CONFIG = {
@@ -29,17 +33,12 @@ window.GAMEDB_CONFIG = {
 <div id="item-content" class="d-none">
 
   <!-- Banner Images (hidden, holds data attributes) -->
-  <div id="game-big-imgs" style="display:none;"></div>
-
-  <!-- Banner Header (styled like beautiful-jekyll-next cover-img) -->
-  <div id="game-banner-header" class="intro-header big-img d-none" style="margin-top: -70px; margin-bottom: 30px;">
-    <span class='img-desc'></span>
-  </div>
+  <div id="header-big-imgs" style="display:none;"></div>
 
   <div class="row gx-4 gy-4 mb-4">
     <!-- Cover image -->
     <div class="col-12 col-lg-3 col-md-4 text-center">
-      <img id="game-cover" src="" alt="" class="img-fluid rounded shadow w-100" style="max-width:300px; display:none;">
+      <img id="game-cover" src="" alt="" class="img-fluid rounded shadow w-100" style="display:none;">
       <div id="game-cover-placeholder" class="bg-secondary d-flex align-items-center justify-content-center rounded"
            style="min-height:300px; display:none !important;">
         <span class="material-symbols-outlined text-white" style="font-size:5rem;">sports_esports</span>
