@@ -30,18 +30,17 @@ window.GAMEDB_CONFIG = {
         <!-- Search section-->
         <section class="py-5 offset-anchor" id="Search">
             <div class="container mb-5">
-                <form id="searchForm">
-                    <div class="form-group d-flex">
-                        <div class="col-3 me-3">
-                            <select class="form-select rounded-0" aria-label="Search Type" id="search_type">
-                            </select>
+                <form id="searchForm" onsubmit="event.preventDefault(); run_search();">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control rounded-0" placeholder="Search games by name..." id="search_term"
+                                       onkeydown="if(event.key==='Enter'){event.preventDefault(); run_search()}">
+                                <button type="button" class="btn btn-warning rounded-0" onclick="run_search()">
+                                    <i class="fa-fw fas fa-search"></i> Search
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-6 me-3">
-                            <input type="text" class="form-control rounded-0" placeholder="Search" id="search_term"
-                                   onkeydown="if(event.key==='Enter'){run_search()}">
-                        </div>
-                        <button type="button" class="btn btn-warning ml-3 rounded-0" onclick="run_search()">
-                            <i class="fa-fw fas fa-search"></i>Search</button>
                     </div>
                 </form>
             </div>
