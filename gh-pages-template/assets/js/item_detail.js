@@ -10,10 +10,10 @@
  *   window.GAMEDB_CONFIG = { base_path: "{{ site.baseurl }}", base_url: "{{ site.url }}{{ site.baseurl }}" };
  */
 
-const base_path = (window.GAMEDB_CONFIG && window.GAMEDB_CONFIG.base_path
-    ? ("/" + window.GAMEDB_CONFIG.base_path).replace(/\/+/g, "/").replace(/\/$/, "")
+const base_path = (globalThis.GAMEDB_CONFIG?.base_path
+    ? ("/" + globalThis.GAMEDB_CONFIG.base_path).replaceAll(/\/+/g, "/").replace(/\/$/, "")
     : "/GameDB");
-const base_url = window.location.origin + base_path;
+const base_url = globalThis.location.origin + base_path;
 
 /**
  * Read a query-string parameter from the current URL.
@@ -21,7 +21,7 @@ const base_url = window.location.origin + base_path;
  * @returns {string|null}
  */
 function getQueryParam(name) {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     return params.get(name);
 }
 
