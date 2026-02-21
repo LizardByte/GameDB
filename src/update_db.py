@@ -312,6 +312,20 @@ def get_data():
                                         else:
                                             full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
 
+    # Add game counts to platforms for the all.json file
+    print('calculating game counts for platforms')
+    for platform_id, platform_data in full_dict['platforms'].items():
+        try:
+            games = platform_data['games']
+            platform_data['game_count'] = len(games)
+        except KeyError:
+            # no games for this platform
+            platform_data['game_count'] = 0
+
+    # Rewrite platforms/all.json with game counts
+    file_path = os.path.join(args.out_dir, 'platforms', 'all')
+    write_json_files(file_path=file_path, data=full_dict['platforms'])
+
     # create buckets and get list of all videos
     print('creating buckets / collecting video ids')
     buckets = {}

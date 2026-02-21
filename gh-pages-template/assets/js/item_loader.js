@@ -205,10 +205,10 @@ $(document).ready(function(){
                     card_body.appendChild(igdb_link)
 
                     // game count
-                    if (sorted[item]['games'] && sorted[item]['games'].length > 0) {
+                    if (sorted[item]['game_count'] !== undefined && sorted[item]['game_count'] > 0) {
                         let game_count = document.createElement("div")
                         game_count.className = "small text-muted mb-2"
-                        game_count.textContent = `${sorted[item]['games'].length} game${sorted[item]['games'].length === 1 ? '' : 's'}`
+                        game_count.textContent = `${sorted[item]['game_count']} game${sorted[item]['game_count'] === 1 ? '' : 's'}`
                         card_body.appendChild(game_count)
                     }
 
