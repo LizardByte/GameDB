@@ -168,7 +168,7 @@ $(document).ready(function(){
                     }
                     else {
                         try {
-                            banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_cover_big")
+                            banner.src = sorted[item]['platform_logo']['url'].replace("t_thumb", "t_720p")
                         }
                         catch (err) {
                             banner.src = `${base_path}/assets/img/no-logo.png`
@@ -418,7 +418,7 @@ function run_search() {
                                 coverImg.className = "card-img-top rounded-top-0"
                                 // Convert IGDB URL properly - URLs start with //
                                 let coverUrl = game.cover.url
-                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big')
+                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big_2x')
                                 coverImg.src = coverUrl
                                 coverImg.alt = game.name
                                 coverImg.loading = "lazy"
@@ -534,7 +534,7 @@ function run_search() {
                                 coverImg.className = "card-img-top rounded-top-0"
                                 // Convert IGDB URL properly - URLs start with //
                                 let coverUrl = game.cover.url
-                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big')
+                                coverUrl = 'https:' + coverUrl.replace('t_thumb', 't_cover_big_2x')
                                 coverImg.src = coverUrl
                                 coverImg.alt = game.name
                                 coverImg.loading = "lazy"

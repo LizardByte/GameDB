@@ -156,7 +156,7 @@ function renderGameList(container, games) {
 
     // Render games that already have full data
     gamesWithData.forEach(game => {
-        renderGameCard(row, game.id, game.name, game.cover ? igdbImageUrl(game.cover.url, "t_cover_small") : null);
+        renderGameCard(row, game.id, game.name, game.cover ? igdbImageUrl(game.cover.url, "t_cover_small_2x") : null);
     });
 
     // Fetch and render games that only have IDs
@@ -172,7 +172,7 @@ function renderGameList(container, games) {
         Promise.all(fetchPromises).then(results => {
             results.forEach(({ id, data }) => {
                 const name = data ? data.name : null;
-                const coverUrl = data && data.cover ? igdbImageUrl(data.cover.url, "t_cover_small") : null;
+                const coverUrl = data && data.cover ? igdbImageUrl(data.cover.url, "t_cover_small_2x") : null;
                 renderGameCard(row, id, name, coverUrl);
             });
         });

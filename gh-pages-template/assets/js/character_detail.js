@@ -12,7 +12,7 @@ function renderCharacter(data) {
     const mugEl = document.getElementById("character-mug");
     const mugPlaceholder = document.getElementById("character-mug-placeholder");
     const mugUrl = data.mug_shot && data.mug_shot.url
-        ? igdbImageUrl(data.mug_shot.url, "t_screenshot_big")
+        ? igdbImageUrl(data.mug_shot.url, "t_cover_big_2x")
         : null;
     if (mugUrl) {
         mugEl.src = mugUrl;

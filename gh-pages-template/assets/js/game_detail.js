@@ -29,7 +29,7 @@ function renderGame(data) {
             bigImgsEl.setAttribute("data-num-img", data.artworks.length);
             data.artworks.forEach((artwork, index) => {
                 const imgNum = index + 1;
-                bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge"));
+                bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge_2x"));
             });
 
             // Add big-img class and img-desc span to existing header
@@ -59,7 +59,7 @@ function renderGame(data) {
     const coverEl = document.getElementById("game-cover");
     const coverPlaceholder = document.getElementById("game-cover-placeholder");
     if (data.cover && data.cover.url) {
-        coverEl.src = igdbImageUrl(data.cover.url, "t_cover_big");
+        coverEl.src = igdbImageUrl(data.cover.url, "t_cover_big_2x");
         coverEl.alt = data.name || "";
         coverEl.style.display = "";
     } else {
@@ -237,7 +237,7 @@ function renderGame(data) {
         const container = document.getElementById("game-screenshots");
 
         // Prepare full-size image URLs for modal
-        const fullSizeUrls = data.screenshots.map(ss => igdbImageUrl(ss.url, "t_1080p"));
+        const fullSizeUrls = data.screenshots.map(ss => igdbImageUrl(ss.url, "t_screenshot_huge_2x"));
 
         data.screenshots.forEach((ss, index) => {
             const col = document.createElement("div");
@@ -247,7 +247,7 @@ function renderGame(data) {
             btn.onclick = () => window.openImageModal(fullSizeUrls, index);
             const img = document.createElement("img");
             img.className = "img-fluid rounded shadow-sm w-100";
-            img.src = igdbImageUrl(ss.url, "t_screenshot_med");
+            img.src = igdbImageUrl(ss.url, "t_screenshot_med_2x");
             img.alt = "";
             img.loading = "lazy";
             img.style.cursor = "pointer";
@@ -331,7 +331,7 @@ function renderGame(data) {
             if (char.mug_shot && char.mug_shot.url) {
                 const img = document.createElement("img");
                 img.className = "card-img-top rounded-top";
-                img.src = igdbImageUrl(char.mug_shot.url, "t_thumb");
+                img.src = igdbImageUrl(char.mug_shot.url, "t_cover_small_2x");
                 img.alt = char.name || "";
                 img.loading = "lazy";
                 card.appendChild(img);

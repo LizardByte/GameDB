@@ -50,7 +50,7 @@ function renderPlatform(data) {
     const logoEl = document.getElementById("platform-logo");
     const logoPlaceholder = document.getElementById("platform-logo-placeholder");
     const logoUrl = data.platform_logo && data.platform_logo.url
-        ? igdbImageUrl(data.platform_logo.url, "t_logo_med")
+        ? igdbImageUrl(data.platform_logo.url, "t_logo_med_2x")
         : null;
     if (logoUrl) {
         logoEl.src = logoUrl;
@@ -130,7 +130,7 @@ function renderPlatform(data) {
                 vLogo.src = igdbImageUrl(version.platform_logo.url, "t_thumb");
                 vLogo.alt = "";
                 vLogo.className = "me-2";
-                vLogo.style.height = "24px";
+                vLogo.style.height = "35px";
                 vLogo.style.objectFit = "contain";
                 button.prepend(vLogo);
             }
