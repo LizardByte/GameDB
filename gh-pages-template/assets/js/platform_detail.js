@@ -73,6 +73,11 @@ function renderPlatform(data) {
     // Meta dl
     const metaDl = document.getElementById("platform-meta");
 
+    // Game count
+    if (data.games && data.games.length > 0) {
+        addDlRow(metaDl, "Games", `${data.games.length} game${data.games.length === 1 ? '' : 's'}`);
+    }
+
     if (data.abbreviation) {
         addDlRow(metaDl, "Abbreviation", data.abbreviation);
     }

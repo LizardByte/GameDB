@@ -94,10 +94,10 @@ $(document).ready(function(){
             return [undefined];
         }
 
-        // Ensure the string is longer than 500 characters
-        if (string.length > 500) {
-            // Find the last full word prior to the 500th character using regex
-            const regex = /(.{0,500})\b/;
+        // Ensure the string is longer than 200 characters for more consistent card heights
+        if (string.length > 200) {
+            // Find the last full word prior to the 200th character using regex
+            const regex = /(.{0,200})\b/;
             const match = regex.exec(string);
 
             if (match) {
@@ -109,7 +109,7 @@ $(document).ready(function(){
             }
       }
 
-      // Return the string as is if it's shorter than 500 characters
+      // Return the string as is if it's shorter than 200 characters
       return [string];
     }
 
@@ -203,6 +203,14 @@ $(document).ready(function(){
                     igdb_link.className = "small text-muted text-decoration-none mb-2 d-inline-block"
                     igdb_link.textContent = "View on IGDB ↗"
                     card_body.appendChild(igdb_link)
+
+                    // game count
+                    if (sorted[item]['games'] && sorted[item]['games'].length > 0) {
+                        let game_count = document.createElement("div")
+                        game_count.className = "small text-muted mb-2"
+                        game_count.textContent = `${sorted[item]['games'].length} game${sorted[item]['games'].length === 1 ? '' : 's'}`
+                        card_body.appendChild(game_count)
+                    }
 
                     let summary = splitString(sorted[item]['summary'])
 
@@ -450,6 +458,8 @@ function run_search() {
                             if (game.platforms && game.platforms.length > 0) {
                                 const platformsDiv = document.createElement("div")
                                 platformsDiv.className = "mb-2"
+                                platformsDiv.style.wordBreak = "break-word"
+                                platformsDiv.style.overflow = "hidden"
 
                                 // Group release dates by platform
                                 const platformYears = {}
@@ -472,6 +482,8 @@ function run_search() {
                                     const badge = document.createElement("span")
                                     badge.className = "badge bg-secondary me-1 mb-1 small"
                                     badge.style.fontSize = "0.7rem"
+                                    badge.style.whiteSpace = "normal"
+                                    badge.style.wordBreak = "break-word"
                                     badge.textContent = platformName + year
                                     platformsDiv.appendChild(badge)
                                 })

@@ -481,7 +481,7 @@ if __name__ == '__main__':
         '--test_limit',
         type=int,
         required=False,
-        default=500,
+        default=1000,
         help='Number of items to collect per endpoint when test_mode is enabled (default: 10).',
     )
     parser.add_argument(
