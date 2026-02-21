@@ -1,0 +1,74 @@
+<!-- Image Gallery Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content bg-dark">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="imageModalLabel">Image Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex align-items-center justify-content-center position-relative p-0">
+        <button type="button" class="btn btn-light position-absolute start-0 ms-3 rounded-circle" id="modal-prev-btn" style="z-index: 1050; width: 50px; height: 50px;">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <img id="modal-image" src="" alt="" class="img-fluid" style="max-height: 90vh; max-width: 100%;">
+        <button type="button" class="btn btn-light position-absolute end-0 me-3 rounded-circle" id="modal-next-btn" style="z-index: 1050; width: 50px; height: 50px;">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+      <div class="modal-footer border-0 justify-content-center">
+        <span id="modal-counter">1 / 1</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Image modal functionality
+(function() {
+    let currentImages = [];
+    let currentIndex = 0;
+
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCounter = document.getElementById('modal-counter');
+    const prevBtn = document.getElementById('modal-prev-btn');
+    const nextBtn = document.getElementById('modal-next-btn');
+
+    function updateImage() {
+        if (currentImages.length === 0) return;
+        modalImage.src = currentImages[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        updateImage();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        updateImage();
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('show')) {
+            if (e.key === 'ArrowLeft') showPrev();
+            else if (e.key === 'ArrowRight') showNext();
+        }
+    });
+
+    // Global function to open modal
+    globalThis.openImageModal = function(images, index) {
+        currentImages = images;
+        currentIndex = index;
+        updateImage();
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+    };
+})();
+</script>

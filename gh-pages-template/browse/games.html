@@ -1,0 +1,94 @@
+---
+layout: page
+full-width: false
+cover-img: "https://via.placeholder.com/1920x400/333/333"
+js:
+  - /GameDB/assets/js/item_detail.js
+  - /GameDB/assets/js/game_detail.js
+ext-css:
+  - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
+---
+
+<script>
+globalThis.GAMEDB_CONFIG = {
+  base_path: "{{ site.baseurl }}"
+};
+</script>
+
+<div id="item-loading" class="text-center py-5">
+  <output class="spinner-border">
+    <span class="visually-hidden">Loading...</span>
+  </output>
+  <p class="mt-2 text-muted">Loading game data…</p>
+</div>
+
+<div id="item-error" class="alert alert-danger d-none" role="alert"></div>
+
+<div id="item-content" class="d-none">
+
+  <!-- Banner Images (hidden, holds data attributes) -->
+  <div id="header-big-imgs" style="display:none;"></div>
+
+  <div class="row gx-4 gy-4 mb-4">
+    <!-- Cover image -->
+    <div class="col-12 col-lg-3 col-md-4 text-center">
+      <img id="game-cover" src="" alt="" class="img-fluid rounded shadow w-100" style="display:none;">
+      <div id="game-cover-placeholder" class="bg-secondary d-flex align-items-center justify-content-center rounded"
+           style="min-height:300px; display:none !important;">
+        <span class="material-symbols-outlined text-white" style="font-size:5rem;">sports_esports</span>
+      </div>
+    </div>
+
+    <!-- Core info -->
+    <div class="col-12 col-lg-9 col-md-8">
+      <h1 id="game-name" class="mb-2"><span class="visually-hidden">Game name loading</span></h1>
+      <div id="game-badges" class="mb-3 d-flex flex-wrap gap-1"></div>
+
+      <dl class="row g-2" id="game-meta"></dl>
+
+      <div id="game-summary-section" class="d-none mt-3">
+        <h5>Summary</h5>
+        <p id="game-summary"></p>
+      </div>
+
+      <div id="game-storyline-section" class="d-none mt-3">
+        <h5>Storyline</h5>
+        <p id="game-storyline"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Characters -->
+  <div id="game-characters-section" class="d-none mb-5">
+    <h3 class="mb-3">Characters</h3>
+    <div id="game-characters" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3"></div>
+  </div>
+
+  <!-- Screenshots -->
+  <div id="game-screenshots-section" class="d-none mb-5">
+    <h3 class="mb-3">Screenshots</h3>
+    <div id="game-screenshots" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2"></div>
+  </div>
+
+  <!-- Videos -->
+  <div id="game-videos-section" class="d-none mb-5">
+    <h3 class="mb-3">Videos</h3>
+    <div id="game-videos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3"></div>
+  </div>
+
+  <!-- External links -->
+  <div id="game-external-section" class="d-none mb-5">
+    <h3 class="mb-3">External Links</h3>
+    <div id="game-external" class="d-flex flex-wrap gap-2"></div>
+  </div>
+
+  <!-- View on IGDB -->
+  <div class="mb-3">
+    <a id="game-igdb-link" href="#" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm d-none">
+      View on IGDB <span class="material-symbols-outlined" style="font-size:1em;vertical-align:middle;">open_in_new</span>
+    </a>
+  </div>
+
+</div>
+
+{% include image_modal.html %}

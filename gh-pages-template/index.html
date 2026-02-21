@@ -11,12 +11,18 @@ after-content:
 ext-css:
   - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
 ext-js:
-- https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
-- https://cdn.jsdelivr.net/npm/@lizardbyte/shared-web@2024.921.191855/dist/levenshtein-distance.js
-- https://cdn.jsdelivr.net/npm/@lizardbyte/shared-web@2024.921.191855/dist/ranking-sorter.js
+  - https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+  - https://cdn.jsdelivr.net/npm/@lizardbyte/shared-web@2024.921.191855/dist/levenshtein-distance.js
+  - https://cdn.jsdelivr.net/npm/@lizardbyte/shared-web@2024.921.191855/dist/ranking-sorter.js
 js:
-- /GameDB/assets/js/item_loader.js
+  - /GameDB/assets/js/item_loader.js
 ---
+
+<script>
+globalThis.GAMEDB_CONFIG = {
+  base_path: "{{ site.baseurl }}"
+};
+</script>
 
 <div class="container px-auto my-5">
     <div class="col-lg-12 mx-auto" id="db-container" style="min-width: 335px">
@@ -24,17 +30,18 @@ js:
         <!-- Search section-->
         <section class="py-5 offset-anchor" id="Search">
             <div class="container mb-5">
-                <form id="searchForm">
-                    <div class="form-group d-flex">
-                        <div class="col-3 me-3">
-                            <select class="form-select rounded-0" aria-label="Search Type" id="search_type">
-                            </select>
+                <form id="searchForm" onsubmit="event.preventDefault(); run_search();">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6">
+                            <label for="search_term" class="visually-hidden">Search games by name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control rounded-0" placeholder="Search games by name..." id="search_term"
+                                       onkeydown="if(event.key==='Enter'){event.preventDefault(); run_search()}">
+                                <button type="button" class="btn btn-warning rounded-0" onclick="run_search()">
+                                    <i class="fa-fw fas fa-search"></i> Search
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-6 me-3">
-                            <input type="text" class="form-control rounded-0" placeholder="Search" id="search_term">
-                        </div>
-                        <button type="button" class="btn btn-warning ml-3 rounded-0" onclick="run_search()">
-                            <i class="fa-fw fas fa-search"></i>Search</button>
                     </div>
                 </form>
             </div>

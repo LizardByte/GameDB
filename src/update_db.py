@@ -36,12 +36,12 @@ def igdb_authorization(client_id: str, client_secret: str) -> dict:
     dict
         Dictionary containing access token and expiration.
     """
-    auth_headers = dict(
-        Accept='application/json',
-        client_id=client_id,
-        client_secret=client_secret,
-        grant_type='client_credentials'
-    )
+    auth_headers = {
+        'Accept': 'application/json',
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'grant_type': 'client_credentials',
+    }
 
     token_url = 'https://id.twitch.tv/oauth2/token'
 
@@ -88,7 +88,7 @@ def get_youtube(video_ids: list) -> dict:
     videos = ','.join(video_ids)
     fields = 'items(id,snippet(title,description,thumbnails,localized))'
     url = f'{uri}?id={videos}&key={args.youtube_api_key}&part=snippet&fields={fields}'
-    headers = dict(Accept='application/json')
+    headers = {'Accept': 'application/json'}
 
     session = requests_cache.CachedSession(
         cache_name='cache/youtube_cache',
@@ -107,37 +107,37 @@ def get_data():
     is appended to the games list. Games are appended to platforms. Videos metadata is also added to the games list.
     Individual files will be written to disk for each item.
     """
-    request_dict = dict(
-        characters=dict(
-            fields=[
+    request_dict = {
+        'characters': {
+            'fields': [
                 'character_gender.name',
                 'character_species.name',
                 'games',
                 'mug_shot.url',
                 'name',
             ],
-            write_all=True,
-        ),
-        collections=dict(
-            fields=[
+            'write_all': True,
+        },
+        'collections': {
+            'fields': [
                 'games',
                 'name',
                 'slug',
                 'url',
             ],
-            write_all=True,
-        ),
-        franchises=dict(
-            fields=[
+            'write_all': True,
+        },
+        'franchises': {
+            'fields': [
                 'games',
                 'name',
                 'slug',
                 'url',
             ],
-            write_all=True,
-        ),
-        games=dict(
-            fields=[
+            'write_all': True,
+        },
+        'games': {
+            'fields': [
                 'age_ratings.organization.name',
                 'age_ratings.rating_category.rating',
                 'aggregated_rating',
@@ -174,21 +174,21 @@ def get_data():
                 'videos.name',
                 'videos.video_id',
             ],
-            append=dict(
-                characters=dict(
-                    fields=[
+            'append': {
+                'characters': {
+                    'fields': [
                         'id',
                         'gender',
                         'mug_shot',
                         'name',
                         'species',
-                    ]
-                )
-            ),
-            write_all=False,
-        ),
-        platforms=dict(
-            fields=[
+                    ],
+                },
+            },
+            'write_all': False,
+        },
+        'platforms': {
+            'fields': [
                 'abbreviation',
                 'alternative_name',
                 'generation',
@@ -218,27 +218,28 @@ def get_data():
                 'versions.summary',
                 'versions.url',
             ],
-            append=dict(
-                games=dict(
-                    fields=[
+            'append': {
+                'games': {
+                    'fields': [
                         'id',
                         'cover',
                         'name',
                         'release_dates',
-                    ]
-                )
-            ),
-            write_all=True,
-        ),
-    )
+                    ],
+                },
+            },
+            'write_all': True,
+        },
+    }
     limit = 500
-    full_dict = dict()
+    full_dict = {}
 
     for end_point, end_point_dict in request_dict.items():
         print(f'now processing endpoint: {end_point}')
         offset = 0
         result = True
-        full_dict[end_point] = dict()
+        full_dict[end_point] = {}
+        test_count = 0
 
         while result:
             try:
@@ -257,7 +258,10 @@ def get_data():
                 full_dict[end_point][item['id']] = item
 
                 if args.test_mode:
-                    break
+                    test_count += 1
+                    if test_count >= args.test_limit:
+                        result = False
+                        break
 
             offset += limit
 
@@ -297,7 +301,7 @@ def get_data():
                                 except KeyError:
                                     full_dict[end_point][item_id_dest][item_type] = []
                                 finally:
-                                    full_dict[end_point][item_id_dest][item_type].append(dict())
+                                    full_dict[end_point][item_id_dest][item_type].append({})
 
                                     for field in item_type_dict['fields']:
                                         try:
@@ -308,9 +312,23 @@ def get_data():
                                         else:
                                             full_dict[end_point][item_id_dest][item_type][-1][field] = field_value
 
+    # Add game counts to platforms for the all.json file
+    print('calculating game counts for platforms')
+    for platform_id, platform_data in full_dict['platforms'].items():
+        try:
+            games = platform_data['games']
+            platform_data['game_count'] = len(games)
+        except KeyError:
+            # no games for this platform
+            platform_data['game_count'] = 0
+
+    # Rewrite platforms/all.json with game counts
+    file_path = os.path.join(args.out_dir, 'platforms', 'all')
+    write_json_files(file_path=file_path, data=full_dict['platforms'])
+
     # create buckets and get list of all videos
     print('creating buckets / collecting video ids')
-    buckets = dict()
+    buckets = {}
     all_videos = []
     for game_id, game_data in full_dict['games'].items():
         # games
@@ -321,11 +339,9 @@ def get_data():
         try:
             buckets[bucket]
         except KeyError:
-            buckets[bucket] = dict()
+            buckets[bucket] = {}
         finally:
-            buckets[bucket][game_id] = dict(
-                name=game_data['name']
-            )
+            buckets[bucket][game_id] = {'name': game_data['name']}
 
         # videos
         try:
@@ -349,7 +365,7 @@ def get_data():
     print('collecting video metadata')
 
     end_point = 'videos'
-    full_dict[end_point] = dict()
+    full_dict[end_point] = {}
 
     all_videos.sort()
 
@@ -473,7 +489,14 @@ if __name__ == '__main__':
         '-t',
         '--test_mode',
         action='store_true',
-        help='Only write one item file per end point, per request.',
+        help='Only write limited items per endpoint.',
+    )
+    parser.add_argument(
+        '--test_limit',
+        type=int,
+        required=False,
+        default=1000,
+        help='Number of items to collect per endpoint when test_mode is enabled (default: 10).',
     )
     parser.add_argument(
         '-i',
