@@ -9,24 +9,23 @@ function renderGame(data) {
     document.title = (data.name || "Game") + " – GameDB";
     document.getElementById("game-name").textContent = data.name || "Unknown Game";
 
-    // Banner/Artworks carousel
+    // Banner/Artworks (beautiful-jekyll-next style)
     if (data.artworks && data.artworks.length > 0) {
-        const bannerSection = document.getElementById("game-banner-section");
-        const bannerInner = document.getElementById("game-banner-inner");
-        bannerSection.classList.remove("d-none");
+        const bigImgsEl = document.getElementById("game-big-imgs");
+        const bannerHeader = document.getElementById("game-banner-header");
 
+        // Set data attributes for each artwork
+        bigImgsEl.setAttribute("data-num-img", data.artworks.length);
         data.artworks.forEach((artwork, index) => {
-            const item = document.createElement("div");
-            item.className = `carousel-item${index === 0 ? " active" : ""}`;
-            const img = document.createElement("img");
-            img.src = igdbImageUrl(artwork.url, "t_screenshot_huge");
-            img.className = "d-block w-100";
-            img.alt = `${data.name} artwork ${index + 1}`;
-            img.style.maxHeight = "400px";
-            img.style.objectFit = "cover";
-            item.appendChild(img);
-            bannerInner.appendChild(item);
+            const imgNum = index + 1;
+            bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge"));
         });
+
+        // Show the banner
+        bannerHeader.classList.remove("d-none");
+
+        // Initialize the image display (mimics beautifuljekyll.js behavior)
+        initGameBanner();
     }
 
     // Cover
@@ -359,6 +358,76 @@ function getRegionFlag(regionName) {
         "brazil": "🇧🇷",
     };
     return map[regionName] || "🌐";
+}
+
+/**
+ * Initialize game banner with cycling images (mimics beautiful-jekyll-next behavior)
+ */
+function initGameBanner() {
+    const bigImgsEl = document.getElementById("game-big-imgs");
+    const numImgs = parseInt(bigImgsEl.getAttribute("data-num-img"));
+
+    if (!numImgs || numImgs === 0) return;
+
+    // Set initial image
+    const getImgInfo = function(imgNum) {
+        const src = bigImgsEl.getAttribute(`data-img-src-${imgNum}`);
+        const desc = bigImgsEl.getAttribute(`data-img-desc-${imgNum}`);
+        return { src, desc };
+    };
+
+    const setImg = function(src, desc) {
+        const bannerHeader = document.getElementById("game-banner-header");
+        bannerHeader.style.backgroundImage = `url(${src})`;
+
+        const imgDesc = bannerHeader.querySelector(".img-desc");
+        if (desc && desc !== "null") {
+            imgDesc.textContent = desc;
+            imgDesc.style.display = "block";
+        } else {
+            imgDesc.style.display = "none";
+        }
+    };
+
+    // Set first image
+    const firstImg = getImgInfo(1);
+    setImg(firstImg.src, firstImg.desc);
+
+    // Cycle through images if multiple
+    if (numImgs > 1) {
+        let currentImgNum = 1;
+
+        const getNextImg = function() {
+            currentImgNum = (currentImgNum % numImgs) + 1;
+            const imgInfo = getImgInfo(currentImgNum);
+            const src = imgInfo.src;
+            const desc = imgInfo.desc;
+
+            // Prefetch next image
+            const prefetchImg = new Image();
+            prefetchImg.src = src;
+
+            setTimeout(function() {
+                const img = document.createElement("div");
+                img.className = "big-img-transition";
+                img.style.backgroundImage = `url(${src})`;
+                document.getElementById("game-banner-header").prepend(img);
+
+                setTimeout(function() {
+                    img.style.opacity = "1";
+                }, 50);
+
+                // After fade-in completes, update main image and remove transition element
+                setTimeout(function() {
+                    setImg(src, desc);
+                    img.remove();
+                    getNextImg();
+                }, 1000);
+            }, 6000);
+        };
+
+        getNextImg();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
