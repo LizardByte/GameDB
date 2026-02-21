@@ -125,7 +125,7 @@ function loadItemDetail(endpoint, renderFn) {
 
 /**
  * Render a list of game cards (compact) into a container element.
- * Games are fetched from the buckets to resolve names.
+ * Games are fetched from individual game files when needed to get cover art.
  * @param {HTMLElement} container
  * @param {Array<number|object>} games - array of game IDs or game objects with {id, name, cover}
  */
@@ -139,54 +139,92 @@ function renderGameList(container, games) {
     row.className = "row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2";
     container.appendChild(row);
 
+    // Separate games into those with full data and those that need fetching
+    const gamesToFetch = [];
+    const gamesWithData = [];
+
     games.forEach(game => {
         const gameId = typeof game === "object" ? game.id : game;
-        const gameName = typeof game === "object" && game.name ? game.name : null;
-        const coverUrl = typeof game === "object" && game.cover ? igdbImageUrl(game.cover.url, "t_cover_small") : null;
+        const hasFullData = typeof game === "object" && game.name && game.cover;
 
-        const col = document.createElement("div");
-        col.className = "col";
-        row.appendChild(col);
-
-        const card = document.createElement("a");
-        card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0 game-card";
-        card.href = `${base_path}/browse/games/?id=${gameId}`;
-        col.appendChild(card);
-
-        if (coverUrl) {
-            const img = document.createElement("img");
-            img.className = "card-img-top rounded-0";
-            img.src = coverUrl;
-            img.alt = gameName || "";
-            img.loading = "lazy";
-            card.appendChild(img);
+        if (hasFullData) {
+            gamesWithData.push(game);
         } else {
-            const placeholder = document.createElement("div");
-            placeholder.className = "card-img-top bg-secondary d-flex align-items-center justify-content-center";
-            placeholder.style.height = "120px";
-            const icon = document.createElement("span");
-            icon.className = "material-symbols-outlined text-white";
-            icon.textContent = "sports_esports";
-            placeholder.appendChild(icon);
-            card.appendChild(placeholder);
-        }
-
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body p-1";
-        card.appendChild(cardBody);
-
-        if (gameName) {
-            const nameEl = document.createElement("p");
-            nameEl.className = "card-text small mb-0 text-truncate";
-            nameEl.textContent = gameName;
-            nameEl.title = gameName;
-            cardBody.appendChild(nameEl);
-        } else {
-            // Fetch the name from the buckets lazily - just show ID for now
-            const nameEl = document.createElement("p");
-            nameEl.className = "card-text small mb-0 text-muted";
-            nameEl.textContent = `#${gameId}`;
-            cardBody.appendChild(nameEl);
+            gamesToFetch.push(gameId);
         }
     });
+
+    // Render games that already have full data
+    gamesWithData.forEach(game => {
+        renderGameCard(row, game.id, game.name, game.cover ? igdbImageUrl(game.cover.url, "t_cover_small") : null);
+    });
+
+    // Fetch and render games that only have IDs
+    if (gamesToFetch.length > 0) {
+        // Fetch each game's data
+        const fetchPromises = gamesToFetch.map(gameId => {
+            return fetch(`${base_path}/games/${gameId}.json`)
+                .then(r => r.ok ? r.json() : null)
+                .then(gameData => ({ id: gameId, data: gameData }))
+                .catch(() => ({ id: gameId, data: null }));
+        });
+
+        Promise.all(fetchPromises).then(results => {
+            results.forEach(({ id, data }) => {
+                const name = data ? data.name : null;
+                const coverUrl = data && data.cover ? igdbImageUrl(data.cover.url, "t_cover_small") : null;
+                renderGameCard(row, id, name, coverUrl);
+            });
+        });
+    }
+}
+
+/**
+ * Helper function to render a single game card
+ */
+function renderGameCard(row, gameId, gameName, coverUrl) {
+    const col = document.createElement("div");
+    col.className = "col";
+    row.appendChild(col);
+
+    const card = document.createElement("a");
+    card.className = "card h-100 text-decoration-none shadow-sm border-0 rounded-0 game-card";
+    card.href = `${base_path}/browse/games/?id=${gameId}`;
+    col.appendChild(card);
+
+    if (coverUrl) {
+        const img = document.createElement("img");
+        img.className = "card-img-top rounded-0";
+        img.src = coverUrl;
+        img.alt = gameName || "";
+        img.loading = "lazy";
+        card.appendChild(img);
+    } else {
+        const placeholder = document.createElement("div");
+        placeholder.className = "card-img-top bg-secondary d-flex align-items-center justify-content-center";
+        placeholder.style.height = "120px";
+        const icon = document.createElement("span");
+        icon.className = "material-symbols-outlined text-white";
+        icon.textContent = "sports_esports";
+        placeholder.appendChild(icon);
+        card.appendChild(placeholder);
+    }
+
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body p-1";
+    card.appendChild(cardBody);
+
+    if (gameName) {
+        const nameEl = document.createElement("p");
+        nameEl.className = "card-text small mb-0 text-truncate";
+        nameEl.textContent = gameName;
+        nameEl.title = gameName;
+        cardBody.appendChild(nameEl);
+    } else {
+        // Show game ID as fallback
+        const nameEl = document.createElement("p");
+        nameEl.className = "card-text small mb-0 text-muted";
+        nameEl.textContent = `Game #${gameId}`;
+        cardBody.appendChild(nameEl);
+    }
 }
