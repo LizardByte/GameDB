@@ -169,6 +169,231 @@ function addMoreResultsNote(container, totalCount, shownCount) {
     }
 }
 
+/**
+ * Create banner image element for platform card
+ */
+function createPlatformBanner(platform, basePath) {
+    const banner = document.createElement("img");
+    banner.className = "card-img-top rounded-0";
+    banner.alt = "";
+
+    if (platform.screenscraper_id !== null && platform.screenscraper_region !== null) {
+        banner.src = `https://screenscraper.fr/image.php?plateformid=${platform.screenscraper_id}&media=wheel&region=${platform.screenscraper_region}&num=&version=&maxwidth=600&maxheight=600`;
+        banner.classList.add("bg-dark", "bg-gradient", "p-4");
+    } else {
+        const logoUrl = platform.platform_logo?.url;
+        if (logoUrl) {
+            banner.src = logoUrl.replace("t_thumb", "t_720p");
+        } else {
+            banner.src = `${basePath}/assets/img/no-logo.png`;
+            banner.classList.add("bg-dark", "bg-gradient", "p-4");
+        }
+    }
+
+    return banner;
+}
+
+/**
+ * Create card body content for platform card
+ */
+function createPlatformCardBody(platform, basePath) {
+    const card_body = document.createElement("div");
+    card_body.className = "card-body p-4 rounded-0";
+
+    const card_title_link = document.createElement("a");
+    card_title_link.className = "text-decoration-none project-card-link";
+    card_title_link.href = `${basePath}/browse/platforms/?id=${platform.id}`;
+    card_body.appendChild(card_title_link);
+
+    const card_title_text = document.createElement("h5");
+    card_title_text.className = "card-title mb-1 fw-bolder";
+    card_title_text.textContent = platform.name;
+    card_title_link.appendChild(card_title_text);
+
+    const igdb_link = document.createElement("a");
+    igdb_link.href = platform.url;
+    igdb_link.target = "_blank";
+    igdb_link.rel = "noopener";
+    igdb_link.className = "small text-muted text-decoration-none mb-2 d-inline-block";
+    igdb_link.textContent = "View on IGDB ↗";
+    card_body.appendChild(igdb_link);
+
+    if (platform.game_count !== undefined && platform.game_count > 0) {
+        const game_count = document.createElement("div");
+        game_count.className = "small text-muted mb-2";
+        game_count.textContent = `${platform.game_count} game${platform.game_count === 1 ? '' : 's'}`;
+        card_body.appendChild(game_count);
+    }
+
+    return card_body;
+}
+
+/**
+ * Get appropriate version based on platform category
+ */
+function getPlatformVersion(platform) {
+    if (!platform.versions || platform.versions.length === 0) {
+        return null;
+    }
+
+    if (platform.category === 4) {
+        // Operating system - get last version (newest)
+        return platform.versions[platform.versions.length - 1];
+    } else {
+        // Console/PC/etc - get first version (initial)
+        return platform.versions[0];
+    }
+}
+
+/**
+ * Add metadata from version to card footer
+ */
+function addVersionMetadataToFooter(version, card_paragraph, card_footer, platform, platform_region_flag_map, metadata_key_icon_map) {
+    for (let key in metadata_key_icon_map) {
+        if (version[key] === undefined) continue;
+
+        if (key === 'summary') {
+            if (platform.summary === undefined) {
+                const summary = splitString(version[key]);
+                card_paragraph.textContent = summary[0];
+            }
+        } else if (key === 'platform_version_release_dates') {
+            addReleaseDatesToFooter(version[key], card_footer, platform_region_flag_map);
+        } else if (metadata_key_icon_map[key]) {
+            addMetadataItemToFooter(key, version[key], card_footer, metadata_key_icon_map[key]);
+        }
+    }
+}
+
+/**
+ * Add release dates to card footer
+ */
+function addReleaseDatesToFooter(releaseDates, card_footer, platform_region_flag_map) {
+    const metadata_div = document.createElement("div");
+    metadata_div.className = "ms-4 mb-2";
+
+    for (let release_date of releaseDates) {
+        const release_date_div = document.createElement("div");
+        release_date_div.className = "d-flex align-items-center";
+        metadata_div.appendChild(release_date_div);
+
+        const regionName = release_date.release_region?.region;
+        if (regionName && platform_region_flag_map[regionName]) {
+            const flag_prefix = document.createElement("span");
+            flag_prefix.className = `${platform_region_flag_map[regionName].size} me-3 text-center`;
+            flag_prefix.style.width = "2rem";
+            flag_prefix.textContent = platform_region_flag_map[regionName].code;
+            release_date_div.appendChild(flag_prefix);
+        }
+
+        const release_text = document.createElement("small");
+        release_text.className = "text-muted";
+        release_text.textContent = release_date.human || release_date.y || "";
+        release_date_div.appendChild(release_text);
+    }
+
+    card_footer.appendChild(metadata_div);
+}
+
+/**
+ * Add single metadata item to card footer
+ */
+function addMetadataItemToFooter(key, value, card_footer, iconName) {
+    const metadata_div = document.createElement("div");
+    metadata_div.className = "ms-4 mb-2 d-flex align-items-start";
+
+    const icon = document.createElement("span");
+    icon.className = "material-symbols-outlined me-3 text-muted";
+    icon.style.fontSize = "1.25rem";
+    icon.textContent = iconName;
+    metadata_div.appendChild(icon);
+
+    const text = document.createElement("small");
+    text.className = "text-muted flex-grow-1";
+    text.textContent = value;
+    metadata_div.appendChild(text);
+
+    card_footer.appendChild(metadata_div);
+}
+
+/**
+ * Process platforms data and add screenscraper IDs
+ */
+function processPlatformsData(result, platform_xref) {
+    const platforms = [];
+    for (let platform in result) {
+        result[platform].screenscraper_id = null;
+        result[platform].screenscraper_region = null;
+
+        for (let xref in platform_xref) {
+            if (platform_xref[xref].ids?.igdb === result[platform].id) {
+                result[platform].screenscraper_id = platform_xref[xref].ids?.screenscraper;
+                result[platform].screenscraper_region = platform_xref[xref].variables?.screenscraper?.region;
+                break;
+            }
+        }
+
+        platforms.push(result[platform]);
+    }
+    return platforms;
+}
+
+/**
+ * Create complete platform card element
+ */
+function createPlatformCardElement(platform, platform_region_flag_map, metadata_key_icon_map, basePath) {
+    const column = document.createElement("div");
+    column.className = "col-lg-4 mb-5";
+
+    const card = document.createElement("div");
+    card.className = "card h-100 shadow border-0 rounded-0";
+    column.appendChild(card);
+
+    // Banner
+    const banner_div = document.createElement("div");
+    banner_div.className = "hover-zoom";
+    card.append(banner_div);
+
+    const banner_link = document.createElement("a");
+    banner_link.href = `${basePath}/browse/platforms/?id=${platform.id}`;
+    banner_div.append(banner_link);
+
+    const banner = createPlatformBanner(platform, basePath);
+
+    // Remove hover effect if using placeholder image
+    if (platform.screenscraper_id === null && !platform.platform_logo?.url) {
+        banner_div.classList.remove("hover-zoom");
+    }
+
+    banner_link.append(banner);
+
+    // Card body
+    const card_body = createPlatformCardBody(platform, basePath);
+    card.appendChild(card_body);
+
+    // Summary
+    const summary = splitString(platform.summary);
+    const card_paragraph_div = document.createElement("div");
+    card_paragraph_div.className = "mb-3";
+    card_body.appendChild(card_paragraph_div);
+
+    const card_paragraph = document.createElement("p");
+    card_paragraph.className = "card-text mb-0";
+    card_paragraph.textContent = summary[0];
+    card_paragraph_div.appendChild(card_paragraph);
+
+    const card_footer = document.createElement("div");
+    card_footer.className = "card-footer p-2 pt-0 border-0 rounded-0";
+    card.appendChild(card_footer);
+
+    // Add metadata from version if available
+    const version = getPlatformVersion(platform);
+    if (version) {
+        addVersionMetadataToFooter(version, card_paragraph, card_footer, platform, platform_region_flag_map, metadata_key_icon_map);
+    }
+
+    return column;
+}
 
 $(document).ready(function(){
     // Set cache = false for all jquery ajax requests.
@@ -258,209 +483,15 @@ $(document).ready(function(){
             type: "GET",
             dataType:"json",
             success: function (result) {
-                let platforms = []
-                for (let platform in result) {
-
-                    // add screenscraper id to platform, start with null value
-                    result[platform]['screenscraper_id'] = null
-                    result[platform]['screenscraper_region'] = null
-
-                    for (let xref in platform_xref) {
-                        if (platform_xref[xref]['ids']['igdb'] === result[platform]['id']) {
-                            result[platform]['screenscraper_id'] = platform_xref[xref]['ids']['screenscraper']
-                            result[platform]['screenscraper_region'] = platform_xref[xref]['variables']['screenscraper']['region']
-                        }
-                    }
-
-                    platforms.push(result[platform])
-                }
-
-                let sorted = platforms.toSorted(globalThis.rankingSorter("name", "id")).reverse()
+                const platforms = processPlatformsData(result, platform_xref);
+                const sorted = platforms.toSorted(globalThis.rankingSorter("name", "id")).reverse();
 
                 for(let item in sorted) {
-                    let column = document.createElement("div")
-                    column.className = "col-lg-4 mb-5"
-                    platforms_container.appendChild(column)
-
-                    let card = document.createElement("div")
-                    card.className = "card h-100 shadow border-0 rounded-0"
-                    column.appendChild(card)
-
-                    let banner_div = document.createElement("div")
-                    banner_div.className = "hover-zoom"
-                    card.append(banner_div)
-
-                    let banner_link = document.createElement("a")
-                    banner_link.href = `${base_path}/browse/platforms/?id=${sorted[item]['id']}`
-                    banner_div.append(banner_link)
-
-                    let banner = document.createElement("img")
-                    banner.className = "card-img-top rounded-0"
-
-                    // see if screensraper id has an image
-                    if (sorted[item]['screenscraper_id'] !== null && sorted[item]['screenscraper_region'] !== null) {
-                        banner.src = `https://screenscraper.fr/image.php?plateformid=${sorted[item]['screenscraper_id']}&media=wheel&region=${sorted[item]['screenscraper_region']}&num=&version=&maxwidth=600&maxheight=600`
-                        banner.classList.add("bg-gradient", "p-4")
-                    }
-                    else {
-                        const logoUrl = sorted[item]['platform_logo']?.url
-                        if (logoUrl) {
-                            banner.src = logoUrl.replace("t_thumb", "t_720p")
-                        } else {
-                            banner.src = `${base_path}/assets/img/no-logo.png`
-                            banner.classList.add("bg-gradient", "p-4")
-                            banner_div.classList.remove("hover-zoom")
-                        }
-                    }
-                    banner.alt = ""
-                    banner_link.append(banner)
-
-                    let card_body = document.createElement("div")
-                    card_body.className = "card-body p-4 rounded-0"
-                    card.appendChild(card_body)
-
-                    let card_title_link = document.createElement("a")
-                    card_title_link.className = "text-decoration-none project-card-link"
-                    card_title_link.href = `${base_path}/browse/platforms/?id=${sorted[item]['id']}`
-                    card_body.appendChild(card_title_link)
-
-                    let card_title_text = document.createElement("h5")
-                    card_title_text.className = "card-title mb-1 fw-bolder"
-                    card_title_text.textContent = sorted[item]['name']
-                    card_title_link.appendChild(card_title_text)
-
-                    // small external IGDB link
-                    let igdb_link = document.createElement("a")
-                    igdb_link.href = sorted[item]['url']
-                    igdb_link.target = "_blank"
-                    igdb_link.rel = "noopener"
-                    igdb_link.className = "small text-muted text-decoration-none mb-2 d-inline-block"
-                    igdb_link.textContent = "View on IGDB ↗"
-                    card_body.appendChild(igdb_link)
-
-                    // game count
-                    if (sorted[item]['game_count'] !== undefined && sorted[item]['game_count'] > 0) {
-                        let game_count = document.createElement("div")
-                        game_count.className = "small text-muted mb-2"
-                        game_count.textContent = `${sorted[item]['game_count']} game${sorted[item]['game_count'] === 1 ? '' : 's'}`
-                        card_body.appendChild(game_count)
-                    }
-
-                    let summary = splitString(sorted[item]['summary'])
-
-                    let card_paragraph_div = document.createElement("div")
-                    card_paragraph_div.className = "mb-3"
-                    card_body.appendChild(card_paragraph_div)
-
-                    let card_paragraph = document.createElement("p")
-                    card_paragraph.className = "card-text mb-0"
-                    card_paragraph.textContent = summary[0]
-                    card_paragraph_div.appendChild(card_paragraph)
-
-                    let card_footer = document.createElement("div")
-                    card_footer.className = "card-footer p-2 pt-0 border-0 rounded-0"
-                    card.appendChild(card_footer)
-
-                    // get first or last version depending on "category"
-                    let version
-                    if (sorted[item]['category'] === 4) {
-                        // this is an operating system, so get the last version (hopefully newest)
-                        version = sorted[item]['versions'][sorted[item]['versions'].length - 1]
-                    }
-                    else {
-                        // this is a console/pc/etc., so get the first version (initial version)
-                        version = sorted[item]['versions'][0]
-                    }
-
-                    for (let key in metadata_key_icon_map) {
-                        if (version[key] !== undefined) {
-                            // process summary first
-                            if (key === 'summary') {
-                                if (sorted[item]['summary'] === undefined) {
-                                    summary = splitString(version[key])
-                                    card_paragraph.textContent = summary[0]
-                                }
-                            }
-                            else {
-                                // create div for metadata
-                                let metadata_div = document.createElement("div")
-                                metadata_div.className = "ms-4 mb-2"
-
-                                if (key === 'platform_version_release_dates') {
-                                    // get the region and release date for each release date
-                                    for (let release_date in version[key]) {
-                                        // create div container for each release date
-                                        let release_date_div = document.createElement("div")
-                                        release_date_div.className = "d-flex align-items-center"
-                                        metadata_div.appendChild(release_date_div)
-
-                                        // show flag emoji as prefix
-                                        let regionName = version[key][release_date]['release_region']['region']
-                                        let flag_prefix = document.createElement("span")
-                                        flag_prefix.className = `${platform_region_flag_map[regionName]['size']} me-3 text-center`
-                                        flag_prefix.textContent = platform_region_flag_map[regionName]['code']
-                                        flag_prefix.title = regionName.replace("_", " ")
-                                        release_date_div.appendChild(flag_prefix)
-
-                                        // add date
-                                        let date = document.createElement("span")
-                                        date.textContent = version[key][release_date]['human']
-                                        release_date_div.appendChild(date)
-                                    }
-                                }
-                                else {
-                                    let key_div = document.createElement("div")
-                                    key_div.className = "d-flex align-items-center"
-                                    metadata_div.appendChild(key_div)
-
-                                    // add key symbol as prefix
-                                    let key_prefix = document.createElement("span")
-                                    key_prefix.className = "material-symbols-outlined fs-2 me-3 text-center"
-                                    key_prefix.textContent = metadata_key_icon_map[key]
-                                    key_prefix.title = key.replace("_", " ")
-                                    key_div.appendChild(key_prefix)
-
-                                    // add value
-                                    let key_value = document.createElement("span")
-                                    key_value.textContent = version[key]
-                                    key_div.appendChild(key_value)
-                                }
-
-                                // add metadata div to footer
-                                card_body.appendChild(metadata_div)
-                            }
-                        }
-                    }
-
-                    if (summary.length > 1) {
-                        // create a see more "action/link"
-                        let see_more = document.createElement("a")
-
-                        // create a see less "action/link"
-                        let see_less = document.createElement("a")
-
-                        // populate see more/less links
-                        see_more.className = ""
-                        see_more.onclick = function() {
-                            card_paragraph.textContent = summary[1]
-                            see_more.classList.add("d-none")
-                            see_less.classList.remove("d-none")
-                        }
-                        see_more.textContent = "See more"
-                        card_paragraph_div.appendChild(see_more)
-
-                        see_less.className = "d-none"
-                        see_less.onclick = function() {
-                            card_paragraph.textContent = summary[0]
-                            see_less.classList.add("d-none")
-                            see_more.classList.remove("d-none")
-                        }
-                        see_less.textContent = "See less"
-                        card_paragraph_div.appendChild(see_less)
-                    }
+                    const column = createPlatformCardElement(sorted[item], platform_region_flag_map, metadata_key_icon_map, base_path);
+                    platforms_container.appendChild(column);
                 }
             }
-        })
+        });
     }
 
     get_platform_xref()

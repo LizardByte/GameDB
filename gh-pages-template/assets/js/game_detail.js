@@ -4,22 +4,12 @@
  * Depends on item_detail.js being loaded first.
  */
 
-function renderGame(data) {
-    // Title
-    document.title = (data.name || "Game") + " – GameDB";
-
-    // Set game name in both the page header and the content section
-    const gameName = data.name || "Unknown Game";
-    document.getElementById("game-name").textContent = gameName;
-
-    // Also set in page header if it exists
-    const pageHeaderH1 = document.querySelector("header.header-section .page-heading h1");
+/**
+ * Set up game banner/artworks in page header
+ */
+function setupGameBanner(data) {
     const pageHeading = document.querySelector("header.header-section .page-heading");
-    if (pageHeaderH1) {
-        pageHeaderH1.textContent = gameName;
-    }
 
-    // Banner/Artworks (inject into existing page header)
     if (data.artworks && data.artworks.length > 0) {
         const bigImgsEl = document.getElementById("header-big-imgs");
         const pageHeader = document.querySelector("header.header-section .intro-header");
@@ -54,8 +44,12 @@ function renderGame(data) {
         // No banner image, completely hide the .page-heading
         pageHeading.style.display = "none";
     }
+}
 
-    // Cover
+/**
+ * Render game cover image or placeholder
+ */
+function renderGameCover(data) {
     const coverEl = document.getElementById("game-cover");
     const coverPlaceholder = document.getElementById("game-cover-placeholder");
     if (data.cover?.url) {
@@ -66,8 +60,12 @@ function renderGame(data) {
         coverPlaceholder.style.display = null;
         coverPlaceholder.style.removeProperty("display");
     }
+}
 
-    // Badges: genres, themes, game modes, player perspectives
+/**
+ * Render game badges (genres, themes, modes, perspectives)
+ */
+function renderGameBadges(data) {
     const badgesEl = document.getElementById("game-badges");
 
     const addBadgeGroup = (items, cls) => {
@@ -80,11 +78,12 @@ function renderGame(data) {
     addBadgeGroup(data.themes, "bg-info text-dark");
     addBadgeGroup(data.game_modes, "bg-success");
     addBadgeGroup(data.player_perspectives, "bg-warning text-dark");
+}
 
-    // Metadata dl
-    const metaDl = document.getElementById("game-meta");
-
-    // Ratings
+/**
+ * Render ratings (user and critic)
+ */
+function renderGameRatings(data, metaDl) {
     if (data.rating !== undefined && data.rating !== null) {
         addDlRow(metaDl, "User Rating", `${Math.round(data.rating)} / 100`);
     }
@@ -105,12 +104,14 @@ function renderGame(data) {
             addDlRow(metaDl, "Age Ratings", ratingsEl);
         }
     }
+}
 
-    // Platforms
+/**
+ * Render platforms (async)
+ */
+function renderGamePlatforms(data, metaDl) {
     if (data.platforms && data.platforms.length > 0) {
         const platformsEl = document.createDocumentFragment();
-        // platforms here are just IDs (integers), not objects
-        // We resolve them from the all.json file
         const platformUrl = `${base_url}/platforms/all.json`;
         fetch(platformUrl)
             .then(r => r.json())
@@ -138,11 +139,14 @@ function renderGame(data) {
                 addDlRow(metaDl, "Platforms", el);
             });
     }
+}
 
-    // Release dates
+/**
+ * Render release dates
+ */
+function renderReleaseDates(data, metaDl) {
     if (data.release_dates && data.release_dates.length > 0) {
         const releasesEl = document.createDocumentFragment();
-        // Group by platform and region
         data.release_dates.forEach(rd => {
             if (rd.date || rd.y) {
                 const div = document.createElement("div");
@@ -156,8 +160,12 @@ function renderGame(data) {
             addDlRow(metaDl, "Release Dates", releasesEl);
         }
     }
+}
 
-    // Developers / Publishers
+/**
+ * Render developers and publishers
+ */
+function renderCompanies(data, metaDl) {
     if (data.involved_companies && data.involved_companies.length > 0) {
         const devs = data.involved_companies.filter(c => c.developer).map(c => c.company?.name).filter(Boolean);
         const pubs = data.involved_companies.filter(c => !c.developer).map(c => c.company?.name).filter(Boolean);
@@ -168,7 +176,12 @@ function renderGame(data) {
             addDlRow(metaDl, "Publisher(s)", pubs.join(", "));
         }
     }
+}
 
+/**
+ * Render collections and franchises
+ */
+function renderCollectionsAndFranchises(data, metaDl) {
     // Collections / series
     if (data.collections && data.collections.length > 0) {
         const el = document.createDocumentFragment();
@@ -202,8 +215,12 @@ function renderGame(data) {
         el.appendChild(a);
         addDlRow(metaDl, "Franchise", el);
     }
+}
 
-    // Multiplayer
+/**
+ * Render multiplayer information
+ */
+function renderMultiplayer(data, metaDl) {
     if (data.multiplayer_modes && data.multiplayer_modes.length > 0) {
         const mm = data.multiplayer_modes[0];
         const parts = [];
@@ -215,6 +232,35 @@ function renderGame(data) {
             addDlRow(metaDl, "Multiplayer", parts.join(" · "));
         }
     }
+}
+
+function renderGame(data) {
+    // Title
+    document.title = (data.name || "Game") + " – GameDB";
+
+    // Set game name in both the page header and the content section
+    const gameName = data.name || "Unknown Game";
+    document.getElementById("game-name").textContent = gameName;
+
+    // Also set in page header if it exists
+    const pageHeaderH1 = document.querySelector("header.header-section .page-heading h1");
+    if (pageHeaderH1) {
+        pageHeaderH1.textContent = gameName;
+    }
+
+    setupGameBanner(data);
+    renderGameCover(data);
+    renderGameBadges(data);
+
+    // Metadata dl
+    const metaDl = document.getElementById("game-meta");
+
+    renderGameRatings(data, metaDl);
+    renderGamePlatforms(data, metaDl);
+    renderReleaseDates(data, metaDl);
+    renderCompanies(data, metaDl);
+    renderCollectionsAndFranchises(data, metaDl);
+    renderMultiplayer(data, metaDl);
 
     // Summary
     if (data.summary) {
@@ -230,7 +276,23 @@ function renderGame(data) {
         document.getElementById("game-storyline").textContent = data.storyline;
     }
 
-    // Screenshots
+    renderScreenshots(data);
+    renderVideos(data);
+    renderExternalLinks(data);
+    renderCharacters(data);
+
+    // IGDB link
+    if (data.url) {
+        const igdbLink = document.getElementById("game-igdb-link");
+        igdbLink.href = data.url;
+        igdbLink.classList.remove("d-none");
+    }
+}
+
+/**
+ * Render screenshots section
+ */
+function renderScreenshots(data) {
     if (data.screenshots && data.screenshots.length > 0) {
         const section = document.getElementById("game-screenshots-section");
         section.classList.remove("d-none");
@@ -256,8 +318,12 @@ function renderGame(data) {
             container.appendChild(col);
         });
     }
+}
 
-    // Videos
+/**
+ * Render videos section
+ */
+function renderVideos(data) {
     if (data.videos && data.videos.length > 0) {
         const section = document.getElementById("game-videos-section");
         section.classList.remove("d-none");
@@ -294,8 +360,12 @@ function renderGame(data) {
             }
         });
     }
+}
 
-    // External links
+/**
+ * Render external links section
+ */
+function renderExternalLinks(data) {
     if (data.external_games && data.external_games.length > 0) {
         const section = document.getElementById("game-external-section");
         section.classList.remove("d-none");
@@ -312,8 +382,12 @@ function renderGame(data) {
             container.appendChild(a);
         });
     }
+}
 
-    // Characters
+/**
+ * Render characters section
+ */
+function renderCharacters(data) {
     if (data.characters && data.characters.length > 0) {
         const section = document.getElementById("game-characters-section");
         section.classList.remove("d-none");
@@ -356,13 +430,6 @@ function renderGame(data) {
                 card.appendChild(cardBody);
             }
         });
-    }
-
-    // IGDB link
-    if (data.url) {
-        const igdbLink = document.getElementById("game-igdb-link");
-        igdbLink.href = data.url;
-        igdbLink.classList.remove("d-none");
     }
 }
 
