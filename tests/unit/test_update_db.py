@@ -271,6 +271,12 @@ def test_add_platform_game_counts(tmp_path):
     assert full_dict['platforms'][6]['game_count'] == 2
     assert full_dict['platforms'][48]['game_count'] == 0
     mock_write.assert_called_once()
+    # Verify the 'games' list is excluded from the summary written to all.json
+    written_data = mock_write.call_args.kwargs['data']
+    assert 'games' not in written_data[6]
+    assert 'games' not in written_data[48]
+    assert written_data[6]['game_count'] == 2
+    assert written_data[6]['name'] == 'PC'
 
 
 @pytest.mark.parametrize('name,expected_bucket', [
