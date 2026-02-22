@@ -1,5 +1,7 @@
 // setup defaults — base_path is injected by Jekyll via globalThis.GAMEDB_CONFIG
+/* istanbul ignore next */
 const _cfg = globalThis.GAMEDB_CONFIG || {};
+/* istanbul ignore next */
 let base_path = _cfg.base_path
     ? ("/" + _cfg.base_path).replaceAll(/\/+/g, "/").replace(/\/$/, "")
     : "/GameDB";
@@ -23,6 +25,7 @@ function splitString(string) {
         const regex = /(.{0,200})\b/;
         const match = regex.exec(string);
 
+        /* istanbul ignore next */
         if (match) {
             // Split the string at the end of the last full word
             const splitIndex = match[1].length;
@@ -111,7 +114,9 @@ function createGameCard(id, game, allPlatforms = null) {
         const platformYears = {}
         if (game.release_dates && game.release_dates.length > 0) {
             game.release_dates.forEach(rd => {
+                /* istanbul ignore else */
                 if (rd.platform && rd.y) {
+                    /* istanbul ignore else */
                     if (!platformYears[rd.platform] || rd.y < platformYears[rd.platform]) {
                         platformYears[rd.platform] = rd.y
                     }
@@ -532,7 +537,7 @@ function run_search() {
 
             // Filter results by name (case-insensitive)
             const term_lower = search_term.toLowerCase()
-            const matches = Object.entries(bucket_data).filter(([_id, game]) =>
+            const matches = Object.entries(bucket_data).filter(([, game]) =>
                 game.name.toLowerCase().includes(term_lower)
             )
 
@@ -586,4 +591,24 @@ function run_search() {
             errEl.textContent = `Search failed: ${err.message}`
             search_container.appendChild(errEl)
         })
+}
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        splitString,
+        fetchGameData,
+        createGameCard,
+        renderSearchResults,
+        addMoreResultsNote,
+        createPlatformBanner,
+        createPlatformCardBody,
+        getPlatformVersion,
+        addVersionMetadataToFooter,
+        addReleaseDatesToFooter,
+        addMetadataItemToFooter,
+        processPlatformsData,
+        createPlatformCardElement,
+        run_search,
+    };
 }

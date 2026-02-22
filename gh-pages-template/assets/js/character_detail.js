@@ -44,3 +44,10 @@ function renderCharacter(data) {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("characters", renderCharacter);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        renderCharacter,
+    };
+}

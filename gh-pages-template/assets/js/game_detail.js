@@ -19,7 +19,7 @@ function setupGameBanner(data) {
             bigImgsEl.dataset.numImg = data.artworks.length;
             data.artworks.forEach((artwork, index) => {
                 const imgNum = index + 1;
-                bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge_2x"));
+                bigImgsEl.dataset[`imgSrc${imgNum}`] = igdbImageUrl(artwork.url, "t_screenshot_huge_2x");
             });
 
             // Add big-img class and img-desc span to existing header
@@ -169,6 +169,7 @@ function renderCompanies(data, metaDl) {
     if (data.involved_companies && data.involved_companies.length > 0) {
         const devs = data.involved_companies.filter(c => c.developer).map(c => c.company?.name).filter(Boolean);
         const pubs = data.involved_companies.filter(c => !c.developer).map(c => c.company?.name).filter(Boolean);
+        /* istanbul ignore else */
         if (devs.length > 0) {
             addDlRow(metaDl, "Developer(s)", devs.join(", "));
         }
@@ -469,8 +470,8 @@ function initGameBanner() {
 
     // Set initial image
     const getImgInfo = function(imgNum) {
-        const src = bigImgsEl.getAttribute(`data-img-src-${imgNum}`);
-        const desc = bigImgsEl.getAttribute(`data-img-desc-${imgNum}`);
+        const src = bigImgsEl.dataset[`imgSrc${imgNum}`];
+        const desc = bigImgsEl.dataset[`imgDesc${imgNum}`];
         return { src, desc };
     };
 
@@ -532,3 +533,25 @@ function initGameBanner() {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("games", renderGame);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        setupGameBanner,
+        renderGameCover,
+        renderGameBadges,
+        renderGameRatings,
+        renderGamePlatforms,
+        renderReleaseDates,
+        renderCompanies,
+        renderCollectionsAndFranchises,
+        renderMultiplayer,
+        renderGame,
+        renderScreenshots,
+        renderVideos,
+        renderExternalLinks,
+        renderCharacters,
+        getRegionFlag,
+        initGameBanner,
+    };
+}

@@ -1,0 +1,96 @@
+---
+name: CI Tests
+permissions: {}
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    permissions:
+      contents: write  # write is required for release_setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238  # v6.2.0
+        with:
+          node-version: latest
+
+      - name: Install Python Dependencies
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e .[dev]
+
+      - name: Install Node Dependencies
+        shell: bash
+        run: npm install --ignore-scripts
+
+      - name: Test with pytest
+        id: pytest
+        shell: bash
+        run: python -m pytest
+
+      - name: Test with Jest
+        id: jest
+        if: always()
+        env:
+          FORCE_COLOR: true
+        shell: bash
+        run: npm test
+
+      - name: Upload coverage
+        # any except canceled or skipped
+        if: >-
+          always() &&
+          (
+            steps.pytest.outcome == 'success' ||
+            steps.pytest.outcome == 'failure' ||
+            steps.jest.outcome == 'success' ||
+            steps.jest.outcome == 'failure'
+          ) &&
+          startsWith(github.repository, 'LizardByte/')
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de  # v5.5.2
+        with:
+          fail_ci_if_error: true
+          files: ./coverage/python-coverage.xml,./coverage/coverage-final.json
+          flags: ${{ runner.os }}
+          report_type: coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
+
+      - name: Upload test results
+        # any except canceled or skipped
+        if: >-
+          always() &&
+          (
+            steps.pytest.outcome == 'success' ||
+            steps.pytest.outcome == 'failure' ||
+            steps.jest.outcome == 'success' ||
+            steps.jest.outcome == 'failure'
+          ) &&
+          startsWith(github.repository, 'LizardByte/')
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de  # v5.5.2
+        with:
+          fail_ci_if_error: true
+          files: ./junit-python.xml,./junit.xml
+          flags: ${{ runner.os }}
+          report_type: test_results
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true

@@ -156,6 +156,7 @@ function renderGameList(container, games) {
 
     // Render games that already have full data
     gamesWithData.forEach(game => {
+        /* istanbul ignore next */
         renderGameCard(row, game.id, game.name, game.cover ? igdbImageUrl(game.cover.url, "t_cover_small_2x") : null);
     });
 
@@ -227,4 +228,18 @@ function renderGameCard(row, gameId, gameName, coverUrl) {
         nameEl.textContent = `Game #${gameId}`;
         cardBody.appendChild(nameEl);
     }
+}
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        getQueryParam,
+        igdbImageUrl,
+        makeBadge,
+        addDlRow,
+        showError,
+        loadItemDetail,
+        renderGameList,
+        renderGameCard,
+    };
 }

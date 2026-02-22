@@ -253,3 +253,16 @@ function renderPlatform(data) {
 document.addEventListener("DOMContentLoaded", () => {
     loadItemDetail("platforms", renderPlatform);
 });
+
+/* istanbul ignore next */
+if (typeof module !== "undefined") {
+    module.exports = {
+        getRegionFlag,
+        renderPlatformLogo,
+        renderPlatformBadges,
+        renderPlatformMetadata,
+        createVersionAccordionItem,
+        populateVersionBody,
+        renderPlatform,
+    };
+}
