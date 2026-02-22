@@ -305,6 +305,10 @@ def _add_platform_game_counts(full_dict: dict) -> None:
     """
     Calculate and attach game counts to each platform, then rewrite platforms/all.json.
 
+    The ``games`` list (appended by :func:`_append_related_items`) is intentionally excluded from
+    the ``all.json`` summary file because it would make the file excessively large.  The full game
+    list is still available in each individual platform JSON file.
+
     Parameters
     ----------
     full_dict : dict
@@ -314,8 +318,14 @@ def _add_platform_game_counts(full_dict: dict) -> None:
     for platform_data in full_dict['platforms'].values():
         platform_data['game_count'] = len(platform_data.get('games', []))
 
+    # Write a lightweight all.json that omits the 'games' list so the file stays small enough
+    # to be hosted on GitHub Pages (< 100 MB limit).
+    summary_data = {
+        pid: {k: v for k, v in pdata.items() if k != 'games'}
+        for pid, pdata in full_dict['platforms'].items()
+    }
     file_path = os.path.join(args.out_dir, 'platforms', 'all')
-    write_json_files(file_path=file_path, data=full_dict['platforms'])
+    write_json_files(file_path=file_path, data=summary_data)
 
 
 def _build_buckets_and_collect_videos(full_dict: dict) -> tuple:
