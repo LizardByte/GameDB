@@ -16,6 +16,7 @@ globalThis.GAMEDB_CONFIG = { base_path: '/GameDB' };
 
 const {
     igdbImageUrl,
+    getRegionFlag,
     makeBadge,
     addDlRow,
     showError,
@@ -67,6 +68,26 @@ describe('item_detail.js', () => {
 
         test('returns null for empty string', () => {
             expect(igdbImageUrl('', 't_cover_big_2x')).toBeNull();
+        });
+    });
+
+    describe('getRegionFlag', () => {
+        test('returns correct flags for all known regions', () => {
+            expect(getRegionFlag('europe')).toBe('🇪🇺');
+            expect(getRegionFlag('north_america')).toBe('🇺🇸');
+            expect(getRegionFlag('australia')).toBe('🇦🇺');
+            expect(getRegionFlag('new_zealand')).toBe('🇳🇿');
+            expect(getRegionFlag('japan')).toBe('🇯🇵');
+            expect(getRegionFlag('china')).toBe('🇨🇳');
+            expect(getRegionFlag('asia')).toBe('🌏');
+            expect(getRegionFlag('worldwide')).toBe('🌍');
+            expect(getRegionFlag('korea')).toBe('🇰🇷');
+            expect(getRegionFlag('brazil')).toBe('🇧🇷');
+        });
+
+        test('returns default globe for unknown region', () => {
+            expect(getRegionFlag('unknown')).toBe('🌐');
+            expect(getRegionFlag('')).toBe('🌐');
         });
     });
 

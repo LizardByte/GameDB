@@ -18,11 +18,11 @@ globalThis.makeBadge = itemDetail.makeBadge;
 globalThis.addDlRow = itemDetail.addDlRow;
 globalThis.loadItemDetail = itemDetail.loadItemDetail;
 globalThis.renderGameList = itemDetail.renderGameList;
+globalThis.getRegionFlag = itemDetail.getRegionFlag;
 globalThis.base_path = '/GameDB';
 globalThis.base_url = 'http://localhost/GameDB';
 
 const {
-    getRegionFlag,
     renderPlatformLogo,
     renderPlatformBadges,
     renderPlatformMetadata,
@@ -57,26 +57,6 @@ describe('platform_detail.js', () => {
 
     afterEach(() => {
         document.body.innerHTML = '';
-    });
-
-    describe('getRegionFlag', () => {
-        test('returns correct flags for all known regions', () => {
-            expect(getRegionFlag('europe')).toBe('🇪🇺');
-            expect(getRegionFlag('north_america')).toBe('🇺🇸');
-            expect(getRegionFlag('australia')).toBe('🇦🇺');
-            expect(getRegionFlag('new_zealand')).toBe('🇳🇿');
-            expect(getRegionFlag('japan')).toBe('🇯🇵');
-            expect(getRegionFlag('china')).toBe('🇨🇳');
-            expect(getRegionFlag('asia')).toBe('🌏');
-            expect(getRegionFlag('worldwide')).toBe('🌍');
-            expect(getRegionFlag('korea')).toBe('🇰🇷');
-            expect(getRegionFlag('brazil')).toBe('🇧🇷');
-        });
-
-        test('returns default globe for unknown region', () => {
-            expect(getRegionFlag('unknown')).toBe('🌐');
-            expect(getRegionFlag('')).toBe('🌐');
-        });
     });
 
     describe('renderPlatformLogo', () => {

@@ -435,27 +435,6 @@ function renderCharacters(data) {
 }
 
 /**
- * Map region string (from release_region.region) to an emoji flag.
- * @param {string} regionName
- * @returns {string}
- */
-function getRegionFlag(regionName) {
-    const map = {
-        "europe": "🇪🇺",
-        "north_america": "🇺🇸",
-        "australia": "🇦🇺",
-        "new_zealand": "🇳🇿",
-        "japan": "🇯🇵",
-        "china": "🇨🇳",
-        "asia": "🌏",
-        "worldwide": "🌍",
-        "korea": "🇰🇷",
-        "brazil": "🇧🇷",
-    };
-    return map[regionName] || "🌐";
-}
-
-/**
  * Initialize game banner with cycling images (mimics beautiful-jekyll-next behavior)
  */
 function initGameBanner() {
@@ -551,7 +530,6 @@ if (typeof module !== "undefined") {
         renderVideos,
         renderExternalLinks,
         renderCharacters,
-        getRegionFlag,
         initGameBanner,
     };
 }
