@@ -445,6 +445,23 @@ def test_get_youtube(tmp_path):
     assert 'yt_key_123' in called_url
 
 
+def test_write_stats(tmp_path):
+    udb.args = _make_args(tmp_path)
+    full_dict = {
+        'characters': {1: {}, 2: {}, 3: {}},
+        'games': {10: {}, 20: {}},
+        'videos': {'abc': {}, 'def': {}},
+    }
+
+    with patch('src.update_db.write_json_files') as mock_write:
+        udb._write_stats(full_dict=full_dict)
+
+    mock_write.assert_called_once()
+    call_kwargs = mock_write.call_args[1]
+    assert 'stats' in call_kwargs['file_path']
+    assert call_kwargs['data'] == {'characters': 3, 'games': 2, 'videos': 2}
+
+
 def test_get_platform_cross_reference(tmp_path):
     udb.args = _make_args(tmp_path)
 
@@ -474,6 +491,7 @@ def test_get_data_orchestration(tmp_path):
          patch('src.update_db._resolve_video_groups', return_value=[['vid1']]) as m_vgroups, \
          patch('src.update_db._fetch_youtube_metadata') as m_yt, \
          patch('src.update_db._enrich_game_videos') as m_enrich, \
+         patch('src.update_db._write_stats') as m_stats, \
          patch('src.update_db.write_json_files') as m_write:
         udb.get_data()
 
@@ -484,6 +502,7 @@ def test_get_data_orchestration(tmp_path):
     m_vgroups.assert_called_once()
     m_yt.assert_called_once()
     m_enrich.assert_called_once()
+    m_stats.assert_called_once()
     assert m_write.call_count >= 2  # bucket files + individual files
 
 
