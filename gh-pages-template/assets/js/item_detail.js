@@ -10,6 +10,27 @@
  *   window.GAMEDB_CONFIG = { base_path: "{{ site.baseurl }}", base_url: "{{ site.url }}{{ site.baseurl }}" };
  */
 
+/**
+ * Map a release region string (from release_region.region) to an emoji flag.
+ * @param {string} regionName
+ * @returns {string}
+ */
+function getRegionFlag(regionName) {
+    const map = {
+        "europe": "🇪🇺",
+        "north_america": "🇺🇸",
+        "australia": "🇦🇺",
+        "new_zealand": "🇳🇿",
+        "japan": "🇯🇵",
+        "china": "🇨🇳",
+        "asia": "🌏",
+        "worldwide": "🌍",
+        "korea": "🇰🇷",
+        "brazil": "🇧🇷",
+    };
+    return map[regionName] || "🌐";
+}
+
 const base_path = (globalThis.GAMEDB_CONFIG?.base_path
     ? ("/" + globalThis.GAMEDB_CONFIG.base_path).replaceAll(/\/+/g, "/").replace(/\/$/, "")
     : "/GameDB");
@@ -235,6 +256,7 @@ if (typeof module !== "undefined") {
     module.exports = {
         getQueryParam,
         igdbImageUrl,
+        getRegionFlag,
         makeBadge,
         addDlRow,
         showError,

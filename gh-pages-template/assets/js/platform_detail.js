@@ -26,22 +26,6 @@ const CATEGORY_NAMES = {
     6: "Computer",
 };
 
-function getRegionFlag(regionName) {
-    const map = {
-        "europe": "🇪🇺",
-        "north_america": "🇺🇸",
-        "australia": "🇦🇺",
-        "new_zealand": "🇳🇿",
-        "japan": "🇯🇵",
-        "china": "🇨🇳",
-        "asia": "🌏",
-        "worldwide": "🌍",
-        "korea": "🇰🇷",
-        "brazil": "🇧🇷",
-    };
-    return map[regionName] || "🌐";
-}
-
 /**
  * Render platform logo or placeholder
  */
@@ -257,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* istanbul ignore next */
 if (typeof module !== "undefined") {
     module.exports = {
-        getRegionFlag,
         renderPlatformLogo,
         renderPlatformBadges,
         renderPlatformMetadata,

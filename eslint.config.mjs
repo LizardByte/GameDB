@@ -20,6 +20,7 @@ export default [
                 "base_url": "readonly",
                 "base_path": "readonly",
                 "igdbImageUrl": "readonly",
+                "getRegionFlag": "readonly",
                 "makeBadge": "readonly",
                 "addDlRow": "readonly",
                 "loadItemDetail": "readonly",

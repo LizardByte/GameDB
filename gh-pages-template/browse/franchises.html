@@ -6,7 +6,7 @@ css:
   - /assets/css/hide-heading.css
 js:
   - /GameDB/assets/js/item_detail.js
-  - /GameDB/assets/js/franchise_detail.js
+  - /GameDB/assets/js/group_detail.js
 ext-css:
   - href: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200
 ---
@@ -15,6 +15,7 @@ ext-css:
 globalThis.GAMEDB_CONFIG = {
   base_path: "{{ site.baseurl }}"
 };
+globalThis.GAMEDB_GROUP_TYPE = "franchise";
 </script>
 
 <div id="item-loading" class="text-center py-5">
