@@ -200,6 +200,82 @@ def _fetch_all_endpoints(request_dict: dict, limit: int, test_mode: bool, test_l
     return full_dict
 
 
+def _build_related_entry(value: dict, fields: list) -> dict:
+    """
+    Build a new entry dict from value containing only the specified fields.
+
+    Parameters
+    ----------
+    value : dict
+        The source item dictionary.
+    fields : list
+        The list of field names to include.
+
+    Returns
+    -------
+    dict
+        A dictionary containing only the requested fields present in value.
+    """
+    return {field: value[field] for field in fields if field in value}
+
+
+def _append_item_to_endpoint(full_dict: dict, endpoint: str, item_type: str, value: dict, fields: list) -> None:
+    """
+    Append a single related item into all matching destination entries in the endpoint.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    endpoint : str
+        The destination endpoint name.
+    item_type : str
+        The type key under which to append the entry.
+    value : dict
+        The source item containing a list of destination IDs under the endpoint key.
+    fields : list
+        Fields to copy from value into the new entry.
+    """
+    append_to = value.get(endpoint)
+    if not append_to:
+        return
+
+    new_entry = _build_related_entry(value=value, fields=fields)
+
+    for item_id_dest in append_to:
+        if item_id_dest not in full_dict[endpoint]:
+            continue
+        if item_type not in full_dict[endpoint][item_id_dest]:
+            full_dict[endpoint][item_id_dest][item_type] = []
+        full_dict[endpoint][item_id_dest][item_type].append(new_entry)
+
+
+def _append_item_type(full_dict: dict, endpoint: str, item_type: str, fields: list) -> None:
+    """
+    Append all items of a given type into the appropriate endpoint entries.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary (mutated in-place).
+    endpoint : str
+        The destination endpoint name.
+    item_type : str
+        The source item type to iterate over.
+    fields : list
+        Fields to include in each appended entry.
+    """
+    print(f'adding {item_type} to {endpoint}')
+    for value in full_dict[item_type].values():
+        _append_item_to_endpoint(
+            full_dict=full_dict,
+            endpoint=endpoint,
+            item_type=item_type,
+            value=value,
+            fields=fields,
+        )
+
+
 def _append_related_items(full_dict: dict, request_dict: dict) -> None:
     """
     Append related items (e.g. characters to games, games to platforms) into full_dict in-place.
@@ -212,32 +288,17 @@ def _append_related_items(full_dict: dict, request_dict: dict) -> None:
         Endpoint configuration containing 'append' sub-dicts.
     """
     for endpoint, endpoint_dict in request_dict.items():
-        try:
-            append_dict = endpoint_dict['append']
-        except KeyError:
+        append_dict = endpoint_dict.get('append')
+        if not append_dict:
             continue
 
         for item_type, item_type_dict in append_dict.items():
-            print(f'adding {item_type} to {endpoint}')
-            for item_id_src, value in full_dict[item_type].items():
-                try:
-                    append_to = value[endpoint]
-                except KeyError:
-                    continue
-
-                for item_id_dest in append_to:
-                    if item_id_dest not in full_dict[endpoint]:
-                        continue
-
-                    if item_type not in full_dict[endpoint][item_id_dest]:
-                        full_dict[endpoint][item_id_dest][item_type] = []
-
-                    new_entry = {}
-                    for field in item_type_dict['fields']:
-                        if field in value:
-                            new_entry[field] = value[field]
-
-                    full_dict[endpoint][item_id_dest][item_type].append(new_entry)
+            _append_item_type(
+                full_dict=full_dict,
+                endpoint=endpoint,
+                item_type=item_type,
+                fields=item_type_dict['fields'],
+            )
 
 
 def _add_platform_game_counts(full_dict: dict) -> None:

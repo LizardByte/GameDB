@@ -478,7 +478,7 @@ describe('game_detail.js', () => {
             });
             const bigImgs = document.getElementById('header-big-imgs');
             expect(bigImgs.dataset.numImg).toBe('2');
-            expect(bigImgs.getAttribute('data-img-src-1')).toContain('art1');
+            expect(bigImgs.dataset.imgSrc1).toContain('art1');
         });
 
         test('hides page heading when no artworks and heading exists', () => {
@@ -489,7 +489,7 @@ describe('game_detail.js', () => {
 
         test('does nothing when no artworks and no .page-heading in DOM', () => {
             const pageHeading = document.querySelector('.page-heading');
-            pageHeading.parentNode.removeChild(pageHeading);
+            pageHeading.remove();
             // Should not throw and should not affect any element
             expect(() => setupGameBanner({})).not.toThrow();
         });
@@ -506,7 +506,7 @@ describe('game_detail.js', () => {
         test('does not throw when artworks present but no intro-header.big-img', () => {
             // Remove intro-header from DOM entirely
             const introHeader = document.querySelector('.intro-header');
-            introHeader.parentNode.removeChild(introHeader);
+            introHeader.remove();
             expect(() => setupGameBanner({
                 artworks: [{ url: '//images.igdb.com/t_thumb/art.jpg' }],
             })).not.toThrow();
@@ -515,7 +515,7 @@ describe('game_detail.js', () => {
         test('skips pageHeading visibility when pageHeading absent (no .page-heading)', () => {
             // Remove page-heading from DOM
             const pageHeading = document.querySelector('.page-heading');
-            pageHeading.parentNode.removeChild(pageHeading);
+            pageHeading.remove();
             document.querySelector('.intro-header').classList.add('big-img');
             expect(() => setupGameBanner({
                 artworks: [{ url: '//images.igdb.com/t_thumb/art.jpg' }],
@@ -535,7 +535,7 @@ describe('game_detail.js', () => {
         test('does not throw when artworks present but no .page-heading anywhere', () => {
             // Remove header.header-section entirely
             const header = document.querySelector('header.header-section');
-            header.parentNode.removeChild(header);
+            header.remove();
             expect(() => setupGameBanner({ artworks: [{ url: '//img.igdb.com/t.jpg' }] })).not.toThrow();
         });
     });
@@ -549,10 +549,10 @@ describe('game_detail.js', () => {
         test('sets initial image and cycles when multiple artworks', () => {
             const bigImgs = document.getElementById('header-big-imgs');
             bigImgs.dataset.numImg = '2';
-            bigImgs.setAttribute('data-img-src-1', 'https://example.com/art1.jpg');
-            bigImgs.setAttribute('data-img-src-2', 'https://example.com/art2.jpg');
-            bigImgs.setAttribute('data-img-desc-1', 'null');
-            bigImgs.setAttribute('data-img-desc-2', 'Artwork 2');
+            bigImgs.dataset.imgSrc1 = 'https://example.com/art1.jpg';
+            bigImgs.dataset.imgSrc2 = 'https://example.com/art2.jpg';
+            bigImgs.dataset.imgDesc1 = 'null';
+            bigImgs.dataset.imgDesc2 = 'Artwork 2';
 
             const introHeader = document.querySelector('.intro-header');
             introHeader.classList.add('big-img');
@@ -574,7 +574,7 @@ describe('game_detail.js', () => {
         test('returns early when no intro-header.big-img found', () => {
             const bigImgs = document.getElementById('header-big-imgs');
             bigImgs.dataset.numImg = '1';
-            bigImgs.setAttribute('data-img-src-1', 'https://example.com/art.jpg');
+            bigImgs.dataset.imgSrc1 = 'https://example.com/art.jpg';
             // intro-header does NOT have big-img class — should return early
             expect(() => initGameBanner()).not.toThrow();
         });
@@ -582,8 +582,8 @@ describe('game_detail.js', () => {
         test('sets background image without crashing when no .img-desc inside intro-header', () => {
             const bigImgs = document.getElementById('header-big-imgs');
             bigImgs.dataset.numImg = '1';
-            bigImgs.setAttribute('data-img-src-1', 'https://example.com/art.jpg');
-            bigImgs.setAttribute('data-img-desc-1', 'Some description');
+            bigImgs.dataset.imgSrc1 = 'https://example.com/art.jpg';
+            bigImgs.dataset.imgDesc1 = 'Some description';
             const introHeader = document.querySelector('.intro-header');
             introHeader.classList.add('big-img');
             // Do NOT add .img-desc — covers the if(imgDesc) false branch
@@ -633,7 +633,7 @@ describe('game_detail.js', () => {
         test('renders game without header h1 (pageHeaderH1 is null)', () => {
             // Remove .page-heading h1 from DOM
             const h1 = document.querySelector('header.header-section .page-heading h1');
-            if (h1) h1.parentNode.removeChild(h1);
+            if (h1) h1.remove();
             expect(() => renderGame({ name: 'No Header Game' })).not.toThrow();
             expect(document.getElementById('game-name').textContent).toBe('No Header Game');
         });

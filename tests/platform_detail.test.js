@@ -138,7 +138,7 @@ describe('platform_detail.js', () => {
 
     describe('renderPlatformMetadata', () => {
         test('renders game count (plural)', () => {
-            renderPlatformMetadata({ games: Array(42).fill({}) });
+            renderPlatformMetadata({ games: new Array(42).fill({}) });
             expect(document.getElementById('platform-meta').textContent).toContain('42 games');
         });
 

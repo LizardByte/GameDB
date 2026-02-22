@@ -28,11 +28,11 @@ globalThis.$ = function() {
 };
 globalThis.$.ajaxSetup = () => {};
 globalThis.$.ajax = function(opts) {
-    if (opts && opts.success) {
+    if (opts?.success) {
         // Return mock data appropriate to the URL
-        if (opts.url && opts.url.includes('cross-reference')) {
+        if (opts?.url?.includes('cross-reference')) {
             opts.success({});
-        } else if (opts.url && opts.url.includes('all.json')) {
+        } else if (opts?.url?.includes('all.json')) {
             opts.success({
                 '1': {
                     id: 1, name: 'PC', url: 'https://igdb.com', summary: 'Personal computer.',
