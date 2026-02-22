@@ -19,7 +19,7 @@ function setupGameBanner(data) {
             bigImgsEl.dataset.numImg = data.artworks.length;
             data.artworks.forEach((artwork, index) => {
                 const imgNum = index + 1;
-                bigImgsEl.setAttribute(`data-img-src-${imgNum}`, igdbImageUrl(artwork.url, "t_screenshot_huge_2x"));
+                bigImgsEl.dataset[`imgSrc${imgNum}`] = igdbImageUrl(artwork.url, "t_screenshot_huge_2x");
             });
 
             // Add big-img class and img-desc span to existing header
@@ -470,8 +470,8 @@ function initGameBanner() {
 
     // Set initial image
     const getImgInfo = function(imgNum) {
-        const src = bigImgsEl.getAttribute(`data-img-src-${imgNum}`);
-        const desc = bigImgsEl.getAttribute(`data-img-desc-${imgNum}`);
+        const src = bigImgsEl.dataset[`imgSrc${imgNum}`];
+        const desc = bigImgsEl.dataset[`imgDesc${imgNum}`];
         return { src, desc };
     };
 
