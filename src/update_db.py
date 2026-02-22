@@ -451,6 +451,20 @@ def _enrich_game_videos(full_dict: dict) -> None:
             video['thumb'] = video_thumbs[0][1]['url']
 
 
+def _write_stats(full_dict: dict) -> None:
+    """
+    Write a ``stats.json`` file to the output directory containing item counts per category.
+
+    Parameters
+    ----------
+    full_dict : dict
+        The combined data dictionary keyed by endpoint name.
+    """
+    stats = {endpoint: len(items) for endpoint, items in full_dict.items()}
+    file_path = os.path.join(args.out_dir, 'stats')
+    write_json_files(file_path=file_path, data=stats)
+
+
 def get_data():
     """
     Get data from IGDB and YouTube.
@@ -613,6 +627,8 @@ def get_data():
     _fetch_youtube_metadata(full_dict=full_dict, all_video_groups=all_video_groups)
 
     _enrich_game_videos(full_dict=full_dict)
+
+    _write_stats(full_dict=full_dict)
 
     for endpoint, endpoint_dict in full_dict.items():
         print(f'writing individual files for {endpoint}')
