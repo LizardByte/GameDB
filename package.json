@@ -47,7 +47,7 @@
     "globals": "17.5.0",
     "jest": "30.3.0",
     "jest-environment-jsdom": "30.3.0",
-    "jest-junit": "16.0.0",
+    "jest-junit": "17.0.0",
     "npm-run-all2": "8.0.4"
   },
   "repository": {
