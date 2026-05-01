@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
-    "@babel/preset-env": "7.29.2",
+    "@babel/preset-env": "7.29.3",
     "@eslint/js": "10.0.1",
     "@jest/globals": "30.3.0",
     "babel-jest": "30.3.0",
