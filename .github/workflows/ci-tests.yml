@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Node Dependencies
         shell: bash
-        run: npm install --ignore-scripts
+        run: npm ci --ignore-scripts
 
       - name: Test with pytest
         id: pytest
