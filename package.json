@@ -38,8 +38,8 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
-    "@babel/preset-env": "7.29.5",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
     "@eslint/js": "10.0.1",
     "@jest/globals": "30.4.1",
     "babel-jest": "30.4.1",
