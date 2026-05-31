@@ -54,3 +54,7 @@ alphanumeric characters of the game name (lowercased), e.g. `ha.json` for games 
 *Halo*. Games whose names contain a space as the second character are put into a bucket named after the first
 character. Games whose names do not start with two alphanumeric characters are grouped into `@.json`. Each bucket
 contains a dictionary of `{ id: { name } }` entries, keeping individual files small for fast lookups.
+
+## Development
+
+Code contributors can use the [Developer Setup](docs/developerSetup.md) guide.
