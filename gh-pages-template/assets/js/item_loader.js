@@ -400,108 +400,126 @@ function createPlatformCardElement(platform, platform_region_flag_map, metadata_
     return column;
 }
 
-$(document).ready(function(){
-    // Set cache = false for all jquery ajax requests.
-    $.ajaxSetup({
-        cache: false,
-    })
+/**
+ * Map platform release regions to display flags and Bootstrap font sizes.
+ *
+ * @type {Object.<string, {code: string, size: string}>}
+ */
+const platform_region_flag_map = {
+    "europe": {
+        "code": String.fromCodePoint(0x1F1EA, 0x1F1FA),
+        "size": "fs-2",
+    },
+    "north_america": {
+        "code": String.fromCodePoint(0x1F1FA, 0x1F1F8),
+        "size": "fs-2",
+    },
+    "australia": {
+        "code": String.fromCodePoint(0x1F1E6, 0x1F1FA),
+        "size": "fs-2",
+    },
+    "new_zealand": {
+        "code": String.fromCodePoint(0x1F1F3, 0x1F1FF),
+        "size": "fs-2",
+    },
+    "japan": {
+        "code": String.fromCodePoint(0x1F1EF, 0x1F1F5),
+        "size": "fs-2",
+    },
+    "china": {
+        "code": String.fromCodePoint(0x1F1E8, 0x1F1F3),
+        "size": "fs-2",
+    },
+    "asia": {
+        "code": String.fromCodePoint(0x1F30F),
+        "size": "fs-4",
+    },
+    "worldwide": {
+        "code": String.fromCodePoint(0x1F30E),
+        "size": "fs-4",
+    },
+    "korea": {
+        "code": String.fromCodePoint(0x1F1F0, 0x1F1F7),
+        "size": "fs-2",
+    },
+    "brazil": {
+        "code": String.fromCodePoint(0x1F1E7, 0x1F1F7),
+        "size": "fs-2",
+    },
+}
 
-    // get platform cross-reference from json
-    let platform_xref
-    let get_platform_xref = function() {
-        $.ajax({
-            url: `${base_url}/platforms/cross-reference.json`,
-            type: "GET",
-            dataType: "json",
-            async: false,  // this is false, so we can set the platform_xref variable
-            success: function (result) {
-                platform_xref = result
-            }
-        })
+/**
+ * Map platform version metadata keys to Material Symbols icon names.
+ *
+ * Keys with null values are rendered by specialized handlers.
+ *
+ * @type {Object.<string, string|null>}
+ */
+const metadata_key_icon_map = {
+    // material icons
+    'os': 'code_blocks',
+    'cpu': 'memory',
+    'graphics': 'developer_board',
+    'memory': 'memory_alt',
+    'storage': 'storage',
+    'media': 'save',
+    'connectivity': 'cable',
+    'output': 'settings_input_component',
+    'resolutions': 'aspect_ratio',
+    'sound': 'volume_up',
+    // these will be processed slightly differently
+    'platform_version_release_dates': null,
+    'summary': null,
+}
+
+/**
+ * Fetch a JSON resource without using the browser HTTP cache.
+ *
+ * @param {string} url - URL to load.
+ * @returns {Promise<object>} Parsed JSON response.
+ */
+function fetchJson(url) {
+    return fetch(url, { cache: "no-store" }).then(response => response.json());
+}
+
+/**
+ * Render platform cards after enriching IGDB platform data with cross-reference metadata.
+ *
+ * @param {Object.<string, object>} result - Platform records keyed by source identifier.
+ * @param {Object.<string, object>} platform_xref - Platform cross-reference records.
+ * @returns {void}
+ */
+function renderPlatformCards(result, platform_xref) {
+    const platforms = processPlatformsData(result, platform_xref);
+    const sorted = platforms.toSorted(globalThis.rankingSorter("name", "id")).reverse();
+
+    for(let item in sorted) {
+        const column = createPlatformCardElement(sorted[item], platform_region_flag_map, metadata_key_icon_map, base_path);
+        platforms_container.appendChild(column);
     }
+}
 
-    let platform_region_flag_map = {
-        "europe": {
-            "code": String.fromCodePoint(0x1F1EA, 0x1F1FA),
-            "size": "fs-2",
-        },
-        "north_america": {
-            "code": String.fromCodePoint(0x1F1FA, 0x1F1F8),
-            "size": "fs-2",
-        },
-        "australia": {
-            "code": String.fromCodePoint(0x1F1E6, 0x1F1FA),
-            "size": "fs-2",
-        },
-        "new_zealand": {
-            "code": String.fromCodePoint(0x1F1F3, 0x1F1FF),
-            "size": "fs-2",
-        },
-        "japan": {
-            "code": String.fromCodePoint(0x1F1EF, 0x1F1F5),
-            "size": "fs-2",
-        },
-        "china": {
-            "code": String.fromCodePoint(0x1F1E8, 0x1F1F3),
-            "size": "fs-2",
-        },
-        "asia": {
-            "code": String.fromCodePoint(0x1F30F),
-            "size": "fs-4",
-        },
-        "worldwide": {
-            "code": String.fromCodePoint(0x1F30E),
-            "size": "fs-4",
-        },
-        "korea": {
-            "code": String.fromCodePoint(0x1F1F0, 0x1F1F7),
-            "size": "fs-2",
-        },
-        "brazil": {
-            "code": String.fromCodePoint(0x1F1E7, 0x1F1F7),
-            "size": "fs-2",
-        },
-    }
+/**
+ * Load platform cross-reference and platform data, then render the platform card grid.
+ *
+ * @returns {Promise<void>} Resolves when platform cards have been rendered.
+ */
+function initializePlatformCards() {
+    return fetchJson(`${base_url}/platforms/cross-reference.json`)
+        .then(platform_xref => fetchJson(`${base_url}/platforms/all.json`)
+            .then(result => {
+                renderPlatformCards(result, platform_xref);
+            }));
+}
 
-    let metadata_key_icon_map = {
-        // material icons
-        'os': 'code_blocks',
-        'cpu': 'memory',
-        'graphics': 'developer_board',
-        'memory': 'memory_alt',
-        'storage': 'storage',
-        'media': 'save',
-        'connectivity': 'cable',
-        'output': 'settings_input_component',
-        'resolutions': 'aspect_ratio',
-        'sound': 'volume_up',
-        // these will be processed slightly differently
-        'platform_version_release_dates': null,
-        'summary': null,
-    }
-
-
-    // create platform cards
-    let initialize = function(){
-        $.ajax({
-            url: `${base_url}/platforms/all.json`,
-            type: "GET",
-            dataType:"json",
-            success: function (result) {
-                const platforms = processPlatformsData(result, platform_xref);
-                const sorted = platforms.toSorted(globalThis.rankingSorter("name", "id")).reverse();
-
-                for(let item in sorted) {
-                    const column = createPlatformCardElement(sorted[item], platform_region_flag_map, metadata_key_icon_map, base_path);
-                    platforms_container.appendChild(column);
-                }
-            }
+/* istanbul ignore next */
+if (typeof module === "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+        initializePlatformCards().catch(error => {
+            console.error("Failed to initialize platform cards", error);
         });
-    }
-
-    get_platform_xref()
-    initialize()
-})
+    });
+}
 
 /**
  * Search for games by name across all buckets.
@@ -609,6 +627,9 @@ if (typeof module !== "undefined") {
         addMetadataItemToFooter,
         processPlatformsData,
         createPlatformCardElement,
+        fetchJson,
+        renderPlatformCards,
+        initializePlatformCards,
         run_search,
     };
 }
