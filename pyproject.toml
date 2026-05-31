@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gamedb"
-dynamic = ["version"]
+version = "0.0.0"
 description = "Game Database - Jekyll static site with IGDB data"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -49,6 +49,7 @@ addopts = [
     "--color=yes",
     "--cov=src",
     "--cov-report=term-missing",
+    "--cov-report=xml:coverage/python-coverage.xml",
     "--junitxml=junit-python.xml",
     "-o", "junit_family=legacy",
 ]
