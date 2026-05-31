@@ -22,28 +22,6 @@ document.body.innerHTML = `
     <input id="search_term" value="" />
 `;
 
-// Mock jQuery — fire ready callback synchronously, and fire ajax success immediately
-globalThis.$ = function() {
-    return { ready: (fn) => fn() };
-};
-globalThis.$.ajaxSetup = () => {};
-globalThis.$.ajax = function(opts) {
-    if (opts?.success) {
-        // Return mock data appropriate to the URL
-        if (opts?.url?.includes('cross-reference')) {
-            opts.success({});
-        } else if (opts?.url?.includes('all.json')) {
-            opts.success({
-                '1': {
-                    id: 1, name: 'PC', url: 'https://igdb.com', summary: 'Personal computer.',
-                    screenscraper_id: null, screenscraper_region: null,
-                },
-            });
-        }
-    }
-};
-globalThis.jQuery = globalThis.$;
-
 const {
     splitString,
     fetchGameData,
@@ -58,6 +36,8 @@ const {
     addMetadataItemToFooter,
     processPlatformsData,
     createPlatformCardElement,
+    fetchJson,
+    initializePlatformCards,
     run_search,
 } = require('../gh-pages-template/assets/js/item_loader.js');
 
@@ -114,6 +94,16 @@ describe('item_loader.js', () => {
             globalThis.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
             const result = await fetchGameData(3, 'Error Game');
             expect(result).toEqual({ id: 3, game: { name: 'Error Game' } });
+        });
+    });
+
+    describe('fetchJson', () => {
+        test('fetches JSON with no-store cache behavior', async () => {
+            globalThis.fetch = jest.fn().mockResolvedValue({
+                json: () => Promise.resolve({ ok: true }),
+            });
+            await expect(fetchJson('/data.json')).resolves.toEqual({ ok: true });
+            expect(globalThis.fetch).toHaveBeenCalledWith('/data.json', { cache: 'no-store' });
         });
     });
 
@@ -398,7 +388,38 @@ describe('item_loader.js', () => {
         });
     });
 
+    describe('initializePlatformCards', () => {
+        test('loads cross-reference before rendering platform cards', async () => {
+            globalThis.fetch = jest.fn(url => Promise.resolve({
+                json: () => Promise.resolve(
+                    url.includes('cross-reference')
+                        ? { pc: { ids: { igdb: 1, screenscraper: 123 }, variables: { screenscraper: { region: 'us' } } } }
+                        : { '1': { id: 1, name: 'PC', url: 'https://igdb.com', summary: 'Personal computer.' } },
+                ),
+            }));
+
+            await initializePlatformCards();
+
+            expect(globalThis.fetch).toHaveBeenNthCalledWith(
+                1,
+                'http://localhost/GameDB/platforms/cross-reference.json',
+                { cache: 'no-store' },
+            );
+            expect(globalThis.fetch).toHaveBeenNthCalledWith(
+                2,
+                'http://localhost/GameDB/platforms/all.json',
+                { cache: 'no-store' },
+            );
+            expect(document.getElementById('platforms-container').textContent).toContain('PC');
+        });
+    });
+
     describe('run_search', () => {
+        /**
+         * Wait for queued promise callbacks in fetch-driven rendering tests.
+         *
+         * @returns {Promise<void>} Resolves after the current macrotask.
+         */
         const flushPromises = () => new Promise(r => setTimeout(r, 0));
 
         test('does nothing when search term is empty', () => {

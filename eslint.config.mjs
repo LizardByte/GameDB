@@ -15,7 +15,6 @@ export default [
             globals: {
                 ...globals.browser,
                 ...globals.node,
-                ...globals.jquery,
                 // cross-file globals injected by item_detail.js into the browser scope
                 "base_url": "readonly",
                 "base_path": "readonly",
