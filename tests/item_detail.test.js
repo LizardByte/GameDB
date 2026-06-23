@@ -110,7 +110,7 @@ describe('item_detail.js', () => {
         test('appends dt and dd with string value', () => {
             const dl = document.createElement('dl');
             addDlRow(dl, 'Developer', 'Test Studio');
-            expect(dl.children.length).toBe(2);
+            expect(dl.children).toHaveLength(2);
             expect(dl.children[0].tagName).toBe('DT');
             expect(dl.children[1].tagName).toBe('DD');
             expect(dl.children[0].textContent).toBe('Developer');

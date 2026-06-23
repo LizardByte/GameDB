@@ -107,12 +107,12 @@ describe('game_detail.js', () => {
                 game_modes: [{ name: 'Single player' }],
                 player_perspectives: [{ name: 'First person' }],
             });
-            expect(document.getElementById('game-badges').children.length).toBe(4);
+            expect(document.getElementById('game-badges').children).toHaveLength(4);
         });
 
         test('handles missing badge arrays gracefully', () => {
             renderGameBadges({});
-            expect(document.getElementById('game-badges').children.length).toBe(0);
+            expect(document.getElementById('game-badges').children).toHaveLength(0);
         });
     });
 
@@ -136,7 +136,7 @@ describe('game_detail.js', () => {
         test('skips when no ratings', () => {
             const dl = document.getElementById('game-meta');
             renderGameRatings({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
 
         test('skips age ratings row when all entries are incomplete', () => {
@@ -144,7 +144,7 @@ describe('game_detail.js', () => {
             renderGameRatings({
                 age_ratings: [{ rating_category: null, organization: null }],
             }, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
     });
 
@@ -174,7 +174,7 @@ describe('game_detail.js', () => {
         test('skips when no platforms', () => {
             const dl = document.getElementById('game-meta');
             renderGamePlatforms({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
     });
 
@@ -195,13 +195,13 @@ describe('game_detail.js', () => {
         test('skips when no release dates', () => {
             const dl = document.getElementById('game-meta');
             renderReleaseDates({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
 
         test('skips row when all entries lack date and y', () => {
             const dl = document.getElementById('game-meta');
             renderReleaseDates({ release_dates: [{ date: null, y: null }] }, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
 
         test('renders release date with unknown release_region (empty flag)', () => {
@@ -239,13 +239,13 @@ describe('game_detail.js', () => {
         test('skips when no involved companies', () => {
             const dl = document.getElementById('game-meta');
             renderCompanies({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
 
         test('skips rows when devs or pubs list is empty', () => {
             const dl = document.getElementById('game-meta');
             renderCompanies({ involved_companies: [] }, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
     });
 
@@ -302,7 +302,7 @@ describe('game_detail.js', () => {
         test('skips franchise when neither franchises array nor franchise object', () => {
             const dl = document.getElementById('game-meta');
             renderCollectionsAndFranchises({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
     });
 
@@ -318,13 +318,13 @@ describe('game_detail.js', () => {
         test('skips when no multiplayer modes', () => {
             const dl = document.getElementById('game-meta');
             renderMultiplayer({}, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
 
         test('skips when parts are empty', () => {
             const dl = document.getElementById('game-meta');
             renderMultiplayer({ multiplayer_modes: [{}] }, dl);
-            expect(dl.children.length).toBe(0);
+            expect(dl.children).toHaveLength(0);
         });
     });
 
@@ -339,7 +339,7 @@ describe('game_detail.js', () => {
             const section = document.getElementById('game-screenshots-section');
             expect(section.classList.contains('d-none')).toBe(false);
             const buttons = document.querySelectorAll('#game-screenshots button');
-            expect(buttons.length).toBe(2);
+            expect(buttons).toHaveLength(2);
             buttons[0].click();
             expect(globalThis.openImageModal).toHaveBeenCalled();
         });
@@ -365,7 +365,7 @@ describe('game_detail.js', () => {
 
         test('skips video entries without video_id', () => {
             renderVideos({ videos: [{ name: 'No ID' }] });
-            expect(document.querySelectorAll('#game-videos iframe').length).toBe(0);
+            expect(document.querySelectorAll('#game-videos iframe')).toHaveLength(0);
         });
 
         test('skips when no videos', () => {
@@ -406,7 +406,7 @@ describe('game_detail.js', () => {
 
         test('skips entries with no url and no uid', () => {
             renderExternalLinks({ external_games: [{}] });
-            expect(document.getElementById('game-external').children.length).toBe(0);
+            expect(document.getElementById('game-external').children).toHaveLength(0);
         });
 
         test('skips when no external_games', () => {
@@ -509,7 +509,7 @@ describe('game_detail.js', () => {
             introHeader.appendChild(existingDesc);
             // Should not add a second img-desc
             setupGameBanner({ artworks: [{ url: '//images.igdb.com/t_thumb/art.jpg' }] });
-            expect(document.querySelectorAll('.intro-header .img-desc').length).toBe(1);
+            expect(document.querySelectorAll('.intro-header .img-desc')).toHaveLength(1);
         });
 
         test('does not throw when artworks present but no .page-heading anywhere', () => {
