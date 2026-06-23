@@ -93,7 +93,7 @@ describe('character_detail.js', () => {
 
         test('skips badges when gender and species absent', () => {
             renderCharacter({ name: 'Robot' });
-            expect(document.getElementById('character-badges').children.length).toBe(0);
+            expect(document.getElementById('character-badges').children).toHaveLength(0);
         });
 
         test('shows games section when games present', () => {

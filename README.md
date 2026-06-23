@@ -7,6 +7,7 @@
   <a href="https://github.com/LizardByte/GameDB/actions/workflows/ci-tests.yml?query=branch%3Amaster"><img src="https://img.shields.io/github/actions/workflow/status/lizardbyte/gamedb/ci-tests.yml.svg?branch=master&label=CI&logo=github&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/LizardByte/GameDB/actions/workflows/update-db.yml?query=branch%3Amaster"><img src="https://img.shields.io/github/actions/workflow/status/lizardbyte/gamedb/update-db.yml.svg?branch=master&label=update%20db&logo=github&style=for-the-badge" alt="Update DB"></a>
   <a href="https://app.codecov.io/gh/LizardByte/GameDB"><img src="https://img.shields.io/codecov/c/gh/LizardByte/GameDB.svg?token=AG91ICECDX&style=for-the-badge&logo=codecov&label=codecov" alt="Codecov"></a>
+  <a href="https://sonarcloud.io/project/overview?id=LizardByte_GameDB"><img src="https://img.shields.io/sonar/quality_gate/LizardByte_GameDB?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarqubecloud&label=sonarcloud" alt="SonarCloud"></a>
 </div>
 
 ---

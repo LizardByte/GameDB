@@ -92,22 +92,22 @@ describe('platform_detail.js', () => {
         test('renders category and generation badges', () => {
             renderPlatformBadges({ category: 1, generation: 9 });
             const badges = document.getElementById('platform-badges');
-            expect(badges.children.length).toBe(2);
+            expect(badges.children).toHaveLength(2);
         });
 
         test('renders only category when no generation', () => {
             renderPlatformBadges({ category: 2 });
-            expect(document.getElementById('platform-badges').children.length).toBe(1);
+            expect(document.getElementById('platform-badges').children).toHaveLength(1);
         });
 
         test('renders only generation when no category', () => {
             renderPlatformBadges({ generation: 8 });
-            expect(document.getElementById('platform-badges').children.length).toBe(1);
+            expect(document.getElementById('platform-badges').children).toHaveLength(1);
         });
 
         test('renders nothing when no category or generation', () => {
             renderPlatformBadges({});
-            expect(document.getElementById('platform-badges').children.length).toBe(0);
+            expect(document.getElementById('platform-badges').children).toHaveLength(0);
         });
 
         test('renders fallback text for unknown category number', () => {
@@ -144,7 +144,7 @@ describe('platform_detail.js', () => {
 
         test('renders nothing when no data', () => {
             renderPlatformMetadata({});
-            expect(document.getElementById('platform-meta').children.length).toBe(0);
+            expect(document.getElementById('platform-meta').children).toHaveLength(0);
         });
     });
 
@@ -248,7 +248,7 @@ describe('platform_detail.js', () => {
         test('renders nothing extra when version is empty', () => {
             const body = document.createElement('div');
             populateVersionBody(body, {});
-            expect(body.children.length).toBe(0);
+            expect(body.children).toHaveLength(0);
         });
     });
 

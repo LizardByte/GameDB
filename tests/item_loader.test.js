@@ -68,7 +68,7 @@ describe('item_loader.js', () => {
         test('splits at word boundary when longer than 200 chars', () => {
             const long = 'word '.repeat(50); // 250 chars
             const result = splitString(long);
-            expect(result.length).toBe(2);
+            expect(result).toHaveLength(2);
             expect(result[0].length).toBeLessThanOrEqual(200);
             expect(result[1]).toBe(long);
         });
@@ -137,7 +137,7 @@ describe('item_loader.js', () => {
             }, allPlatforms);
             // Should show first 3 platforms + "+1 more"
             const badges = col.querySelectorAll('.badge');
-            expect(badges.length).toBe(4); // 3 platforms + "+1 more"
+            expect(badges).toHaveLength(4); // 3 platforms + "+1 more"
             expect(col.textContent).toContain('+1 more');
         });
 
@@ -167,7 +167,7 @@ describe('item_loader.js', () => {
                 row,
                 null,
             );
-            expect(row.children.length).toBe(2);
+            expect(row.children).toHaveLength(2);
         });
     });
 
@@ -175,14 +175,14 @@ describe('item_loader.js', () => {
         test('appends note when total exceeds shown', () => {
             const container = document.createElement('div');
             addMoreResultsNote(container, 100, 60);
-            expect(container.children.length).toBe(1);
+            expect(container.children).toHaveLength(1);
             expect(container.textContent).toContain('60');
         });
 
         test('does nothing when total equals shown', () => {
             const container = document.createElement('div');
             addMoreResultsNote(container, 60, 60);
-            expect(container.children.length).toBe(0);
+            expect(container.children).toHaveLength(0);
         });
     });
 
@@ -294,7 +294,7 @@ describe('item_loader.js', () => {
             const para = document.createElement('p');
             const footer = document.createElement('div');
             addVersionMetadataToFooter({}, para, footer, {}, regionMap, iconMap);
-            expect(footer.children.length).toBe(0);
+            expect(footer.children).toHaveLength(0);
         });
 
         test('skips metadata key when it has null icon and is not a special key', () => {
@@ -304,7 +304,7 @@ describe('item_loader.js', () => {
             const customIconMap = { media: null, platform_version_release_dates: null, summary: null };
             addVersionMetadataToFooter({ media: 'Blu-ray' }, para, footer, {}, regionMap, customIconMap);
             // Should not add to footer since icon is null and not a special key
-            expect(footer.children.length).toBe(0);
+            expect(footer.children).toHaveLength(0);
         });
     });
 
