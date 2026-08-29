@@ -1,0 +1,60 @@
+[ 
+ 
+ 
+{ 
+"title"    : "Character", 
+"desc"     : "Character", 
+"category" : "page", 
+"url"      : "/browse/characters/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "Series", 
+"desc"     : "Series", 
+"category" : "page", 
+"url"      : "/browse/collections/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "Franchise", 
+"desc"     : "Franchise", 
+"category" : "page", 
+"url"      : "/browse/franchises/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "", 
+"desc"     : "", 
+"category" : "page", 
+"url"      : "/browse/games/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "GameDB", 
+"desc"     : "GameDB", 
+"category" : "page", 
+"url"      : "/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "Platform", 
+"desc"     : "Platform", 
+"category" : "page", 
+"url"      : "/browse/platforms/", 
+"date"     : "January 1, 1970" 
+}, 
+ 
+{ 
+"title"    : "Blog Index", 
+"desc"     : "Blog Index", 
+"category" : "page", 
+"url"      : "/tags/", 
+"date"     : "January 1, 1970" 
+} 
+ 
+]
