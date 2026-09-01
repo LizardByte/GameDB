@@ -45,14 +45,19 @@ jobs:
           enable-cache: true
 
       - name: Install Python dependencies
-        run: uv sync --locked --python "${PYTHON_VERSION}" --no-python-downloads
+        run: uv sync --locked --python "${PYTHON_VERSION}" --no-build --no-install-project --no-python-downloads
 
       - name: Update
         env:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: uv run --no-sync python -u ./src/update_db.py ${{ github.event_name == 'pull_request' && '-t' || '' }}
+        run: |
+          uv run \
+            --no-build \
+            --no-sync \
+            python -u ./src/update_db.py \
+            ${{ github.event_name == 'pull_request' && '-t' || '' }}
 
       - name: Prepare Artifacts  # uploading artifacts will fail if not zipped due to very large quantity of files
         shell: bash
