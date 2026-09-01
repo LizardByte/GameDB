@@ -5,7 +5,7 @@ import argparse
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_args(tmp_path):
     """Return a minimal args Namespace that update_db functions expect."""
     ns = argparse.Namespace(
@@ -18,7 +18,7 @@ def mock_args(tmp_path):
     return ns
 
 
-@pytest.fixture()
+@pytest.fixture
 def sample_game():
     return {
         'id': 1,
@@ -29,7 +29,7 @@ def sample_game():
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def sample_platform():
     return {
         'id': 6,
@@ -38,7 +38,7 @@ def sample_platform():
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def sample_character():
     return {
         'id': 99,

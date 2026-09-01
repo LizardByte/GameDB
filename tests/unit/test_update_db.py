@@ -36,8 +36,8 @@ def test_igdb_authorization(requests_mock):
 
 
 @pytest.mark.parametrize('indent', [None, 4])
-def test_write_json_files(tmp_path, indent):
-    udb.args = _make_args(tmp_path, indent=indent)
+def test_write_json_files(tmp_path, indent, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path, indent=indent))
     data = {'key': 'value', 'num': 42}
     file_path = str(tmp_path / 'test_dir' / 'myfile')
 
@@ -47,8 +47,8 @@ def test_write_json_files(tmp_path, indent):
     assert written == data
 
 
-def test_write_json_files_creates_directory(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_write_json_files_creates_directory(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
     nested = str(tmp_path / 'a' / 'b' / 'c' / 'file')
     udb.write_json_files(file_path=nested, data={'x': 1})
     assert (tmp_path / 'a' / 'b' / 'c' / 'file.json').exists()
@@ -58,8 +58,8 @@ def test_write_json_files_creates_directory(tmp_path):
     (False, 1000, 3),
     (True, 2, 2),
 ])
-def test_fetch_endpoint_pagination(tmp_path, test_mode, test_limit, expected_count):
-    udb.args = _make_args(tmp_path, test_mode=test_mode, test_limit=test_limit)
+def test_fetch_endpoint_pagination(tmp_path, test_mode, test_limit, expected_count, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path, test_mode=test_mode, test_limit=test_limit))
 
     page1 = json.dumps([{'id': 1, 'name': 'A'}, {'id': 2, 'name': 'B'}]).encode()
     page2 = json.dumps([{'id': 3, 'name': 'C'}]).encode()
@@ -67,7 +67,7 @@ def test_fetch_endpoint_pagination(tmp_path, test_mode, test_limit, expected_cou
 
     mock_wrapper = MagicMock()
     mock_wrapper.api_request.side_effect = [page1, page2, empty]
-    udb.wrapper = mock_wrapper
+    monkeypatch.setattr(udb, 'wrapper', mock_wrapper)
 
     result = udb._fetch_endpoint(
         endpoint='games',
@@ -80,8 +80,8 @@ def test_fetch_endpoint_pagination(tmp_path, test_mode, test_limit, expected_cou
     assert len(result) == expected_count
 
 
-def test_fetch_endpoint_http_retry(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_fetch_endpoint_http_retry(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
 
     good_page = json.dumps([{'id': 1, 'name': 'X'}]).encode()
     empty = json.dumps([]).encode()
@@ -92,7 +92,7 @@ def test_fetch_endpoint_http_retry(tmp_path):
         good_page,
         empty,
     ]
-    udb.wrapper = mock_wrapper
+    monkeypatch.setattr(udb, 'wrapper', mock_wrapper)
 
     with patch('src.update_db.time.sleep') as mock_sleep:
         result = udb._fetch_endpoint(
@@ -107,12 +107,12 @@ def test_fetch_endpoint_http_retry(tmp_path):
     assert 1 in result
 
 
-def test_fetch_all_endpoints_writes_all_json_only_when_flagged(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_fetch_all_endpoints_writes_all_json_only_when_flagged(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
 
     mock_wrapper = MagicMock()
     mock_wrapper.api_request.return_value = json.dumps([]).encode()
-    udb.wrapper = mock_wrapper
+    monkeypatch.setattr(udb, 'wrapper', mock_wrapper)
 
     request_dict = {
         'characters': {'fields': ['name'], 'write_all': True},
@@ -256,8 +256,8 @@ def test_append_skips_endpoint_without_append_key():
     udb._append_related_items(full_dict=full_dict, request_dict=request_dict)
 
 
-def test_add_platform_game_counts(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_add_platform_game_counts(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
     full_dict = {
         'platforms': {
             6: {'id': 6, 'name': 'PC', 'games': [{'id': 1}, {'id': 2}]},
@@ -348,8 +348,8 @@ def test_resolve_video_groups_with_cache_keeps_valid_filters_stale(tmp_path):
     assert 'v3' in all_in_groups
 
 
-def test_fetch_youtube_metadata(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_fetch_youtube_metadata(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
     full_dict = {'videos': {}}
 
     yt_response = {
@@ -365,8 +365,8 @@ def test_fetch_youtube_metadata(tmp_path):
     assert full_dict['videos']['abc']['snippet']['title'] == 'Trailer'
 
 
-def test_fetch_youtube_metadata_handles_missing_items_key(tmp_path, capsys):
-    udb.args = _make_args(tmp_path)
+def test_fetch_youtube_metadata_handles_missing_items_key(tmp_path, capsys, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
     full_dict = {'videos': {}}
 
     with patch('src.update_db.get_youtube', return_value={'error': 'quota exceeded'}):
@@ -427,8 +427,8 @@ def test_enrich_game_videos_skips_games_with_no_videos():
     udb._enrich_game_videos(full_dict=full_dict)
 
 
-def test_get_youtube(tmp_path):
-    udb.args = _make_args(tmp_path, youtube_api_key='yt_key_123')
+def test_get_youtube(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path, youtube_api_key='yt_key_123'))
 
     mock_response = MagicMock()
     mock_response.json.return_value = {'items': []}
@@ -445,8 +445,8 @@ def test_get_youtube(tmp_path):
     assert 'yt_key_123' in called_url
 
 
-def test_write_stats(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_write_stats(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
     full_dict = {
         'characters': {1: {}, 2: {}, 3: {}},
         'games': {10: {}, 20: {}},
@@ -462,8 +462,8 @@ def test_write_stats(tmp_path):
     assert call_kwargs['data'] == {'characters': 3, 'games': 2, 'videos': 2}
 
 
-def test_get_platform_cross_reference(tmp_path):
-    udb.args = _make_args(tmp_path)
+def test_get_platform_cross_reference(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
 
     with patch('src.update_db.write_json_files') as mock_write:
         udb.get_platform_cross_reference()
@@ -474,9 +474,9 @@ def test_get_platform_cross_reference(tmp_path):
     assert call_kwargs['data'] is udb.platforms.cross_reference
 
 
-def test_get_data_orchestration(tmp_path):
+def test_get_data_orchestration(tmp_path, monkeypatch):
     """get_data() calls all helpers in order with correct data flow."""
-    udb.args = _make_args(tmp_path)
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
 
     mock_full_dict = {
         'games': {1: {'id': 1, 'name': 'TestGame'}},
