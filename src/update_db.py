@@ -363,6 +363,34 @@ def _build_buckets_and_collect_videos(full_dict: dict) -> tuple:
     return buckets, all_videos
 
 
+def _build_localized_buckets(full_dict: dict) -> dict:
+    """Index localized game titles by IGDB region and Unicode name prefix.
+
+    The original name and its buckets are left alone so existing consumers keep
+    receiving the same data. IGDB localizations are regional rather than purely
+    language based, and regions can represent locales or continents.
+    """
+    buckets = {}
+
+    for game_id, game_data in full_dict['games'].items():
+        for localization in game_data.get('game_localizations', []):
+            name = localization.get('name')
+            region = localization.get('region')
+            identifier = region.get('identifier') if isinstance(region, dict) else None
+            if not isinstance(name, str) or not name.strip() or not isinstance(identifier, str):
+                continue
+
+            # Region identifiers become path components in the static API.
+            identifier = identifier.lower()
+            if not re.fullmatch(r'[a-z0-9_-]+', identifier):
+                continue
+
+            prefix = ''.join(char.lower() for char in name if char.isalnum())[:2] or '@'
+            buckets.setdefault(identifier, {}).setdefault(prefix, {})[game_id] = {'name': name}
+
+    return buckets
+
+
 def _resolve_video_groups(all_videos: list, cache_file: str, group_size: int) -> list:
     """
     Resolve the list of video groups, using and updating the cache file.
@@ -518,6 +546,11 @@ def get_data():
                 'external_games.url',
                 'franchise.name',
                 'franchises.name',
+                'game_localizations.cover.url',
+                'game_localizations.name',
+                'game_localizations.region.category',
+                'game_localizations.region.identifier',
+                'game_localizations.region.name',
                 'game_modes.name',
                 'genres.name',
                 'involved_companies.company.name',
@@ -616,6 +649,12 @@ def get_data():
     for bucket, bucket_data in buckets.items():
         file_path = os.path.join(args.out_dir, 'buckets', str(bucket))
         write_json_files(file_path=file_path, data=bucket_data)
+
+    localized_buckets = _build_localized_buckets(full_dict=full_dict)
+    for region, region_buckets in localized_buckets.items():
+        for bucket, bucket_data in region_buckets.items():
+            file_path = os.path.join(args.out_dir, 'buckets', 'localized', region, bucket)
+            write_json_files(file_path=file_path, data=bucket_data)
 
     all_videos.sort()
     all_video_groups = _resolve_video_groups(
