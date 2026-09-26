@@ -317,6 +317,71 @@ def test_build_buckets_no_videos():
     assert all_videos == []
 
 
+def test_build_localized_buckets_by_region_and_unicode_prefix():
+    full_dict = {'games': {
+        1: {'name': 'The Legend', 'game_localizations': [
+            {'name': 'ゼルダの伝説', 'region': {'identifier': 'JP'}},
+            {'name': 'La Légende', 'region': {'identifier': 'fr-FR'}},
+        ]},
+        2: {'name': 'Another Game', 'game_localizations': [
+            {'name': 'ゼルダ II', 'region': {'identifier': 'jp'}},
+        ]},
+        3: {'name': 'No Translation'},
+    }}
+
+    assert udb._build_localized_buckets(full_dict) == {
+        'jp': {'ゼル': {1: {'name': 'ゼルダの伝説'}, 2: {'name': 'ゼルダ II'}}},
+        'fr-fr': {'la': {1: {'name': 'La Légende'}}},
+    }
+
+
+def test_build_localized_buckets_skips_incomplete_or_unsafe_entries():
+    full_dict = {'games': {1: {'name': 'Original', 'game_localizations': [
+        {'name': '', 'region': {'identifier': 'jp'}},
+        {'name': 'Title', 'region': {'identifier': '../outside'}},
+        {'name': 'Title', 'region': 7},
+        {'name': 'Title', 'region': {}},
+        {'name': '!!!', 'region': {'identifier': 'jp'}},
+    ]}}}
+
+    assert udb._build_localized_buckets(full_dict) == {'jp': {'@': {1: {'name': '!!!'}}}}
+
+
+def test_get_data_writes_localized_buckets_without_changing_legacy_files(tmp_path, monkeypatch):
+    monkeypatch.setattr(udb, 'args', _make_args(tmp_path))
+    game = {
+        'id': 1,
+        'name': 'The Legend',
+        'cover': {'url': '//images.igdb.com/igdb/image/upload/t_thumb/original.jpg'},
+        'game_localizations': [{
+            'name': 'ゼルダの伝説',
+            'cover': {'url': '//images.igdb.com/igdb/image/upload/t_thumb/localized.jpg'},
+            'region': {'identifier': 'jp'},
+        }],
+    }
+    full_dict = {'games': {1: game}, 'platforms': {}}
+
+    with patch('src.update_db._fetch_all_endpoints', return_value=full_dict) as fetch, \
+         patch('src.update_db._append_related_items'), \
+         patch('src.update_db._resolve_video_groups', return_value=[]):
+        udb.get_data()
+
+    fields = fetch.call_args.kwargs['request_dict']['games']['fields']
+    assert 'game_localizations.cover.url' in fields
+    assert 'game_localizations.name' in fields
+    assert 'game_localizations.region.identifier' in fields
+
+    output = tmp_path / 'out'
+    assert json.loads((output / 'buckets' / 'th.json').read_text()) == {'1': {'name': 'The Legend'}}
+    assert json.loads((output / 'buckets' / 'localized' / 'jp' / 'ゼル.json').read_text()) == {
+        '1': {'name': 'ゼルダの伝説'},
+    }
+    written_game = json.loads((output / 'games' / '1.json').read_text())
+    assert written_game['name'] == 'The Legend'
+    assert written_game['cover'] == game['cover']
+    assert written_game['game_localizations'] == game['game_localizations']
+
+
 def test_resolve_video_groups_no_cache(tmp_path):
     cache = str(tmp_path / 'cache' / 'vg.json')
     all_videos = [f'v{i}' for i in range(5)]

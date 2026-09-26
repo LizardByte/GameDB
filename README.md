@@ -41,16 +41,17 @@ The database is updated automatically on a schedule via the [update-db](.github/
 The generated JSON files are published to the `gh-pages` branch and served at
 `https://app.lizardbyte.dev/GameDB/`.
 
-| Endpoint    | Description                                           | URL                                                       |
-|-------------|-------------------------------------------------------|-----------------------------------------------------------|
-| Buckets     | Game name search index, split by first two characters | `https://app.lizardbyte.dev/GameDB/buckets/<bucket>.json` |
-| Characters  | Individual character details and all characters       | `https://app.lizardbyte.dev/GameDB/characters/<id>.json`  |
-| Collections | Individual collection details and all collections     | `https://app.lizardbyte.dev/GameDB/collections/<id>.json` |
-| Franchises  | Individual franchise details and all franchises       | `https://app.lizardbyte.dev/GameDB/franchises/<id>.json`  |
-| Games       | Individual game details (no aggregate `all.json`)     | `https://app.lizardbyte.dev/GameDB/games/<id>.json`       |
-| Platforms   | Individual platform details and all platforms         | `https://app.lizardbyte.dev/GameDB/platforms/<id>.json`   |
-| Videos      | Individual YouTube video metadata                     | `https://app.lizardbyte.dev/GameDB/videos/<id>.json`      |
-| Stats       | Total item counts per category                        | `https://app.lizardbyte.dev/GameDB/stats.json`            |
+| Endpoint          | Description                                           | URL                                                                          |
+|-------------------|-------------------------------------------------------|------------------------------------------------------------------------------|
+| Buckets           | Game name search index, split by first two characters | `https://app.lizardbyte.dev/GameDB/buckets/<bucket>.json`                    |
+| Localized buckets | Optional regional game title search index             | `https://app.lizardbyte.dev/GameDB/buckets/localized/<region>/<bucket>.json` |
+| Characters        | Individual character details and all characters       | `https://app.lizardbyte.dev/GameDB/characters/<id>.json`                     |
+| Collections       | Individual collection details and all collections     | `https://app.lizardbyte.dev/GameDB/collections/<id>.json`                    |
+| Franchises        | Individual franchise details and all franchises       | `https://app.lizardbyte.dev/GameDB/franchises/<id>.json`                     |
+| Games             | Individual game details (no aggregate `all.json`)     | `https://app.lizardbyte.dev/GameDB/games/<id>.json`                          |
+| Platforms         | Individual platform details and all platforms         | `https://app.lizardbyte.dev/GameDB/platforms/<id>.json`                      |
+| Videos            | Individual YouTube video metadata                     | `https://app.lizardbyte.dev/GameDB/videos/<id>.json`                         |
+| Stats             | Total item counts per category                        | `https://app.lizardbyte.dev/GameDB/stats.json`                               |
 
 `all.json` files (e.g. `characters/all.json`) contain a summary of every item in that category as a single
 dictionary keyed by ID.
@@ -60,6 +61,23 @@ alphanumeric characters of the game name (lowercased), e.g. `ha.json` for games 
 *Halo*. Games whose names contain a space as the second character are put into a bucket named after the first
 character. Games whose names do not start with two alphanumeric characters are grouped into `@.json`. Each bucket
 contains a dictionary of `{ id: { name } }` entries, keeping individual files small for fast lookups.
+
+### Optional game title and cover localization
+
+Individual game records retain their original `name` and may also contain IGDB's `game_localizations` array.
+Each localization has a `name`, an optional `cover.url`, and a `region` with an `identifier`, `name`, and `category`.
+Use the localized cover URL when present, falling back to the game's original `cover.url` otherwise. IGDB regions can
+represent a locale or a continent, so the identifier should be used as supplied by IGDB rather than assumed to be
+a language code. If a game has no localization for the desired region, use its original `name`.
+
+Localized titles are indexed separately under `buckets/localized/<region>/<bucket>.json`. The region path component
+is the lowercased `region.identifier`. A localized bucket uses the first two Unicode alphanumeric characters of the
+localized title, lowercased, ignoring punctuation and spaces; titles with no alphanumeric characters use `@`.
+Bucket entries keep the familiar `{ id: { name } }` shape, with `name` set to the localized title. Only games with
+a title for that region appear in its buckets. To search both translated and original titles, search the selected
+region's bucket and the original bucket, then deduplicate results by game ID.
+
+The existing game `name`, bucket URLs, and original bucket contents remain available without selecting a region.
 
 ## Development
 
