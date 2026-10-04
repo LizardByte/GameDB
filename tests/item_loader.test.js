@@ -516,5 +516,59 @@ describe('item_loader.js', () => {
             const container = document.getElementById('search-container');
             expect(container.textContent).toContain('Mario');
         });
+
+        test('renders results even when platform JSON parsing fails', async () => {
+            document.getElementById('search_term').value = 'mario';
+            globalThis.fetch = jest.fn()
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: () => Promise.resolve({ '10': { name: 'Mario' } }),
+                })
+                .mockResolvedValueOnce({
+                    json: () => Promise.reject(new Error('Invalid platform JSON')),
+                })
+                .mockResolvedValue({
+                    ok: true,
+                    json: () => Promise.resolve({ name: 'Mario', platforms: [6] }),
+                });
+
+            run_search();
+            await flushPromises();
+
+            const container = document.getElementById('search-container');
+            expect(container.querySelector('a').textContent).toContain('Mario');
+            expect(container.textContent).not.toContain('Search failed');
+            expect(globalThis.fetch).toHaveBeenCalledTimes(3);
+        });
+
+        test.each([true, false])('shows rendering errors with platform fetch success=%s', async platformsAvailable => {
+            document.getElementById('search_term').value = 'halo';
+            globalThis.fetch = jest.fn()
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: () => Promise.resolve({ '1': { name: 'Halo' } }),
+                });
+            if (platformsAvailable) {
+                globalThis.fetch.mockResolvedValueOnce({ json: () => Promise.resolve({}) });
+            } else {
+                globalThis.fetch.mockRejectedValueOnce(new Error('Platform fetch failed'));
+            }
+            globalThis.fetch.mockResolvedValue({
+                ok: true,
+                json: () => Promise.resolve({ name: 'Halo' }),
+            });
+            const createElement = document.createElement.bind(document);
+            jest.spyOn(document, 'createElement').mockImplementation(tagName => {
+                if (tagName === 'a') throw new Error('Rendering failed');
+                return createElement(tagName);
+            });
+
+            run_search();
+            await flushPromises();
+
+            const container = document.getElementById('search-container');
+            expect(container.querySelector('.text-danger').textContent).toBe('Search failed: Rendering failed');
+            expect(globalThis.fetch).toHaveBeenCalledTimes(3);
+        });
     });
 });
