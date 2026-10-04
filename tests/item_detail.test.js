@@ -284,6 +284,25 @@ describe('item_detail.js', () => {
             expect(container.querySelector('.row')).not.toBeNull();
         });
 
+        test('handles errors while rendering fetched game cards', async () => {
+            globalThis.fetch = jest.fn().mockResolvedValue({
+                ok: true,
+                json: () => Promise.resolve({ name: 'Fetched Game' }),
+            });
+            const error = new Error('Rendering failed');
+            const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+            const container = document.createElement('div');
+            renderGameList(container, [42]);
+            jest.spyOn(container.querySelector('.row'), 'appendChild').mockImplementation(() => {
+                throw error;
+            });
+
+            await new Promise(r => setTimeout(r, 0));
+
+            expect(errorSpy).toHaveBeenCalledWith('Failed to render game list', error);
+            expect(errorSpy).toHaveBeenCalledTimes(1);
+        });
+
         test('renders game without cover (fetch returns not-ok)', async () => {
             globalThis.fetch = jest.fn().mockResolvedValue({ ok: false });
             const container = document.createElement('div');

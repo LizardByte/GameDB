@@ -550,7 +550,7 @@ function run_search() {
             if (!r.ok) throw new Error(`Bucket not found`)
             return r.json()
         })
-        .then(bucket_data => {
+        .then(async bucket_data => {
             loading.remove()
 
             // Filter results by name (case-insensitive)
@@ -577,30 +577,22 @@ function run_search() {
             search_container.appendChild(row)
 
             // Fetch platform names to display
-            fetch(`${base_url}/platforms/all.json`)
-                .then(r => r.json())
-                .then(allPlatforms => {
-                    // Fetch full game data for each match
-                    const gamePromises = matches.slice(0, 60).map(([id, _game]) =>
-                        fetchGameData(id, _game.name)
-                    )
+            let allPlatforms
+            try {
+                const response = await fetch(`${base_url}/platforms/all.json`)
+                allPlatforms = await response.json()
+            } catch {
+                // Fallback if platforms can't be loaded - still fetch game data
+                allPlatforms = null
+            }
 
-                    Promise.all(gamePromises).then(results => {
-                        renderSearchResults(results, row, allPlatforms)
-                        addMoreResultsNote(search_container, matches.length, 60)
-                    })
-                })
-                .catch(() => {
-                    // Fallback if platforms can't be loaded - still fetch game data
-                    const gamePromises = matches.slice(0, 60).map(([id, _game]) =>
-                        fetchGameData(id, _game.name)
-                    )
-
-                    Promise.all(gamePromises).then(results => {
-                        renderSearchResults(results, row, null)
-                        addMoreResultsNote(search_container, matches.length, 60)
-                    })
-                })
+            // Fetch full game data for each match
+            const gamePromises = matches.slice(0, 60).map(([id, _game]) =>
+                fetchGameData(id, _game.name)
+            )
+            const results = await Promise.all(gamePromises)
+            renderSearchResults(results, row, allPlatforms)
+            addMoreResultsNote(search_container, matches.length, 60)
         })
         .catch(err => {
             loading.remove()

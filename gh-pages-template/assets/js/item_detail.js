@@ -197,6 +197,8 @@ function renderGameList(container, games) {
                 const coverUrl = data?.cover ? igdbImageUrl(data.cover.url, "t_cover_small_2x") : null;
                 renderGameCard(row, id, name, coverUrl);
             });
+        }).catch(error => {
+            console.error("Failed to render game list", error);
         });
     }
 }
